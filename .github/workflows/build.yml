@@ -1,0 +1,39 @@
+---
+name: CPP CI
+
+on:
+  pull_request:
+
+concurrency:
+  # Cancel any CI/CD workflow currently in progress for the same PR.
+  # Allow running concurrently with any other commits.
+  group: build-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build_ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: 'false'
+          paths_ignore: '["**.md"]'
+
+      - uses: actions/checkout@v4
+        if: steps.skip_check.outputs.should_skip != 'true'
+
+      - name: Build Dependencies
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: sudo apt install -y libreadline-dev libgdbm-dev
+
+      - name: Build
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: |
+          make
+
+      - name: Install
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: |
+          true #./Install
