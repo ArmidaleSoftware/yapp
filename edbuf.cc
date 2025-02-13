@@ -94,10 +94,9 @@ text_loop(		// ARGUMENTS: (none)
 		 * dump out most strings quickly without accessing the disk. */
 		if (!(flags & O_QUIET))
 			wputs(TEXT);
-		/* print_prompt(mode); */
 
 		std::string line;
-		ok = ngets(line, st_glob.inp); /* st_glob.inp */
+		ok = ngets(line, st_glob.inp);
 		if (ok && (status & S_INT)) {
 			status &= ~S_INT; /* Clear interrupt */
 			ok = !get_yes(std::format("Abort {}? ", label), true);
@@ -105,7 +104,6 @@ text_loop(		// ARGUMENTS: (none)
 				post = -1;
 		}
 
-		/* std::println("ok={} line={}", ok, line); */
 		if (!ok) {
 			std::println("");
 			mode = oldmode; /* Ctrl-D same as "." */
@@ -127,7 +125,6 @@ text_loop(		// ARGUMENTS: (none)
 		}
 	}
 	smclose(file);
-	/*std::println("File has been closed");*/
 	return post;
 }
 /* Commands available while in text entry mode */
@@ -176,7 +173,7 @@ text_cmd_dispatch(/* ARGUMENTS:                  */
 /* READ TEXT FROM A FILE INTO THE BUFFER                                      */
 /******************************************************************************/
 int
-text_read(      /* ARGUMENTS:             */
+text_read(      /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -225,9 +222,6 @@ text_write(     /* ARGUMENTS:             */
 		return 1;
 	}
 
-	/*
-	   fseek(file,0L,0);
-	*/
 	smclose(file);
 	const auto filename = str::concat({work, "/cf.buffer"});
 	if ((file = smopenr(filename, O_R)) == NULL)
@@ -248,7 +242,7 @@ text_write(     /* ARGUMENTS:             */
 /* DUMP TEXT IN BUFFER AND START OVER                                         */
 /******************************************************************************/
 int
-text_clear(     /* ARGUMENTS:             */
+text_clear(     /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -267,7 +261,7 @@ text_clear(     /* ARGUMENTS:             */
 /* REPRINT CURRENT CONTENTS OF BUFFER                                         */
 /******************************************************************************/
 int
-text_print(     /* ARGUMENTS:             */
+text_print(     /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -295,7 +289,7 @@ text_print(     /* ARGUMENTS:             */
 /* INVOKE UNIX EDITOR ON THE BUFFER                                           */
 /******************************************************************************/
 int
-text_edit(      /* ARGUMENTS:             */
+text_edit(      /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -318,7 +312,7 @@ text_edit(      /* ARGUMENTS:             */
 /* ABORT TEXT ENTRY MODE                                                      */
 /******************************************************************************/
 int
-text_abort(     /* ARGUMENTS:             */
+text_abort(     /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -331,7 +325,7 @@ text_abort(     /* ARGUMENTS:             */
 /* END TEXT ENTRY MODE AND POST IT                                            */
 /******************************************************************************/
 int
-text_done(      /* ARGUMENTS:             */
+text_done(      /* ARGUMENTS:          */
     int argc,   /* Number of arguments */
     char **argv /* Argument list       */
 )
@@ -346,7 +340,7 @@ text_done(      /* ARGUMENTS:             */
 /* FIGURE OUT WHAT TO DO WHEN ESCAPING OUT OF TEXT MODE                       */
 /******************************************************************************/
 char
-edb_cmd_dispatch(/* ARGUMENTS:             */
+edb_cmd_dispatch(/* ARGUMENTS:          */
     int argc,    /* Number of arguments */
     char **argv  /* Argument list       */
 )

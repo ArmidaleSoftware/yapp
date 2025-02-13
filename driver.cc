@@ -45,18 +45,18 @@
 #include "www.h"
 #include "yapp.h"
 
-/* Status info */
+// Status info
 #ifdef WWW
 unsigned long ticket = 0;
 #endif
-flag_t flags = 0;          /* user settable parameter flags */
-unsigned char mode = M_OK; /* input mode (which prompt)     */
-flag_t status = 0;         /* system status flags           */
-flag_t debug = 0;          /* debug flags                   */
+flag_t flags = 0;		// user settable parameter flags
+unsigned char mode = M_OK;	// input mode (which prompt)
+flag_t status = 0;		// system status flags
+flag_t debug = 0;		// debug flags
 
-/* Conference info */
-int current = -1; // current index to cflist
-int confidx = -1; // current index to conflist
+// Conference info
+int current = -1;		// current index to cflist
+int confidx = -1;		// current index to conflist
 int defidx = -1;
 int joinidx = -1;		// current index to conflist
 std::string confname;		// name of current conference
@@ -71,8 +71,8 @@ std::vector<assoc_t> conflist;	// System table of conferences
 std::vector<assoc_t> desclist;	// System table of conference descriptions
 std::string hostname;           // System host name
 
-/* Info on the user */
-uid_t uid;                      // User's UID
+// Info on the user
+uid_t uid;			// User's UID
 std::string login;		// User's login
 std::string fullname;		// User's fullname from passwd
 std::string email;		// User's email address
@@ -82,22 +82,24 @@ std::string partdir;		// User's participation file dir
 int cgi_item;			// single item # in cgi mode
 int cgi_resp;			// single resp # in cgi mode
 
-/* Item statistics */
-status_t st_glob;             /* statistics on current conference */
-status_t st_new;              /* statistics on new conference to join */
-sumentry_t sum[MAX_ITEMS];    /* items in current conference      */
-response_t re[MAX_RESPONSES]; /* responses to current item        */
-/* Variables global to this module only */
+// Item statistics
+status_t st_glob;		// statistics on current conference
+status_t st_new;		// statistics on new conference to join
+sumentry_t sum[MAX_ITEMS];	// items in current conference
+response_t re[MAX_RESPONSES];	// responses to current item
+
+// Variables global to this module only
 static char *cmdbuf = NULL;
 std::string pipebuf;
 char *retbuf = NULL;
 char evalbuf[MAX_LINE_LENGTH];
 FILE *pipe_input = NULL;
-int stdin_stack_top = 0;               /* 0 is always real_stdin */
-stdin_t orig_stdin[STDIN_STACK_SIZE];  /* original fp's opened */
-stdin_t saved_stdin[STDIN_STACK_SIZE]; /* dup'ed fds when pushed */
+int stdin_stack_top = 0;               // 0 is always real_stdin
+stdin_t orig_stdin[STDIN_STACK_SIZE];  // original fp's opened
+stdin_t saved_stdin[STDIN_STACK_SIZE]; // dup'ed fds when pushed
 
-/* takes new fp */
+// Push a stream onto the standard input stack.
+// Takes new fp and type.
 void
 push_stdin(FILE *fp, int type)
 {
@@ -116,10 +118,10 @@ push_stdin(FILE *fp, int type)
 	orig_stdin[stdin_stack_top + 1].fp = fp;
 	orig_stdin[stdin_stack_top + 1].fd = fileno(fp);
 
-	// std::println("push_stdin BEFORE ftell={}", ftell(st_glob.inp));
 	old_fd = dup(0);
 	old_fp = st_glob.inp;
-	close(0); /* close stdin */
+	/* close stdin */
+	close(0);
 	i = dup(fileno(fp));
 	if (i)
 		std::println("Dup error, i={} fd={} old={}", i, fileno(fp), old_fd);
@@ -142,7 +144,8 @@ pop_stdin(void)
 		error("tried to pop off null stdin stack");
 		endbbs(1);
 	}
-	switch (orig_stdin[stdin_stack_top].type & STD_TYPE) { /* close stdin */
+	/* close stdin */
+	switch (orig_stdin[stdin_stack_top].type & STD_TYPE) {
 	case STD_FILE:
 		mclose(orig_stdin[stdin_stack_top].fp);
 		break;
@@ -165,7 +168,6 @@ pop_stdin(void)
 		st_glob.inp = saved_stdin[stdin_stack_top].fp;
 
 	clearerr(st_glob.inp);
-	/* std::println("pop_stdin AFTER ftell={}\n", ftell(st_glob.inp)); */
 }
 
 void
@@ -207,13 +209,10 @@ open_pipe(void)
 			st_glob.outp = stdout;
 	}
 }
-/******************************************************************************/
-/* PRINT PROMPT FOR AN INPUT MODE                                             */
-/******************************************************************************/
+
+// Print a prompt for an input mode.
 void
-print_prompt(/* ARGUMENTS:         */
-    int mod  /* Input mode      */
-)
+print_prompt(int mod)
 {
 	const char *str = NULL;
 	if (flags & O_QUIET)
@@ -223,8 +222,6 @@ print_prompt(/* ARGUMENTS:         */
 	case M_OK: /* In a conference or not? */
 		str = (confidx < 0) ? "noconfp" : "prompt";
 		break;
-		/* case M_RFP:  str = (st_glob.c_status &
-		 * (CS_OBSERVER|CS_NORESPONSE))? */
 	case M_RFP:
 		str = (!check_acl(RESPOND_RIGHT, confidx)) ? "obvprompt"
 		                                           : "rfpprompt";
@@ -244,13 +241,12 @@ print_prompt(/* ARGUMENTS:         */
 	/* expand seps & print */
 	confsep(expand(str, DM_VAR), confidx, &st_glob, part, 1);
 }
-/******************************************************************************/
-/* COMMAND LOOP: PRINT PROMPT & GET RESPONSE                                  */
-/******************************************************************************/
-/* RETURNS: 0 on eof, 1 else    */
-/* ARGUMENTS:                   */
-/* Default command (if any)  */
-/* Min level of stdin to use */
+
+// COMMAND LOOP: PRINT PROMPT & GET RESPONSE
+// RETURNS: 0 on eof, 1 else
+// ARGUMENTS:
+// Default command (if any)
+// Min level of stdin to use
 bool
 get_command(const std::string_view &def, int lvl)
 {
@@ -273,12 +269,6 @@ get_command(const std::string_view &def, int lvl)
 			ungetc(c, st_glob.inp);
 
 		if (stdin_stack_top < lvl) {
-			/*
-			if (!ok) {
-			std::println("Returning 0 since stdin_stack_top={}, lvl={}",
-			    stdin_stack_top, lvl); fflush(stdout);
-			}
-			*/
 			return 0;
 		}
 
@@ -295,11 +285,6 @@ get_command(const std::string_view &def, int lvl)
 			std::println("command: {}", inbuff);
 			fflush(stdout);
 		}
-		/*
-		std::println("{} command: {} ({})", stdin_stack_top, inbuff,
-		    ftell(st_glob.inp));
-		fflush(stdout);
-		*/
 	}
 	if (cmdbuf != NULL || ok) {
 		/* Strip leading & trailing spaces */
@@ -316,25 +301,14 @@ get_command(const std::string_view &def, int lvl)
 	}
 	free(inbuff);
 
-	/*
-	if (!ok) {
-		std::println("returning 0, stdin_stack_top={}, lvl={}",
-		    stdin_stack_top, lvl); fflush(stdout);
-	}
-	*/
-
 	return ok;
 }
-/******************************************************************************/
-/* CLEAN UP MEMORY AND EXIT                                                   */
-/******************************************************************************/
+
+// Clean up memory and exit.  Takes exit status.
 void
-endbbs(     /* ARGUMENTS:         */
-    int ret /* Exit status     */
-)
+endbbs(int ret)
 {
 	int i;
-
 
 	if (status & S_PAGER)
 		spclose(st_glob.outp);
@@ -370,11 +344,9 @@ endbbs(     /* ARGUMENTS:         */
 	exit(ret);
 }
 
+// Opens the BBS cluster.  Takes BBS and help directories.
 void
-open_cluster(
-    const std::string &bdir,	/* BBSDIR  */
-    const std::string &hdir	/* HELPDIR */
-)
+open_cluster(const std::string &bdir, const std::string &hdir)
 {
 	/* Free up space, etc */
 	conflist.clear();
@@ -432,12 +404,13 @@ handle_alarm(int sig)
 	error("out of time");
 	exit(1);
 }
+
 /******************************************************************************/
 /* PROCESS COMMAND LINE ARGUMENTS                                             */
 /******************************************************************************
 Function:    init
 Called by:   main
-Arguments:
+Arguments:   Command line arguments
 Returns:
 Calls:       source for .cfonce and system rc
              grab_file to get .cflist and conflist
@@ -445,10 +418,7 @@ Description: Sets up global variables, i.e. uid, login, envars,
              workdir, processes rc file for system and for user
 ******************************************************************************/
 void
-init(           /* ARGUMENTS:                          */
-    int argc,   /* Number of command-line arguments */
-    char **argv /* Command-line argument list       */
-)
+init(int argc, char **argv)
 {
 	short c, o, i;
 	extern char *optarg;
@@ -486,14 +456,11 @@ init(           /* ARGUMENTS:                          */
 
 	read_config();
 
-	/* Start up interrupt handling * for (c=1; c<=32; c++) signal(c,
-	 * handle_other); */
 	signal(SIGINT, handle_int);
 	signal(SIGPIPE, handle_pipe);
 	signal(SIGALRM, handle_alarm);
 	if (getuid() == get_nobody_uid())
 		alarm(600); /* web process will abort after 10 minutes */
-	/* * signal(SIGINT,  handle_other); signal(SIGPIPE, handle_other); */
 	ints_off();
 
 	/* Initialize options */
@@ -527,16 +494,12 @@ init(           /* ARGUMENTS:                          */
 		status |= S_NOAUTH;
 
 	/* Process command line options here */
-	if (1 /* ||
-	       * match(get_conf_param("safe","true"),"true") */
-	) {
-		if (!uid || uid == geteuid()) {
-			std::println("login {} -- invoking bbs -{}",
-			    login, (uid) ? "n" : "no");
-			flags &= ~(O_SOURCE); /* for security */
-			if (!uid)
-				flags |= O_OBSERVE | O_READONLY;
-		}
+	if (!uid || uid == geteuid()) {
+		std::println("login {} -- invoking bbs -{}",
+		    login, (uid) ? "n" : "no");
+		flags &= ~(O_SOURCE); /* for security */
+		if (!uid)
+			flags |= O_OBSERVE | O_READONLY;
 	}
 	confname.clear();
 	xfile[0] = '\0';
@@ -550,9 +513,8 @@ init(           /* ARGUMENTS:                          */
 		} else if (c == 'x') {
 			strcpy(xfile, optarg);
 		}
-		if (c == 'o')
-			flags ^= O_READONLY; /* -o does observer AND
-			                      * readonly */
+		if (c == 'o')  // -o does observer and readonly
+			flags ^= O_READONLY;
 	}
 #ifdef INCLUDE_EXTRA_COMMANDS
 	if ((flags & O_CGIBIN) ||
@@ -678,6 +640,7 @@ init(           /* ARGUMENTS:                          */
 		status |= S_BATCH; /* set to ignore blank lines */
 	}
 }
+
 /******************************************************************************/
 /* PROCESS COMMAND LINE ARGUMENTS                                             */
 /******************************************************************************
@@ -717,19 +680,6 @@ source(
 	if (debug & DB_IOREDIR)
 		std::println("Redirecting input from {} (fd {})", path, fileno(fp));
 	push_stdin(fp, STD_FILE | fl);
-	/* saved_stdin = new_stdin(fp); */
-	/*
-	saved_stdin = dup(0);
-	close(0);
-	dup(fileno(fp));
-
-	* oldstdin    = st_glob.inp;
-	* st_glob.inp = fp;
-
-	if (st_glob.inp != stdin)
-		mclose(st_glob.inp);
-	st_glob.inp = stdin;
-	 */
 
 	/* Execute commands until we pop back to the previous level */
 	{
@@ -764,6 +714,7 @@ pop_fd(void)
 	}
 	return -1;
 }
+
 /*
  * History expansion
  * !* = all arguments
@@ -865,16 +816,10 @@ command(const std::string &stro, int lvl)
 
 	/* Process shell escape */
 	if (str[0] == '!') {
-		/* Undone at request of sno and jep
-		 *    if (mode==M_SANE)
-		 *       std::println("{} rc cannot exec: {}",conference(1),str);
-		 *    else {
-		 */
 		if (!skip) {
 			unix_cmd(str + 1);
 			std::println("!");
 		}
-		/*    } */
 		return 1;
 	}
 
@@ -917,10 +862,7 @@ command(const std::string &stro, int lvl)
 			} else if (*Sptr == '`') {
 				Eptr = ++Sptr;
 				state = 8;
-			}
-			/* else if (*Sptr=='\"') { Eptr= ++Sptr;
-			   state=3; } */
-			else if (*Sptr == '\"') {
+			} else if (*Sptr == '\"') {
 				Eptr = Sptr;
 				state = 3;
 			} else if (*Sptr == '%') {
@@ -972,6 +914,7 @@ command(const std::string &stro, int lvl)
 			int quot = 0;
 			char *p;
 			const char *q;
+
 			/* First expand backtick commands */
 			for (Eptr = Sptr + 1;
 			     *Eptr && (*Eptr != '\"' || *(Eptr - 1) == '\\');
@@ -1054,10 +997,6 @@ command(const std::string &stro, int lvl)
 
 
 		case 4: /* 'stuff' */
-			/*
-			 * do { Eptr++; } while (*Eptr && *Eptr!='\'');
-			 * argv[argc++] = estrdup(Sptr, Eptr - Sptr);
-			 */
 			{
 				int quot = 0;
 				char *p;
@@ -1172,7 +1111,6 @@ command(const std::string &stro, int lvl)
 		}
 
 		case 8: /* `command` */
-			/*std::println("`` Eptr=!{}!{}", Eptr, strlen(Eptr));*/
 			do {
 				Eptr++;
 			} while (*Eptr && *Eptr != '`');
@@ -1206,12 +1144,6 @@ command(const std::string &stro, int lvl)
 				strcat(tmpstr, Eptr);
 				free(newstr);
 				Sptr = newstr = tmpstr;
-
-				/*std::println("Sptr=!{}!{}", Sptr, strlen(Sptr));*/
-				/*
-				 argv[argc] = estrdup(evalbuf);
-				 Sptr = Eptr;
-				*/
 			} else
 				Sptr = Eptr;
 			state = 1;
@@ -1387,11 +1319,6 @@ command(const std::string &stro, int lvl)
 				 * script to filter HTML text from
 				 * within a template. */
 				status |= S_NOSTDIN;
-				/*              status |=
-				 * S_REDIRECT|S_NOSTDIN; 9/8/95 */
-				/*
-				              st_glob.inp = stdin;
-				*/
 			}
 			Sptr = Eptr;
 			state = 1;
@@ -1400,7 +1327,6 @@ command(const std::string &stro, int lvl)
 		}
 	}
 	if (argc && !skip) {
-
 		/* Execute command */
 		switch (mode) {
 		case M_OK:
@@ -1433,10 +1359,6 @@ command(const std::string &stro, int lvl)
 	/* Now restore original file descriptor state */
 	while (fd_top > prev_top) {
 		i = pop_fd();
-		/*
-		if (!i)
-			std::println("Restoring {} as stdin", saved_fd[i]);
-		*/
 		close(i);
 
 		/* Remove temporary file for "<< word" syntax */
@@ -1469,20 +1391,13 @@ command(const std::string &stro, int lvl)
 
 	/* Do next ; cmd unless EOF or command says to halt (ok==2) */
 	if (ok == 1 && *Sptr && !(status & S_STOP)) {
-		/*std::println("Do next ; so doing !{}!{} lvl {}",
-		 *    Sptr, strlen(Sptr), lvl + 1);*/
 		/* 2/2/96: this was lvl+1 below, but it broke 'if' nesting
 		 * since commands after the ';' appeared to be a level deeper,
 		 * so 'else' and 'endif' couldn't appear after a ';' */
 		ok = command(Sptr, lvl);
 	}
-	/* else if (*Sptr) status &= ~S_STOP; */
 	free(newstr);
 	free(cmd);
-	/*
-	if (!ok)
-		std::println("command returning 0 for Sptr=!{}!", Sptr);
-	*/
 	return ok;
 }
 
@@ -1601,7 +1516,6 @@ handle_pipe(int sig)
 	(void)sig;
 	if (status & S_PAGER)
 		std::println("Pipe interrupt?\n");
-	/* spclose(st_glob.outp ); */
 	signal(SIGPIPE, handle_pipe);
 	status |= S_INT;
 }

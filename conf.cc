@@ -145,9 +145,9 @@ grab_recursive_list(const std::string &dir, const std::string &filename)
 	return v;
 }
 
-/* ARGUMENTS:           */
-/* conference index  */
-/* filename to check */
+// ARGUMENTS:
+// conference index
+// filename to check
 bool
 is_inlistfile(int idx, const std::string &file)
 {
@@ -180,10 +180,7 @@ Calls:       source() for CONF/rc and WORK/.cfrc files
 Description:
 *******************************************************************************/
 char
-join(           /* ARGUMENTS:                          */
-    const std::string &conf, /* Conference name to join          */
-    int force,  /* Force Observe/join flags         */
-    int secure)
+join(const std::string &conf, int force, int secure)
 {
 	char buff[MAX_LINE_LENGTH];
 	struct stat st;
@@ -233,10 +230,6 @@ join(           /* ARGUMENTS:                          */
 				    compress(conflist[joinidx].name) << " " <<
 				    conference() << "." << std::endl;
 			}
-
-		/*
-		 *     cp = checkpoint(joinidx, st_new.c_security, 0);
-		 */
 	}
 
 	if (!cp) {
@@ -257,7 +250,6 @@ join(           /* ARGUMENTS:                          */
 		std::println("join: Partfile={}", partfile);
 	if (stat(partfile.c_str(), &st)) { /* Not a member */
 		if (!((flags | force) & O_OBSERVE)) {
-
 			/* Main JOQ cmd loop */
 			mode = M_JOQ;
 			if ((flags | force) & O_AUTOJOIN) {
@@ -294,7 +286,7 @@ join(           /* ARGUMENTS:                          */
 	if (confidx >= 0)
 		leave(0, (char **)0);
 
-/* was ifdef STUPID_REOPEN */
+	/* was ifdef STUPID_REOPEN */
 	{
 		FILE *inp = st_glob.inp;
 		memcpy(&st_glob, &st_new, sizeof(st_new));
@@ -325,7 +317,6 @@ join(           /* ARGUMENTS:                          */
 	/* Source CONF/rc file and WORK/.cfrc files */
 	if (flags & O_SOURCE) {
 		source(conflist[confidx].location, "rc", STD_SANE, SL_OWNER);
-		/*     source(work,".cfrc", 0, SL_USER); */
 	}
 
 	/* Display login file */
@@ -367,9 +358,7 @@ leave(/* ARGUMENTS: (none)                   */
 		return 1; /* (noconf) */
 
 	if (!argc || argv[0][0] != 'a') { /* not "abort" */
-
 		/* Display logout */
-		/* more(conflist[confidx].location, "logout"); */
 		if (!(flags & O_QUIET)) {
 			sepinit(IS_START | IS_ITEM);
 			confsep(expand("loutmsg", DM_VAR), confidx, &st_glob,
@@ -386,7 +375,7 @@ leave(/* ARGUMENTS: (none)                   */
 		}
 	}
 	st_glob.sumtime = 0;
-	st_glob.c_status = 0; /* |= CS_OTHERCONF; */
+	st_glob.c_status = 0;
 
 	confidx = -1;
 	mclose(conffp);
@@ -480,15 +469,7 @@ check(int argc, char **argv)
 			force |= O_READONLY;
 
 		sec = security_type(config, idx);
-		/*
-		if (!checkpoint(idx,sec, 1)) {
-			if ((sec & CT_READONLY) == 0)
-				continue;
-			force |= O_READONLY;
-		}
-		*/
 
-		/* if (idx==confidx)  */
 		if (confidx >= 0 &&
 		    str::eq(conflist[idx].location, conflist[confidx].location))
 		{
@@ -543,12 +524,9 @@ check(int argc, char **argv)
 /* ADVANCE TO NEXT CONFERENCES WITH NEW ITEMS                                 */
 /******************************************************************************/
 int
-do_next(        /* ARGUMENTS:             */
-    int argc,   /* Number of arguments */
-    char **argv /* Argument list       */
-)
+do_next(int argc, char **argv)
 {
-	/* LOCAL VARIABLES:       */
+	/* LOCAL VARIABLES: */
 	short idx;
 	partentry_t part2[MAX_ITEMS];
 	sumentry_t sum2[MAX_ITEMS];
@@ -586,15 +564,6 @@ do_next(        /* ARGUMENTS:             */
 			continue;
 		}
 
-		/*
-		 * sec = security_type(config, idx);
-		 * cp = checkpoint(idx,sec, 0);
-		 * if ((sec & CT_READONLY) == NULL && c == NULLp)
-		 * 	continue;
-		 */
-
-		/*    if (idx==confidx)  */
-		/* don't segfault if in no conf */
 		if (confidx >= 0 &&
 		    str::eq(conflist[idx].location, conflist[confidx].location))
 		{
@@ -1134,15 +1103,6 @@ show_conf_index(/* ARGUMENTS:             */
 				force |= O_READONLY;
 
 			sec = security_type(config, idx);
-			/*
-			         if (!checkpoint(idx,sec, 1)) {
-			            if (sec & CT_READONLY) {
-			               force |= O_READONLY;
-			            } else {
-			               continue;
-			            }
-			         }
-			*/
 
 			if (confidx >= 0 &&
 			    str::eq(conflist[idx].location, conflist[confidx].location))

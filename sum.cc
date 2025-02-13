@@ -480,7 +480,7 @@ load_sum(              /* ARGUMENTS: */
 	if (stat(path.c_str(), &st) == 0)
 		stt->sumtime = st.st_mtime;
 
-	i = 0; 
+	i = 0;
 	buff[0] = 0;
 	if (fp != nullptr)
 		i = fread(buff, 20, 1, fp);

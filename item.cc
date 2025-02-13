@@ -420,11 +420,6 @@ show_range(void)
 	const auto path = std::format("{}/_{}", conflist[confidx].location, st_glob.i_current);
 	FILE *fp = mopen(path, O_R);
 	if (fp != nullptr) {
-		/*    if (!st_glob.r_current && sum[st_glob.i_current-1].nr>1)
-		 */
-		/*    if ( st_glob.r_first   && sum[st_glob.i_current-1].nr>1)
-		 */
-
 		/* For each response */
 		for (st_glob.r_current = st_glob.r_first;
 		     st_glob.r_current <= st_glob.r_last &&
@@ -497,7 +492,6 @@ read_item(void)
 				break;
 		}
 	}
-	/* else st_glob.r_first=0; LLL */
 
 	/* Display item header */
 	open_pipe();
@@ -535,9 +529,6 @@ read_item(void)
 		    part[i_lastseen].nr > 0)
 			part[i_lastseen].nr =
 			    -part[i_lastseen].nr; /* stay forgotten */
-		/* Don't do this, acc to Russ
-		      time(&(part[i_lastseen].last));
-		*/
 
 		/* Main RFP cmd loop */
 		mode = M_RFP;
@@ -906,42 +897,33 @@ freeze(         /* ARGUMENTS:             */
 			sum[j - 1].flags |= IF_FROZEN;
 			if (chmod(path.c_str(), stt.st_mode & ~S_IWUSR))
 				error("freezing ", path);
-			else {
+			else
 				custom_log("freeze", M_RFP);
-				/* std::format("froze {} {}", topic(), j); */
-			}
 			break;
 		case 't': /* Thaw     rw-r--r-- */
 			sum[j - 1].flags &= ~IF_FROZEN;
 			if (chmod(path.c_str(), stt.st_mode | S_IWUSR))
 				error("thawing ", path);
-			else {
+			else
 				custom_log("thaw", M_RFP);
-				/* std::format("thawed {} {}", topic(), j); */
-			}
 			break;
 		case 'r': /* Retire   r-xr--r-- F,R */
 			sum[j - 1].flags |= IF_RETIRED;
 			if (chmod(path.c_str(), stt.st_mode | S_IXUSR))
 				error("retiring ", path);
-			else {
+			else
 				custom_log("retire", M_RFP);
-				/* std::format("retired {} {}", topic(), j); */
-			}
 			break;
 		case 'u': /* Unretire rw-r--r-- */
 			sum[j - 1].flags &= ~IF_RETIRED;
 			if (chmod(path.c_str(), stt.st_mode & ~S_IXUSR))
 				error("unretiring ", path);
-			else {
+			else
 				custom_log("unretire", M_RFP);
-				/* std::format("unretired {} {}", topic(), j); */
-			}
 			break;
 		}
 		save_sum(sum, (short)(j - 1), confidx, &st_glob);
 		dirty_sum(j - 1);
-		/* ylog(confidx, path); */
 	}
 	return 1;
 }
@@ -1024,7 +1006,6 @@ linkfrom(       /* ARGUMENTS:             */
 			fr_sum[j - 1].flags |= IF_LINKED;
 			memcpy(&(sum[i - 1]), &(fr_sum[j - 1]),
 			    sizeof(sumentry_t));
-			/* to_sum[i-1].flags |= IF_LINKED; */
 			save_sum(fr_sum, (short)(j - 1), idx, &fr_st);
 			save_sum(sum, (short)(i - 1), confidx, &st_glob);
 			dirty_sum(i - 1);
