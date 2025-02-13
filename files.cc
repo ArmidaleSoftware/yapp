@@ -76,7 +76,7 @@ mopen(const std::string &file, long flg)
 	if (debug & DB_FILES)
 		std::println("mopen: flags={:x}", flg);
 
-	/* Process flags: insure it exists or doesn't exist if required */
+	/* Process flags: ensure it exists or doesn't exist if required */
 	// XXX: TOCTOU bug here.
 	if (flg & (O_EXCL | O_NOCREATE))
 		err = stat(file.c_str(), &st);

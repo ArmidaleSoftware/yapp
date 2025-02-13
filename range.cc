@@ -36,7 +36,7 @@
 Changed per Russ's suggestion:
 The motivation is so that your own responses can advance the
 timestamp but not the last-seen response number, thus showing
-your own response to you only *after* an addtional response
+your own response to you only *after* an additional response
 has been made (altering the timestamp again).  If you do not
 have this feature, you have the (rather ugly) alternatives
 of items instantly becoming "new" again when you respond

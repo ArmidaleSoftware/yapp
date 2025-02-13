@@ -15,7 +15,7 @@
 #define BBSDIR "/arbornet/m-net/bbs"
 #define MAILDIR "/var/mail"
 #define NEWSDIR "/var/news"
-#define SENDMAIL "/usr/sbin/sendmail" /* sometimes /usr/sbin/sendmail */
+#define SENDMAIL "/usr/sbin/sendmail"
 
 /* Password file containing encrypted passwords, only readable by cfadm */
 #define PASS_FILE "/arbornet/m-net/bbs/etc/.htpasswd"
