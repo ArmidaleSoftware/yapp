@@ -22,7 +22,7 @@
 /* Information about each open file */
 typedef struct fd_tt {
     std::string filename;
-    short flg;
+    int flg;
     int fd;
     int pid; /* child process id, if secure */
     struct fd_tt *next;
@@ -50,12 +50,13 @@ madd(int fd, const std::string_view &file, int flg, int pid)
 {
     fd_t *thisfd;
     /* Save info for debugging */
-    thisfd = new fd_t{};
-    thisfd->fd = fd;
-    thisfd->filename = file;
-    thisfd->flg = flg;
-    thisfd->pid = pid;
-    thisfd->next = first_fd;
+    thisfd = new fd_t{
+        .filename = std::string(file),
+        .flg = flg,
+        .fd = fd,
+        .pid = pid,
+        .next = first_fd,
+    };
     first_fd = thisfd;
 }
 /******************************************************************************/
