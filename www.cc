@@ -103,6 +103,7 @@ unescape_url(std::string &url)
     }
     return url;
 }
+
 /*
  * With the -c option, converts newlines to 2 characters ("\n")
  * Also, if any variable already exists, the value is appended

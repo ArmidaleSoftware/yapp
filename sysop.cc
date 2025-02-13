@@ -143,7 +143,7 @@ cfcreate(       /* ARGUMENTS:             */
     }
     if (ok) {
         const auto prompt = std::format(
-            "Let a {} change the access contro list? ", fairwitness());
+            "Let a {} change the access control list? ", fairwitness());
         chacl = get_yes(prompt, true);
     }
     if (ok) {

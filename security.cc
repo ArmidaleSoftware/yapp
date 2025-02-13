@@ -148,6 +148,7 @@ check_acl(int right, int idx)
             return false;
     return true;
 }
+
 /******************************************************************************/
 /* TEST TO SEE IF ULIST SHOULD BE UPDATED WITH NEW JOINERS                    */
 /******************************************************************************/

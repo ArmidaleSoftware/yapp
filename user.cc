@@ -111,8 +111,8 @@ get_userfile(const std::string_view &who, int *suid)
 static int
 get_local_user(const std::string_view &login, /* IN: login to find */
     std::string &fullname,                    /* OUT: full name (or NULL) */
-    std::string &home, /* OUT: home directory to use (or NULL) */
-    std::string &email /* OUT: email address (or NULL) */
+    std::string &home,                        /* OUT: home directory to use (or NULL) */
+    std::string &email                        /* OUT: email address (or NULL) */
 )
 {
     FILE *fp;
@@ -303,6 +303,7 @@ get_user(uid_t *uid, std::string &login, std::string &fullname,
 
     return 1;
 }
+
 /*
  * The slow way: search through userfile.   This only works if
  * userdbm is false.
@@ -494,7 +495,6 @@ get_ticket(time_t tm, const std::string_view &who)
 static int
 do_authenticate(const std::string &ticket)
 {
-
     /* Only "nobody" can authenticate */
     if ((status & S_NOAUTH) == 0) {
         std::println("You are already authenticated.");
@@ -529,6 +529,7 @@ get_partdir(const std::string_view &login)
         return path;
     }
 }
+
 /*
  * Assuming login is already set, do everything else necessary to initialize
  * stuff for the user.  This is usually only called once, except when
@@ -624,6 +625,7 @@ add_password(const std::string_view &login, const char *password, FILE *fp)
     std::println(fp, "{}:{}", login, cpw);
     error("warning", std::format("!{}", salt));
 }
+
 /* Sanity check on fullname */
 bool
 sane_fullname(const std::string_view &name)
@@ -633,6 +635,7 @@ sane_fullname(const std::string_view &name)
             return false;
     return true;
 }
+
 /* Sanity check on email */
 static bool
 sane_email(const std::string_view &addr)
@@ -642,6 +645,7 @@ sane_email(const std::string_view &addr)
             return 0;
     return 1;
 }
+
 /* others contains a list of variables to save to the dbm file,
  * excluding fullname, email, passwd
  */
@@ -721,6 +725,7 @@ save_user_info(
 
     return 1;
 }
+
 /*
  * Generate a random 8-character password in static buffer
  * make sure it's not guessable by someone knowing what time the

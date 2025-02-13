@@ -140,6 +140,7 @@ write_part2(const std::string &partfile, status_t *stt, sumentry_t *sum3)
         unlink(path.c_str());
     }
 }
+
 /******************************************************************************/
 /* WRITE OUT A USER PARTICIPATION FILE FOR THE CURRENT CONFERENCE             */
 /******************************************************************************/
@@ -216,6 +217,7 @@ write_part(const std::string &partfile)
     if (debug & DB_PART)
         std::println("write_part: fullname={}", st_glob.fullname);
 }
+
 /******************************************************************************/
 /* READ IN A USER PARTICIPATION FILE FOR SOME CONFERENCE                      */
 /******************************************************************************/

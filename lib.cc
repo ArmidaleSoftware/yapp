@@ -583,7 +583,6 @@ grab_list(
 
     /* Open the file to read */
     FILE *fp = mopen(path, O_R | O_SILENT);
-    ;
     if (fp == NULL) {
         if ((flags & GF_SILENT) == 0)
             error("grabbing list ", path);
@@ -750,7 +749,7 @@ get_date(time_t t, int style)
         /* 18 DEC */ "",
     };
     struct tm *tms = localtime(&t);
-    if (style < 0 || style == 16 || style > 18) /*		sty=0; */
+    if (style < 0 || style == 16 || style > 18) /* sty=0; */
         return std::format("{:X}", t);
     if (style == 18)
         return std::format("{}", t);

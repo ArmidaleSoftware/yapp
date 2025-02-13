@@ -217,6 +217,7 @@ wrapout(FILE *fp, const char *str)
     }
     free(line);
 }
+
 /******************************************************************************/
 /* OUTPUT A NUMBER TO THE DESIRED FORMAT                                      */
 /******************************************************************************/
@@ -287,6 +288,7 @@ dest_entity(entity_t *ent)
     if (ent->type == ET_STRING)
         free(ent->val.s);
 }
+
 /*
  * Convert an operator string to integer format, which some OR'ed combination
  * of the following flags:
@@ -296,6 +298,7 @@ dest_entity(entity_t *ent)
 #define OP_LT 0x100
 #define OP_IN 0x1000
 #define OP_NOT 0x2000
+
 int
 opstr2int(    /* ARGUMENTS: */
     char *str /* Operator string, e.g. "<=", "==", etc */
@@ -407,6 +410,7 @@ opcompare(          /* ARGUMENTS: */
                 (strcmp(lstr, rstr) < 0 && (op & OP_LT)));
     }
 }
+
 /******************************************************************************/
 /* PROCESS CONDITIONS FOR BOTH ITEM/CONF SEPS                                 */
 /******************************************************************************/
@@ -483,6 +487,7 @@ misccond(            /* ARGUMENTS: */
 
 static sumentry_t oldsum[MAX_ITEMS];
 static short oldconfidx;
+
 /* Display new responses since last call */
 void
 announce_new_responses(FILE *fp /* IN: Stream to send to */
@@ -511,6 +516,7 @@ announce_new_responses(FILE *fp /* IN: Stream to send to */
         memcpy(oldsum, sum, MAX_ITEMS * sizeof(sumentry_t));
     }
 }
+
 /* Mark given response as not new, so our own responses don't trigger
  * the message above
  */
@@ -528,6 +534,7 @@ skip_new_response(int c, /* IN: conference index */
         memcpy(oldsum, sum, MAX_ITEMS * sizeof(sumentry_t));
     }
 }
+
 /******************************************************************************/
 /* PROCESS SEPS FOR BOTH ITEM/CONF SEPS                                       */
 /******************************************************************************/
@@ -608,6 +615,7 @@ miscsep(              /* ARGUMENTS: */
 
     *spp = sp;
 }
+
 /******************************************************************************/
 /* PROCESS CONDITIONS FOR ITEM SEPS ONLY                                      */
 /******************************************************************************/
@@ -718,6 +726,7 @@ itemcond(             /* ARGUMENTS:               */
         return 0;
     return (ret != 0) ^ no_t;
 }
+
 /******************************************************************************/
 /* PROCESS SEPS FOR ITEM SEPS ONLY                                            */
 /* This works only for the current conference                                 */
@@ -903,6 +912,7 @@ itemsep2(const char **spp, short *fl, FILE *fp)
 
     *spp = sp;
 }
+
 /******************************************************************************/
 /* PROCESS CONDITIONS FOR CONF SEPS ONLY                                      */
 /******************************************************************************/
@@ -1204,6 +1214,7 @@ confsep2(                            /* ARGUMENTS: */
 
     *spp = sp;
 }
+
 /******************************************************************************/
 /* SET "ONCE-ONLY" FLAGS VALUE                                                */
 /******************************************************************************/
@@ -1355,6 +1366,7 @@ fitemsep(FILE *fp, const std::string_view &sep, int fl)
         }
     }
 }
+
 /******************************************************************************/
 /* PROCESS ITEMSEP STRING                                                     */
 /* Output to pipe, if one is open, else to stdout                             */
@@ -1375,6 +1387,7 @@ itemsep(                         /* ARGUMENTS: */
         fp = stdout;
     fitemsep(fp, sep, fl);
 }
+
 /******************************************************************************/
 /* PROCESS CONFSEP STRING                                                     */
 /******************************************************************************/

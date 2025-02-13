@@ -186,6 +186,7 @@ get_resp(           /* ARGUMENTS                      */
                      "textoff {}",
             re->login, get_date(re->date, 0), re->flags, re->textoff);
 }
+
 /******************************************************************************/
 /* READ IN INFORMATION SUMMARIZING ALL THE RESPONSES IN AN ITEM               */
 /* Note that this is currently only used within the current cf, but could     */

@@ -84,6 +84,7 @@ is_brandnew(partentry_t *p, sumentry_t *s)
 {
     return ((!p->nr && s->nr) && (p->last < s->last));
 }
+
 /*****************************************************************************/
 /* TEST WHETHER ITEM IS COVERED BY THE SPECIFIED SUBSET PARAMETERS           */
 /*****************************************************************************/
@@ -163,6 +164,7 @@ cover(                 /* ARGUMENTS: */
     /* if (spec & OF_NEXT) spec |= OF_NONE; */
     return 1;
 }
+
 /*****************************************************************************/
 /* MARK A RANGE OF ITEMS TO BE ACTED UPON                                    */
 /*****************************************************************************/
@@ -189,6 +191,7 @@ markrange(                     /* ARGUMENTS: */
             std::println("No such {}!", topic());
     }
 }
+
 /*****************************************************************************/
 /* CONVERT A TOKEN TO AN INTEGER                                             */
 /*****************************************************************************/
@@ -436,6 +439,7 @@ rangeinit(status_t *st, char act[MAX_ITEMS])
      * noforget;r' */
     for (i = 0; i < MAX_ITEMS; i++) act[i] = 0;
 }
+
 /*****************************************************************************/
 /* PARSE ONE FIELD OF A RANGE SPECIFICATION                                  */
 /* Note that we need sum passed in because linkfrom does ranges in other     */

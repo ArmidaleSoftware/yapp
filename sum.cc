@@ -96,6 +96,7 @@ get_sumtype(const char *buff)
 #endif
     return sumtype;
 }
+
 /******************************************************************************/
 /* SWAP BYTES IF LOW BIT IN HIGH BYTE (INTEL)                                 */
 /* This is so machines with Intel processors and those with Motorola          */
@@ -400,6 +401,7 @@ item_sum(int i,        /* IN: Item number                   */
     }
     return 1;
 }
+
 /******************************************************************************/
 /* Load SUM data for arbitrary conference (requires part be done previously)  */
 /******************************************************************************/
@@ -695,6 +697,7 @@ refresh_link(status_t *stt, /* pointer to status structure */
         item_sum(i, sum, part, idx, stt);
     }
 }
+
 /******************************************************************************/
 /* UPDATE THE GLOBAL STATUS STRUCTURE, OPTIONALLY GET ITEM SUBJECTS           */
 /******************************************************************************/
