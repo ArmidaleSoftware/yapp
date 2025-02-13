@@ -114,11 +114,9 @@ get_resp(           /* ARGUMENTS                      */
 #endif
 		re->parent = 0;
 
-		/*std::print("Lines: ");*/
 		while (!done && !(status & S_INT)) {
 			if (!ngets(buff, fp))
 				break; /* UNK error */
-			/*putchar(buff[1]);*/
 			if (buff.size() < 2)
 				continue;
 			switch (buff[1]) {
@@ -138,8 +136,6 @@ get_resp(           /* ARGUMENTS                      */
 				done = 1;
 				re->endoff = ftell(fp);
 				break;
-				/* case 'H': strcpy(subj,buff.c_str()+2); break;
-				 */
 			case 'R':
 				re->offset = ftell(fp) - buff.size() - 1;
 				sscanf(buff.c_str() + 2, "%hx", &(re->flags));
@@ -225,7 +221,6 @@ get_item(                         /* ARGUMENTS:                            */
 			std::println("{:2} Offset = {:4} Textoff = {:4}", i,
 			    re[i].offset, re[i].textoff);
 	}
-	/* std::println("GR: {} =?= {}", sum[n-1].nr, i); */
 	if (sum[n - 1].nr != i) {
 		sum[n - 1].nr = i;
 		save_sum(sum, (short)(n - 1), confidx, &st_glob);

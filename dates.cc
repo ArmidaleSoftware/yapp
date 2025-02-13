@@ -101,7 +101,6 @@ do_getdate(time_t *tt, const char *str)
 		}
 		*tt = mktime(&tm) + sgn * i * 24 * 60 * 60;
 	} else {
-
 		/* Leading (timestamp) */
 		if (*ptr == '(') { /* ) */
 			ptr++;
@@ -141,12 +140,6 @@ do_getdate(time_t *tt, const char *str)
 		} else if (a * b) {
 			tm.tm_mon = a - 1;
 			tm.tm_mday = b;
-			/*
-			      } else {
-			         *tt = LONG_MAX;
-			         std::println("Bad date near \"{}\"",ptr);
-			         return ptr;
-			*/
 		}
 
 		/* Trailing (timestamp) */

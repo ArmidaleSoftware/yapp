@@ -92,7 +92,6 @@ change(int argc, char **argv)
 				std::fflush(stdout);
 			}
 			if (ngets(buff, st_glob.inp) && !buff.empty()) {
-				/* st_glob.inp */
 				/* Expand seps in name IF first character is %
 				 */
 				if (buff[0] == '%') {

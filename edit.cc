@@ -308,7 +308,6 @@ modify(
 			return -1; /* error: couldn't fork */
 		while ((wpid = wait(&statusp)) != cpid && wpid != -1)
 			;
-		/* post = !statusp; */
 	} else { /* child */
 		if (setuid(getuid()))
 			error("setuid", "");
