@@ -407,9 +407,9 @@ since(const std::vector<std::string> &args, size_t *ip)
         std::string concat;
         const char *sep = "";
         for (auto j = i; j < args.size(); j++) {
-            where[i] = concat.size();
+            where[j] = concat.size();
             concat.append(sep);
-            concat.append(args[i]);
+            concat.append(args[j]);
             sep = " ";
         }
         const char *cstr = concat.c_str();
