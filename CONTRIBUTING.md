@@ -19,4 +19,4 @@ We recommend following these steps if you'd like to contribute to the project.
 If you found a bug that is not a security issue, file an issue in GitHub.
 
 If you found a bug that is a security issue, do not file an issue in Github.
-Instead, either file a pull request with the fix, or email dthaler1968@gmail.com.
+Instead, either file a pull request with the fix, or email [dthaler@armidalesoftware.com](mailto:dthaler@armidalesoftware.com).
