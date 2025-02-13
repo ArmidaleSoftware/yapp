@@ -1178,8 +1178,9 @@ command(const std::string &stro, int lvl)
 			} while (*Eptr && *Eptr != '`');
 
 			if (!skip) {
-				free(cmd);
+				auto old = cmd;
 				cmd = estrndup(cmd, Eptr - Sptr);
+				free(old);
 				if (*Eptr)
 					Eptr++; /* Set Eptr to next char
 					         * after end ` */

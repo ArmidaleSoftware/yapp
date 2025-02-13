@@ -532,7 +532,7 @@ grab_more(FILE *fp, const char *end, size_t *endlen)
 			line.erase(0, 2);
 		if ((end != nullptr && line.starts_with(end)) || line.starts_with(",R")) {
 			if (endlen)
-				*endlen = strlen(large);
+				*endlen = line.size();
 			break;
 		}
 		lines.push_back(line);
