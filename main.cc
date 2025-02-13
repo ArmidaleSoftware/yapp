@@ -28,17 +28,16 @@ Description: This function parses the command line arguments,
 int
 main(int argc, char **argv)
 {
-	if (!strncmp(argv[0] + strlen(argv[0]) - 9, "yappdebug", 9)) {
-		std::println("Content-type: text/plain\n\nSTART OF OUTPUT:");
-		fflush(stdout);
-	}
-	init(argc, argv); /* set up globals */
+    if (!strncmp(argv[0] + strlen(argv[0]) - 9, "yappdebug", 9)) {
+        std::println("Content-type: text/plain\n\nSTART OF OUTPUT:");
+        fflush(stdout);
+    }
+    init(argc, argv); /* set up globals */
 
-	while (get_command("", 0))
-		;
-	endbbs(0);
+    while (get_command("", 0));
+    endbbs(0);
 
-	return 0;
+    return 0;
 }
 
 /******************************************************************************/
@@ -48,7 +47,7 @@ main(int argc, char **argv)
 void
 wputs(const std::string_view &s)
 {
-	fwrite(s.data(), s.size(), 1, stdout);
+    fwrite(s.data(), s.size(), 1, stdout);
 }
 
 extern char evalbuf[MAX_LINE_LENGTH];
@@ -58,18 +57,18 @@ extern char evalbuf[MAX_LINE_LENGTH];
 void
 wfputs(const std::string_view &s, FILE *stream)
 {
-	if (stream)
-		fwrite(s.data(), s.size(), 1, stream);
-	else {
-		const size_t max = std::min(s.size() + 1, MAX_LINE_LENGTH);
-		strlcat(evalbuf, s.data(), max);
-	}
+    if (stream)
+        fwrite(s.data(), s.size(), 1, stream);
+    else {
+        const size_t max = std::min(s.size() + 1, MAX_LINE_LENGTH);
+        strlcat(evalbuf, s.data(), max);
+    }
 }
 
 void
 wputchar(int c)
 {
-	putchar(c);
+    putchar(c);
 }
 
 /* WARNING: the caller is responsible for doing an fflush on the stream
@@ -78,13 +77,13 @@ wputchar(int c)
 void
 wfputc(int c, FILE *fp)
 {
-	if (fp)
-		fputc(c, fp);
-	else {
-		size_t len = strlen(evalbuf);
-		if (len != MAX_LINE_LENGTH) {
-			evalbuf[len] = c;
-			evalbuf[len + 1] = 0;
-		}
-	}
+    if (fp)
+        fputc(c, fp);
+    else {
+        size_t len = strlen(evalbuf);
+        if (len != MAX_LINE_LENGTH) {
+            evalbuf[len] = c;
+            evalbuf[len + 1] = 0;
+        }
+    }
 }
