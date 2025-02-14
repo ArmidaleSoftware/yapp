@@ -39,7 +39,7 @@ jobs:
 
       - name: Build Dependencies
         if: steps.skip_check.outputs.should_skip != 'true'
-        run: sudo apt install -y libreadline-dev libgdbm-dev
+        run: sudo apt install -y libreadline-dev libgdbm-dev libgtest-dev
 
       - name: Build
         if: steps.skip_check.outputs.should_skip != 'true'
@@ -50,3 +50,8 @@ jobs:
         if: steps.skip_check.outputs.should_skip != 'true'
         run: |
           true #./Install
+
+      - name: Run tests
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: |
+          make test
