@@ -1,0 +1,7 @@
+Syntax: text
+
+Description:
+   This will redisplay responses starting at response 0.  This
+   is a synonym for "0".
+
+See also: range, separators

@@ -1,0 +1,23 @@
+
+Topic: Response ranges
+
+Description: A response range is a way of selecting some subset of responses
+   on which to operate.  A response range consists of a series of arguments
+   each of which may be of type <resps> or <code> or <compat> below.
+
+<#>-<#>                  - all responses between numbers, inclusive
+<#>                      - all responses starting with number
++<#>                     - all responses starting with number after current
+-<#>                     - all responses starting with number before current
+a_gain                   - same range as original display
+chi_ld                   - first child of current response in tree
+cu_rrent | th_is | .     - all responses starting with last one seen
+first | ^                - same as 1
+l_ast | $                - last response
+onl_y <#>                - only that response
+par_ent                  - parent of current response in tree
+si_nce <date>            - all responses since date
+sib_ling                 - next sibling of response in tree
+text                     - same as 0
+
+See also: test, date, dates

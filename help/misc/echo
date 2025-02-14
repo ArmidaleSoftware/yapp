@@ -1,0 +1,14 @@
+
+Syntax: ec_ho <string>
+        echoe <string>
+        echon <string>
+        echone <string>
+        echoen <string>
+
+Description: These commands all display a string of text, and are useful
+   for generating messages from batch files.  The echoe, echone, and echoen
+   send the string to standard error rather than standard output.  The
+   echon, echone, and echoen forms suppress advancing to a new line after
+   printing string.
+
+See also: source

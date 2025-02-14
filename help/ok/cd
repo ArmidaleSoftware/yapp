@@ -1,0 +1,7 @@
+
+Syntax: cd <directory>
+        chd_ir <directory>
+
+Description: These will change the current directory.
+
+See also: 

@@ -1,0 +1,13 @@
+
+Syntax: m_ail [<login>]
+        t_ransmit [<login>]
+        sen_dmail [<login>]
+
+Description: If a login is given, send mail to the specified user.  
+   If the mailtext option is set, the mail program will be invoked.
+   Otherwise, Yapp will collect text.
+
+   With no arguments, the standard mail program is invoked to read
+   your own mail.
+
+See also: reply, set mailtext

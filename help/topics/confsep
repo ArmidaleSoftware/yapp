@@ -1,0 +1,45 @@
+
+Topic: Conference Separators
+
+Description: Conference separators apply in only for conference separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  A code is specified with: %Z#X 
+      where Z is an optional 'Z' or 'z' meaning print 'No' or 'no' in place of 0
+            # is an optional number
+            X is some character below.
+   
+   Char  Meaning                                    
+
+   b     number of brandnew items
+   C     string text for index command
+   d     conference directory
+   f     number of first item
+   g     dump entire file #
+   i     number of items
+   k     number of things processed so far in the current report
+   l     number of last item
+   L     name of current conference
+   m     last modification date of conference (timestamp on summary file)
+   n     number of new (brandnew or newresponse) items
+   o     date of last session in conference (timestamp on participation file)
+   p     participation file name
+   q     last component of conference directory
+   Q     if not in a conference, print message and abort separator
+   r     number of newresponse items
+   s     name of conference
+   t     conference security type (number)
+   u     your full name in this conference
+   v     your login
+   w     your Yapp directory (usually your home directory or .cfdir directory)
+   y     number of unseen items                 
+
+   File numbers for separators which access file numbers for a conference are:
+
+   0     login
+   1     logout
+   2     index
+   3     bulletin
+   4     welcome
+   5     htmlheader
+
+See also: separators, confcond, datesep, files

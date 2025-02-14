@@ -1,0 +1,34 @@
+
+Topic: Separators
+
+Description: Separator strings are a way of customizing output.  Separator
+   strings are saved in variables, each of which has a default value.  There
+   are six types of separator codes:
+
+      miscsep  - value applies in all cases
+      confsep  - value applies to conference information only
+      itemsep  - value applies to item information only
+
+      misccond - condition works in all cases
+      confcond - condition works for conference information only
+      itemcond - condition works for item information only
+
+   In general, each separator code is of the form: %#X
+   where # is an optional number or 'z' or '^'
+     and X is some character
+
+   Some exceptions are:
+      %<var>     means expand entire variable here (the <> are literals) and
+                 capitalize it if ^ was specified
+      %{var}     means expand entire variable here (the {} are literals) and
+                 capitalize it if ^ was specified
+      ${var}     means expand variable here without re-expanding recursively 
+                 and capitalize it if ^ was specified
+      %(X ... %) means expand ... only if X condition holds (note that
+                 %E in ... functions as an ELSE clause)
+      %((icon op icon) ... %)  means expand ... only if the given condition
+                 holds.  See syntax for the if command for more information.
+      %`command` means replace with output of the given command
+
+See also: miscsep, itemsep, confsep, misccond, confcond, itemcond,
+          datesep, eval, display, define, variables, if

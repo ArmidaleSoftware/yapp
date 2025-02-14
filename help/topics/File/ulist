@@ -1,0 +1,14 @@
+
+Description: For private conferences which have a fixed user list,
+   this list should be created and maintained by a fair-witness.
+   For public conferences, this file is automatically maintained by
+   YAPP.  It contains a list of fields separated by whitespace (spaces, 
+   tabs, or newlines).  Any lines beginning with a "#" character are 
+   interpreted as comments, and ignored.
+
+   Each field may be any of the following:
+      login of participant
+      UID of participant
+      filename of another ulist file to include (same format)
+
+See also: security, change ulist, file acl

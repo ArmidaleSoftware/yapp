@@ -1,0 +1,8 @@
+
+Syntax: ch_ange sa_ne
+        se_t    sa_ne
+
+Description: These will undefine any variables or aliases set by
+   the conference rc file.
+
+See also: undefine, set supersane, set verbose, file rc

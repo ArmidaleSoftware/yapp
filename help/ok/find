@@ -1,0 +1,15 @@
+
+Syntax: f_ind [<range>] "text"   
+        l_ocate [<range>] "text"
+        f_ind [<range>] ["text"] A=login
+        l_ocate [<range>] ["text"] A=login
+
+Description: This will show all lines of responses in items in the specified
+   range which contain the specified string of text.   If no range 
+   is specified, "all" is assumed.  In the latter forms, all responses
+   by the login specified will be found, and the first line of each
+   displayed, unless a text string is also specified.  If both an
+   author and text are given as arguments, all lines of responses by
+   the author specified which contain the specified text will be shown.
+
+See also: range

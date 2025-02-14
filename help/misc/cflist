@@ -1,0 +1,15 @@
+
+Syntax: cflist add <conference> ...
+        cflist delete <conference> ...
+        cflist show
+	cflist restart
+
+Description: These commands are for ease of creating and maintaining a
+   .cflist.  The first form adds conferences to your .cflist.  The
+   second removes conferences from your .cflist, and the third form
+   displays the current .cflist.  Finally the fourth form will join
+   the first conference in your .cflist which has new information
+   in it.
+
+See also: 
+   file cflist, check, next, change list 

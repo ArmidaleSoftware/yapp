@@ -1,0 +1,65 @@
+#!/bin/sh
+# page <file> <title>
+page() {
+   title=`echo $2 | tr a-z A-Z`
+   len=`echo $title | wc -c`
+   lenn=`expr 39 - $len / 2 `
+   lenm=`expr 38 + $len + $lenn`
+   echo ""
+   echo "*************************************** $title ***************************************" | cut -c1-$lenn,40-$lenm
+   cat $1 
+}
+
+#header <title>
+header() {
+   len=`echo $1 | wc -c`
+   echo '------------------------------------------------------------------------------'
+   echo "                                       $1" | cut -c1-`expr 40 - $len / 2`,40-
+   echo '------------------------------------------------------------------------------'
+}
+
+#section <dir> <section title>
+section() {
+   header "$2"
+   old=`pwd`
+   cd $1
+   if [ -f Default ]
+   then
+      cat Default
+   fi
+   for i in [a-z]*
+   do
+      page $i $i
+   done
+   echo 
+   cd $old
+}
+
+# Title
+echo "\
+
+
+
+
+"
+header "The Yapp Conferencing System"
+header "By Dave Thaler"
+header "(C)1994 Armidale Software"
+echo 
+
+# Overview
+header "Section 1: Overview"
+page topics/Intro Introduction
+page ok/Commands Commands
+echo 
+
+section ok           "Section 2: OK Commands"
+section rfp          "Section 3: RFP Commands"
+section misc         "Section 4: Miscellaneous Commands"
+section misc/Display "Section 4.1: The Display Command"
+section misc/Change  "Section 4.2: The Change Command"
+section edb          "Section 5: EDB Commands"
+section joq          "Section 6: JOQ Commands"
+section text         "Section 7: TEXT Commands"
+section topics       "Section 8: Other Topics"
+section topics/File  "Section 8.1: Data Files"

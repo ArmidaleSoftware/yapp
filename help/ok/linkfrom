@@ -1,0 +1,10 @@
+
+Syntax: li_nkfrom <conf> <range>
+
+Description: This will link items in the specified range in the
+   given conference into the current conference.  This can only
+   be done by a fair-witness of the current conference.  A link
+   can be erased with the kill command.  Link commands are logged
+   to the conference log file.
+
+See also: kill, file log

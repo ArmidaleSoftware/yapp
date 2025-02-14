@@ -1,0 +1,10 @@
+
+Syntax: d_isplay ma_iltext
+
+Description: Shows you the status of your mail and the mailtext flag.
+   If the mailtext flag is on, then when you issue a command to send
+   mail, the standard mail program will be invoked.  If the mailtext
+   flag is off, then Yapp will collect the text to be mailed to the 
+   destination.
+
+See also: mail, set mailtext

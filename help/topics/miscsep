@@ -1,0 +1,21 @@
+
+Topic: Miscellaneous Separators
+
+Description: Miscellaneous separators apply in all cases for all separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  A code is specified with: %Z#X
+      where Z is an optional 'Z' or 'z' meaning print 'No' or 'no' in place of 0
+            # is an optional number
+            X is some character below.
+
+   Char  Meaning                                    
+
+   %     '%' character
+   c     suppress linefeed at end of output
+   D     current timestamp (# controls format)
+   E     "else", reverses condition
+   S     's' if last number output was >1
+   T     set tab spaces to #
+   X     tab over the set number of spaces (default 1)
+
+See also: separators, misccond, datesep

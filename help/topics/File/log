@@ -1,0 +1,6 @@
+
+Description: A log file is kept in each conference to track usage of
+   kill, linkfrom, retire, unretire, freeze, and thaw commands.  These
+   files can be deleted at any time with no ill effects.
+
+See also: kill, linkfrom, retire, unretire, freeze, thaw

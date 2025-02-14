@@ -1,0 +1,38 @@
+.\" @(#)yapp.1 1.1 95/09/21 Armidale Software
+.ds ~ \u\(ap\d
+.TH CFCREATE 1 "21 September 1995"
+.SH NAME
+cfdelete \- delete an old Yapp conference
+.SH SYNOPSIS
+.B cfdelete
+.SH DESCRIPTION
+.LP
+.I Cfdelete
+allows a cfadm to delete an old Yapp conference.  
+.I cfdelete
+will prompt the cfadm for the conference name, which must match exactly
+the text name (including underlines) found in the conflist file.  The
+conference will be removed from all Yapp files.  If a common participation
+file directory is used (via the 'partdir' parameter in the yapp.conf file),
+members' participation files will also be removed by this script.  Note
+that, unlike the cfdelete command built into Yapp, members' .cflist files 
+will not be updated.
+.SH FILES
+.PD 0
+.TP 20
+.B /usr/bbs/conflist
+mapping between conference names and locations
+.TP
+.B /usr/bbs/desclist
+mapping between conference names and descriptions
+.TP
+.B /usr/bbs/maillist
+mapping between conference names and email addresses
+.PD
+.br
+.ne 6
+.SH SEE ALSO
+.BR yapp (1),
+.BR cfcreate (1) 
+.LP
+.IR "YAPP Manual" .

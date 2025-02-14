@@ -1,0 +1,35 @@
+
+Topic: Dates
+
+Description: There are a number of date formats supported.  For example,
+   "-21" means 21 days ago.  Various other formats are detailed below.  
+   The "19" prefix of a year is optional.  Month names can be any 
+   abbreviation three letters or more long.  Capitalization does not matter.
+
+Specification:
+
+<datespec> : +|-<number>                      -21
+             (<time>) <date>                  (noon) 20
+             <date> (<time>)                  7/20 (4:34p)
+             <date> <time>                    7/20/68 4:34p
+             <date>                           July 20
+
+    <date> : <month>/<day>/<year>              7/20/1968
+             <month>-<day>-<year>              7-20-68
+             <day> <monthname> <year>         20 Jul 1968
+             <monthname> <day>, <year>        July 20, 1968
+             <month>/<day>                     7/20
+             <month>-<day>                     7-20
+             <day> <monthname>                20 July
+             <monthname> <day>                Jul 20
+             <day>                            20
+         
+    <time> : <hour><ampm>                     (4a)
+             <hour>:<minute><ampm>            (1:23 pm)
+             <hour>:<minute>:<second> <ampm>  (12:30:00)
+             <ampm>                           (noon)
+ 
+    <ampm> : n_oon | m_idnight | a_m | p_m
+             <empty>
+
+See also: range, test, date

@@ -1,0 +1,8 @@
+
+Syntax: d_isplay origin_list
+
+Description: Shows you the list of origins which are allowed to enter
+   the current conference.  Origins can be hostnames, domain names,
+   IP addresses, or IP address prefixes.
+
+See also: change originlist, file originlist

@@ -1,0 +1,47 @@
+
+Following is a list of all important files used by YAPP.  You can get more
+info on the format of a file with "help file <filename>", where <filename>
+is the string in the right column below.
+
+YAPP general files:                                                  More info:
+
+/etc/yapp.conf  - local YAPP configuration information               yappconf
+BBS/            - denotes the YAPP directory
+BBS/censored    - log of all censoring and scribbling                censored
+BBS/conflist    - mapping from conference names to directories       conflist
+BBS/desclist    - mapping from conference names to descriptions      desclist
+BBS/errorlog    - log of all YAPP errors encountered                 errorlog
+BBS/maillist    - mapping from email addresses to conference names   maillist
+BBS/rc          - commands to execute when starting bbs              bbsrc
+BBS/registered  - license information                                registered
+      
+Conference files:
+
+CONF/           - denotes the conference directory
+CONF/_#         - an item file                                       item
+CONF/acl        - access control list                                acl
+CONF/article    - highest article number in a nresgroup conference   article
+CONF/bulletin   - shown when entering conference, if file is new     bulletin
+CONF/config     - conference configuration file                      config
+CONF/htmlheader - conference header displayed from WWW               htmlheader
+CONF/index      - displayed with "display index" command             index
+CONF/log        - kill/link/freeze/thaw/retire/unretire log          log
+CONF/login      - displayed when entering conference                 login
+CONF/logout     - displayed when leaving conference                  logout
+CONF/observers  - optional user list to be referenced by acl file    observers 
+CONF/originlist - optional list of hosts/addresses allowed to join   originlist
+CONF/rc         - commands to execute when entering                  rc
+CONF/secret     - conference password (if any)                       secret
+CONF/sum        - conference information summary file                summary
+CONF/ulist      - list of participants in the conference             ulist
+CONF/welcome    - shown when joining conference for the first time   welcome
+
+User files:
+
+HOME/           - denotes the user's home directory 
+HOME/.cfdir/    - if exists, this is WORK.  Otherwise WORK = HOME    cfdir
+WORK/.cfjoin    - commands to execute when joining a new conference  cfjoin
+WORK/.cflist    - list of conferences for check & next commands      cflist
+WORK/.cfonce    - commands to execute when starting bbs              cfonce
+WORK/.cfrc      - commands to execute when entering a conference     cfrc
+WORK/.CONF.cf   - conference participation file                      partfile

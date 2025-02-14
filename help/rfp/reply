@@ -1,0 +1,11 @@
+Syntax: reply <#>
+
+Description:
+   This will allow you to send mail to the author of the specified 
+   response.  The text of response N will be included at the start 
+   of the message.
+
+   The format of the included response is controlled by the separator 
+   variable "replysep".
+
+See also: mail, respond, separators

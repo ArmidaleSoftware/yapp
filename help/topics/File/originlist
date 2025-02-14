@@ -1,0 +1,20 @@
+
+Description: This file is used for conferences in which partipation
+   is restricted to users on machines in a particular domain or
+   IP address prefix.  It contains a list of hostnames, domain names,
+   IP addresses and/or subnet prefixes separated by whitespace (spaces, 
+   tabs, or newlines).  Any lines beginning with a "#" character are 
+   interpreted as comments, and ignored.  For a Unix or web user to be
+   allowed to join the conference, their host must match one of the
+   hostnames, 
+
+Examples:
+   ann-arbor.mi.us    allows any hostname equal to or ending with
+                      "ann-arbor.mi.us"
+   141.211.39.193     allows the indicated IP address
+   141.211.39         allows any IP address starting with "141.211.39"
+   141.211.38/23      allows any IP address in the indicated subnet
+                      range (i.e. any address whose high 23 bits match
+                      141.211.38)
+
+See also: security, file ulist

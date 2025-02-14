@@ -1,0 +1,5 @@
+
+Description: By default, the login file is shown whenever a user leaves
+   the conference.  This is controlled by the "loutmsg" variable.
+
+See also: join, display login, change login, vars

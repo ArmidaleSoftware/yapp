@@ -1,0 +1,15 @@
+
+Syntax: cfcreate [<conf>]
+
+Description: This command can only be run by the conference administrator,
+   and is used to delete an empty conference.  If no conference name is
+   specified, Yapp will prompt for one.  Yapp will then attempt to delete 
+   the indicated conference.  If the conference is not empty, it will not 
+   be deleted and Yapp will issue a warning.  To delete a conference with 
+   items in it, you must first kill all the items.
+
+   If a common participation file directory is used, Yapp will also delete
+   members' participation files and remove the conference from members'
+   .cflist files as well.
+
+See also: list, cfcreate, file yappconf

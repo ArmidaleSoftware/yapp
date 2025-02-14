@@ -1,0 +1,10 @@
+
+Syntax: re_spond <range>
+        ps_eudonym <range>
+
+Description: Enter a response to an existing item in the specified range.
+   If the edalways flag is set, the editor will be immediately invoked.
+   Otherwise, Yapp will collect text.  The pseudonym command will prompt
+   for a full name to enter the response as.
+
+See also: enter, change edalways

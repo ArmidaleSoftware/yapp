@@ -1,0 +1,16 @@
+Conferences:
+   The Yapp conferencing system is composed of a set of "conferences", each
+   devoted to some general topic such as sports or computer games.
+   Conferences are referenced by their name, and can only be created by
+   a system administrator.  Users who have administrative control over a
+   specific conference are called "fairwitnesses".
+
+Items:
+   Within each conference, a series of "items" can exist, each devoted to
+   some specific subject, such as "Detroit Tigers".  Items are usually
+   referenced by a number, and can be created by users.
+
+Responses:
+   Each item consists of a message followed by zero or more "responses"
+   to the original message.  Responses are also referenced by a number,
+   and can be entered by any user.

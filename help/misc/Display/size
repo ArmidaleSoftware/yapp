@@ -1,0 +1,25 @@
+
+Syntax: d_isplay s_ize
+
+Description: Shows you information the current memory usage of
+   your Yapp process.  This is generally only useful for debugging.
+
+   Example:
+
+   Category: Number   Size  Bytes Acalls Rcalls Fcalls
+   Arrays  :      3     19     76     59      5     56
+   Strings :    541    541   8265   1218      0    677
+   Totals  :    544    560   8341   1277      5    733
+
+   Key:
+   
+   Category: malloc'ed space is used for strings, and for arrays
+             of string pointers.
+   Number  : number of currently malloc'ed chunks
+   Size    : number of single strings
+   Bytes   : actual memory usage in bytes
+   Acalls  : number of calls to allocate memory since process start
+   Rcalls  : number of calls to realloc
+   Fcalls  : number of calls to free memory
+
+See also: display strings

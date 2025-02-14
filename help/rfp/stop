@@ -1,0 +1,10 @@
+Syntax: st_op
+        ex_it
+        q_uit
+
+Description:
+   This will return you to the OK prompt, skipping any remaining
+   items left to read.  It will mark any responses you have read
+   as seen.
+
+See also: new, pass, postpone

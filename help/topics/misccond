@@ -1,0 +1,18 @@
+
+Topic: Miscellaneous Conditionals
+
+Description: Miscellaneous conditionals apply in all cases for all separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  Codes inside conditionals are used only if
+   the condition is true.  A code is specified with: %(!#X 
+      where ! is an optional '!' or '~' meaning to negate the condition
+            # is an optional number
+            X is some character below.
+   
+   Char  Meaning                                    
+
+   P     true if last number output was not 1
+   S     true if the user is a fairwitness in the current conference
+   l     true if the user is an observer in the current conference
+
+See also: separators, miscsep

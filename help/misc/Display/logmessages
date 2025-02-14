@@ -1,0 +1,7 @@
+
+Syntax: d_isplay log_messages
+
+Description: Shows you the login and logout files for the 
+   current conference.
+
+See also: display login, display logout, file login, file logout

@@ -1,0 +1,11 @@
+Welcome to Yapp.  You can get further help on a topic by doing "help topic".
+Some useful commands are (_'s denote minimal abbreviations):
+   j_oin         - go to another conference
+   r_ead         - read a range of items
+   e_nter        - enter a new item
+   b_rowse       - browse a range of items
+   q_uit         - exit Yapp
+
+Other help topics that might be useful are:
+   intro_duction - describe the layout of the conferencing system
+   commands      - list the commands available at this prompt

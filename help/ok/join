@@ -1,0 +1,7 @@
+
+Syntax: j_oin <conf>
+
+Description: This will leave the current conference and join
+   another conference (if you have access to it).
+
+See also: leave, next, resign, file cfonce, file cfrc, file cfjoin

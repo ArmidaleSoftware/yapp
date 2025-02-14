@@ -1,0 +1,12 @@
+
+Syntax: ch_ange ul_ist
+        se_t    ul_ist
+
+Description: Allows a fairwitness to edit the list of participants 
+   for the current conference.  For public conferences, this list 
+   is automatically maintained by Yapp.  For closed conferences, 
+   this list is maintained by the conference fairwitnesses.  It 
+   contains a list of user logins allowed to access the conference.
+   A UID number may be used in place of a login if desired.
+
+See also: display ulist, participants, security, file ulist

@@ -1,0 +1,9 @@
+
+Description: Commands such as check and next use a list of conferences
+   specified by the user.  This file allows a user to save a list of
+   commonly accessed conferences.  It contains a list of conference names
+   separated by whitespace (spaces, tabs, or newlines).  Any lines
+   beginning with a "#" character are interpreted as comments, and
+   ignored.
+
+See also: display list, check, next, change list, cflist

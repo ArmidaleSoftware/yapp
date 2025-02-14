@@ -1,0 +1,20 @@
+
+Description: The config file can only be changed by a YAPP administrator,
+   who may modify it with "change config" inside Yapp, or by editing the
+   file in Unix.
+   Line 1 should contain the string "!<pc02>".
+   Line 2 should contain the participation filename to use.
+   Line 3 is currently unused, and should contain "0".
+   Line 4 should contain a comma-separated list of fairwitnesses.
+   Line 5 should contain the conference security type.
+   Line 6 (optional) should contain the newsgroup name for a newsgroup
+          conference, or a mailing list address for a maillist conference
+
+Example:
+!<pc02>
+.test6.cf
+0
+marcvh,thaler
+4
+
+See also: security, fairwitnesses, maillist, newsgroup, change config

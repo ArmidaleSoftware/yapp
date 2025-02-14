@@ -1,0 +1,7 @@
+
+Syntax: save variable ...
+
+Description: Only usable by users with local Yapp accounts, this command 
+   stores the listed variables in the user's Yapp information database.
+
+See also: load, define

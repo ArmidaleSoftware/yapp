@@ -1,0 +1,77 @@
+\begin{verbatim}
+YAPP(1)                                                   YAPP(1)
+
+NAME
+       bbs, yapp - text conferencing system
+
+SYNOPSIS
+       bbs [ -qulosn ] [-x program-file ] [ [ -j ] conference ]
+
+DESCRIPTION
+       Yapp  is a customizable conferencing system for Unix, with
+       both text-based, and WWW-based access capabilities.  It is
+       backward  compatible  with PicoSpan, an older, widely-used
+       commercial conferencing system, and  contains  many  addi-
+       tional features.
+
+OPTIONS
+       If  no  conference  is  specified, yapp looks for the file
+       .cflist in the user's .cfdir directory if it exists,  then
+       in  the	user's home directory.	If the file is found, the
+       first conference listed is used as the startup conference.
+       Otherwise, the default conference specified in the yapp rc
+       file is used as the startup conference.
+
+       -q            Quiet mode.  Don't display  any  prompts  or
+                     superfluous  text.  Useful when writing Yapp
+                     scripts.
+
+       -u            Turn off output  buffering.   If  output  is
+                     unbuffered,  yapp ignores the setting of the
+                     pager variable.
+
+       -l            Start  in	``no  conference''  mode.    When
+                     starting  in  limbo, yapp ignores the user's
+                     .cflist file and the default conference set-
+                     ting in the system conflist file.
+
+       -o            Force  observer  status  in all conferences.
+                     For the duration of the  current  yapp  ses-
+                     sion,  the user will not be allowed to enter
+                     responses in conferences.
+
+       -s            Strip non-printing characters from input.
+
+       -n            Don't source conference rc files.
+
+       -x program-file
+                     Read commands  from  the  file  program-file
+                     instead of from standard input.
+
+       -j conference Start  in	the  conference  named conference
+                     instead of the system default or  the  first
+                     conference  specified  in the user's .cflist
+                     file.
+
+FILES
+       $HOME/.cfdir        personal directory  for  storing  yapp
+                           files.   If this exists, this is WORK,
+                           otherwise, WORK is HOME.
+       $WORK/.cflist       list of conferences you're  interested in
+       $WORK/.cfonce       file  of  commands executed at startup time
+       $WORK/.cfrc         file of commands executed when  entering 
+                           a conference
+       $WORK/.*.cf         conference participation files
+       /usr/bbs            base directory for yapp files
+       /usr/bbs/rc         global start-up file
+       /usr/bbs/conflist   mapping  between  conference names and
+                           locations
+
+SEE ALSO
+       cfcreate(1), cfdelete(1), YAPP Manual.
+
+       yapp  is  found	in  /usr/local/bin/yapp,  as  a  link  to
+       /usr/local/bin/bbs.
+
+                            21 September 1995			
+\end{verbatim}

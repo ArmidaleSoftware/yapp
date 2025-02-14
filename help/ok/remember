@@ -1,0 +1,9 @@
+
+Syntax: rem_ember [<range>]
+        unfor_get [<range>]
+
+Description: These commands will clear the forgotten status of all items 
+   in the specified range.  It will have no effect on items which were
+   not previously forgotten.  If no range is specified, "all" is assumed.
+
+See also: display forgotten, forget

@@ -1,0 +1,9 @@
+
+Syntax: retitle 
+
+Description: If you are the author of the current item, or a fairwitness,
+   this will allow you to change the subject of the item.  If the new
+   subject is longer than the original subject, it will be truncated after 
+   78 characters.
+
+See also: header, edit, file item

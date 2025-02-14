@@ -1,0 +1,8 @@
+
+Syntax: cl_ear
+        em_pty
+
+Description: These will clear out the contents of the text buffer,
+   leaving it empty.
+
+See also: print, edit

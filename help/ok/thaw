@@ -1,0 +1,9 @@
+
+Syntax: thaw <range>
+
+Description: This will cause all items in the specified range to be
+   unfrozen.  Users are then allowed to respond to the item in the 
+   future.  The thaw command undoes the freeze command.  Thaw 
+   commands are logged to the conference log file.
+
+See also: display frozen, freeze, file log

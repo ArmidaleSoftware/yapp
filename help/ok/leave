@@ -1,0 +1,7 @@
+
+Syntax: le_ave
+
+Description: This will leave the current conference, and put you 
+   into "noconf" mode, where you are not in any conference.
+
+See also: join, quit

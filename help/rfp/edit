@@ -1,0 +1,11 @@
+Syntax: edit <#>
+
+Description:
+   This will allow (only) the author of a response to edit a previous
+   response.  If the new text is less than 78 characters longer than
+   the original text, the new text will replace the old text.  Otherwise,
+   the old response will be scribbled, and the new text will be entered
+   as a new response.  In either case, the old text is logged to a file
+   which is readable only by a system administrator.
+
+See also: scribble, respond, file item, file censored

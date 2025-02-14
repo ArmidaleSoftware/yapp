@@ -1,0 +1,16 @@
+
+Topic: File numbers for separators
+
+Description: The file names corresponding to file numbers in separator
+   strings are show below.  
+
+   #   File
+
+   0   login
+   1   logout
+   2   index
+   3   bull
+   4   welcome
+   5   htmlheader
+
+See also: confsep

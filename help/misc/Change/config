@@ -1,0 +1,9 @@
+
+Syntax: ch_ange config
+        se_t    config
+
+Description: Allows the administrator to edit the configuration file for 
+   the current conference.  This file contains such information as the
+   conference type and the list of fairwitnesses.
+
+See also: file config

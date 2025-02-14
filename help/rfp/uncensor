@@ -1,0 +1,7 @@
+Syntax: uncen_sor <#>
+
+Description:
+   This will unmark a response as censored, so that it will appear
+   normally once again.
+
+See also: censor, change noforget

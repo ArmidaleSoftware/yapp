@@ -1,0 +1,5 @@
+
+Description: All censored and scribbled text is appended to this file
+   along with a record of by whom and when.  This file can grow without
+   bound, and should probably be deleted periodically by a system
+   administrator.

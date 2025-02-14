@@ -1,0 +1,17 @@
+
+Topic: Fairwitnesses
+
+Description: A fairwitness is a user who has been entrusted with 
+   administrative  power over a conference.  Some features available 
+   only to fairwitnesses  are listed below:
+
+      edit conference files: login, logout, index, secret, ulist, rc, 
+         bulletin, and welcome
+      enter the first item of a conference
+      censor or scribble others' responses
+      freeze, thaw, retire, unretire, and kill others' items
+      link items from other conferences
+      regenerate or delete the conference summary file
+   
+See also: change, enter, censor, scribble, freeze, thaw, retire,
+   unretire, kill, linkfrom, set summary, set nosummary

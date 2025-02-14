@@ -1,0 +1,10 @@
+Syntax: onl_y <#>
+
+Description:
+   This will display only a specific response number.  This is
+   a synonym for "#-#" with both numbers the same.  The format of
+   the response header is controlled by the "rsep" variable, and 
+   the format of the lines of text are controlled by the "txtsep"
+   variable.
+
+See also: range, separators

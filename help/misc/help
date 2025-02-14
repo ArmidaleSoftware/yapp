@@ -1,0 +1,19 @@
+
+Syntax: h_elp [<topic> [<subtopic>] ] ...
+        ? [<topic> [<subtopic>] ] ...
+        exp_lain [<topic> [<subtopic>] ] ...
+
+Description: The help command will display information on the usage
+   of commands, options, and other miscellaneous topics.  Some topics
+   such as "change" and "display" have subtopics.  For example,
+   "help display" will show a list of possible subtopics, whereas
+   "help display frozen" gives you information on that subtopic.
+
+   A normal help file has syntax, description, and see also sections.
+
+   For syntax, underline characters denote the minimal abbreviation
+   which will be recognized.  For example, "exp_lain" means "exp", "expl",
+   "expla", "explai", and "explain" are all valid, but "e" and "ex" are not.
+   <stuff>   means to replace this with something of type stuff.
+   [ stuff ] means stuff is optional
+   stuff ... means there may be more than one occurrance of stuff

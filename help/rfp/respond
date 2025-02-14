@@ -1,0 +1,13 @@
+
+Syntax: re_spond [<#>]
+        ps_eudonym [<#>]
+
+Description: Enter a response to the current item.  If the edalways flag 
+   is set, the editor will be immediately invoked.  Otherwise, Yapp will 
+   collect text.  The pseudonym command will prompt for a full name to 
+   enter the response as.
+
+   If an optional response number is given as an argument, the new text
+   will be treated as a response to that response number.
+
+See also: enter, change edalways, tree, parent, child, sibling

@@ -1,0 +1,138 @@
+Topic: Reserved Variables
+
+Following are reserved variable names.  Most have default values that can
+be checked with "display <varname>".  Undefined variables expand to
+the empty string, rather than generating an error.
+
+Miscellaneous configuration variables:
+
+bufdel        buffer delimiter (only first character is significant)
+cmddel        command delimiter (only first character is significant)
+conference    what to call a conference/forum/etc
+editor        unix command to invoke editor              
+escape        escape character in text entry mode (first char significant)
+fairwitness   what to call a fairwitness/host/etc
+gecos         GECOS separator in password file (first character significant)
+helpcmd       default command to execute at Ok prompt when user hits return
+item          what to call an item/topic/etc
+mailbox       filename to use as your mailbox
+pager         unix command to invoke pager
+shell         unix command to invoke shell
+subject       what to call an item subject/title/etc
+visual        unix command to invoke visual editor
+wrap          if non-zero, # cols after which to wrap response text
+
+Conference separator variables:
+
+bullmsg       output of "display bulletin"
+checkmsg      conference information for check command
+confindexmsg  format of a conference description line for index command
+confmsg       output of "display conference"
+edbprompt     prompt to confirm response entry
+groupindexmsg format of a group header line for index command
+indxmsg       output of "display index"
+joinmsg       output of "join" with no arguments
+joqprompt     prompt when deciding whether or not to become a member of a conf
+linmsg        output when entering a conference
+listmsg       conference information for list command
+loutmsg       output when leaving a conference
+mailmsg       announcement when you have mail
+noconfp       main Yapp prompt, if not in a conference
+obvprompt     prompt after each item when reading, if respond is not allowed
+partmsg       person info, for participants command
+printmsg      report header, for print command
+prompt        main Yapp prompt, if in a conference
+rfpprompt     prompt after each item when reading, if respond is allowed
+scribok       prompt to verify scribbling
+text          prompt while entering text
+wellmsg       output of "display welcome"
+
+Item separator variables:
+
+censored      response is censored notice
+fsep          output of find command
+isep          long item header (default for read command)
+ishort        short item header (default for browse command)
+nsep          new response status, for read command
+replysep      response included in reply mail text
+rsep          response header for read command
+scribbled     response is scribbled notice
+txtsep        line of response text in read command
+zsep          item footer, for read command
+
+WWW Read/only variables
+
+hitstoday     number of Yapp hits today from the www
+nobody        login of account which CGI scripts run as
+pathinfo      contents of PATH_INFO environment variable
+querystring   contents of QUERY_STRING environment variable (note that
+              variables sent via QUERY_STRING are automatically set
+              for you in yapp.
+requestmethod contents of REQUEST_METHOD environment variable
+remoteaddr    contents of REMOTE_ADDR environment variable
+remotehost    contents of REMOTE_HOST environment variable
+sysop         login of sysop account
+wwwdir        base directory for Yapp www files
+
+Miscellaneous Read/only variables
+
+aacl          access control list for changing conference access control lists
+address       mailing list email address of a maillist conference
+bbsdir        bbs system base directory
+brandnew      number of brandnew items
+cacl          access control list for creating new items in this conference
+canaacl       can change the access control list
+cancacl       can create items in a conference
+canracl       can read items in a conference
+canwacl       can write items in a conference
+cflist        list of conferences in your .cflist
+confdir       full pathname of current conference directory
+conflist      list of possible conferences
+confname      short name of current conference
+curitem       current item number
+curline       current line number of response
+curresp       current response number
+cursubj       current item subject
+email         your email address
+exit          exit status of last Unix command executed
+firstitem     first item number
+fromlogin     login of current response author
+fromname      full name of current response author
+fullname      your full name in this conference
+fwlist        list of fairwitnesses in this conference
+highresp      highest response number in range specified
+home          your home directory
+hostname      hostname of local system on which yapp is running
+isbrandnew    is the current item brandnew
+isnew         is the current item brandnew or contain a new responce
+isnewresp     does the current item contain a new responce
+lastitem      last item number
+lastresp      number of responses in current item
+login         your login
+lowresp       lowest response number in range specified
+mode          current prompt index
+newresp       number of newresponse items in the current conference
+newresps      number of new responses to the current item
+nextconf      next conference in your .cflist with new items
+nextitem      next item in specified range
+numitems      number of items in the current conference
+partdir       directory containing your participation files and .cflist
+pid           current Yapp process id
+prevconf      previous conference in your .cflist with new items
+previtem      previous item in specified range
+racl          access control list for joining and reading current conference
+seenresp      highest response number seen
+status        current internal status flags
+uid           your uid
+unseen        number of unseen items
+wacl          access control list for writing responses in current conference
+work          your Yapp work directory
+
+Extra variables imported from environment variables:
+
+alpha         Value is value of ALPHA environment variable
+beta          Value is value of BETA environment variable
+gamma         Value is value of GAMMA environment variable
+delta         Value is value of DELTA environment variable
+
+See also: separators

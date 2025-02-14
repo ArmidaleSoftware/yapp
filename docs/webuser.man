@@ -1,0 +1,139 @@
+\begin{verbatim}
+YAPP(1)                                                   YAPP(1)
+							  
+
+NAME
+       webuser	- allows administrative functions to be performed
+       for web accounts.
+
+
+SYNOPSIS
+       webuser [ -dehlprsuv ] [login]
+
+
+DESCRIPTION
+       webuser without options creates a local	web  account  for
+       login,  if  one	doesn't  already  exist, and sets the web
+       password to be the same as the Unix  password  for  login.
+       If no login is specified, then an account is created asso-
+       ciated with the current Unix user.
+
+
+OPTIONS
+       The following  options  tell  webuser  the  administrative
+       function you wish to perform:
+
+       -d  Disables  the  ability  to  login into the account for
+       login or the current Unix user
+
+       -e Enable ablity to login into the account  for	login  if
+       specified,  or  the  current Unix user, if the account has
+       previously been disabled
+
+
+       -h Displays the usage information for webuser.
+
+
+       -l List the assocated login for all web accounts
+
+       -p Change the password for login if one is specified, oth-
+       erwise  it  will  change  the password for the web account
+       associated with the current Unix user.
+
+       -r Remove the web account for login or  the  current  Unix
+       user.  Only root or the User Administrator if specified in
+       the yapp.conf file may do this.
+
+       -s Show the account information for login or for  the  web
+       account	assocated  with the current Unix user.	This will
+       print the Web login, Status  (Disabled  or  Active),  Full
+       name, Email address and the time the user last read infor-
+       mation.
+
+       -u Create or update the a web account assocated	with  the
+       current	Unix user, or login if specified.  The user's web
+       password will now be the same as their Unix password.
+
+       -v Show the version of webuser.
+
+       If webuser is being run by a user, either no login  should
+       be specified or the user must specify their own login.
+
+       If  webuser is being executed by root, nobody, or the User
+       Administrator if specified  in  the  yapp.conf  file,  any
+       login may be specified on the command line.
+
+
+USAGE
+       The  Yapp newuser command runs webuser if the login of the
+       web account newuser  has  been  asked  to  create  already
+       exists  as  a  Unix  login.   See the Yapp Manual for more
+       information on newuser.
+
+       You may wish to create a wrapper script for the Unix  com-
+       mand  passwd,  and  have  it  run  webuser whenever a user
+       changes their Unix password.
+
+       You can also incorporate webuser in the process of  creat-
+       ing  a Unix account if you wish all Unix accounts to auto-
+       matically have web accounts as well.
+
+       webuser is also used for the administrative  functions  of
+       removing web accounts  and resetting a web password.
+
+
+ERROR MESSAGES
+       webuser: Permission denied
+            You  are  running  webuser with the login option, but
+            you do not have permission to access the password  of
+            the   explicitly  listed  login.  Try running webuser
+	    without login specified, or run webuser as root.
+
+       This program must be installed setuid root
+            webuser has not been installed as setuid root.   Make
+            sure  that	the  owner  of webuser is root, and it is
+            mode 4711.
+
+      webuser: no such login
+            webuser was given a login which does not exist in the
+            Unix password file.
+
+      webuser: cannot create a web account with root access
+            webuser was given a root login, and will not create a
+            web account for such logins.
+
+
+      webuser:login is already enabled
+            The account for login was already  enabled	for  use.
+            You  can check the status of the account using the -s
+            option.
+
+       webuser:login is already disabled
+            The account for login was already disabled.  You  can
+            check  the status of the account using the -s option.
+
+       getting host name
+           webuser was unable to get the fully qualified  domain
+           name for the current host.
+
+       rename
+           webuser  was  unable to rename the temporary password
+           file to the actual password file.
+
+
+SEE ALSO
+       yapp(1), passwd(1)
+       YAPP Manual.
+
+
+BUGS
+       Please report any bugs to yapp@armidale.ann-arbor.mi.us
+
+
+NOTES
+       webuser must run setuid root so that  it  can  access  the
+       encrypted form of the user's password when shadow password
+       files are used.
+
+       Source code is distributed with the binary distribution. 
+\end{verbatim}

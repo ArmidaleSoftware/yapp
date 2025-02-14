@@ -1,0 +1,23 @@
+Commands available from the EDB prompt:
+   y_es                     - post response
+   n_o                      - abort response entry
+   c_ontinue                - continue with text entry
+   cl_ear                   - clear response
+   ed_it                    - edit response
+   pr_int                   - reprint response
+
+Other miscellaneous commands available:
+   c_hange <arg> ...        - change various parameters
+   cd <directory>           - changes the current directory
+   cfdir                    - change default directory for personal Yapp files
+   d_isplay <arg> ...       - displays various parameters
+   da_te <date>             - show the result of a date specification
+   def_ine <variable> <type> <value> - defines a variable or command alias
+   ec_ho <string>           - prints the specified string of text
+   eval_uate [<range>] "sepstring" - evaluates a separator string
+   h_elp <topic> ...        - show help on various topics
+   m_ail <user>             - send mail to a specific user
+   source <filename>        - execute commands in a batch file
+   t_est <range>            - show the result of a range specification
+   uma_sk <value>           - sets current umask to value
+   und_efine <variable>     - deletes a previously defined variable and its value

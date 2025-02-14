@@ -1,0 +1,14 @@
+
+Syntax: retire <range>
+
+Description: This will mark items in the specified range as retired.
+   Retired items are inaccessible unless unretired.  You may not do 
+   this unless either:
+      a) You are a fair-witness of the conference
+      b) You are the original author of the item and there are no
+         responses
+   The retire command can be reversed with the unretire command.  Note
+   that this does not actually delete the item, as the kill command 
+   does.  Retire commands are logged to the conference log file.
+
+See also: unretire, kill, display retired, file log

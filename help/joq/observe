@@ -1,0 +1,9 @@
+
+Syntax: o_bserver
+
+Description: This will let you enter a conference without becoming a
+   member or being listed among its participants.   A participation
+   file will not be created, and thus anything read will not be marked
+   as seen after you leave the conference.
+
+See also: join

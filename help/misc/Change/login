@@ -1,0 +1,10 @@
+
+Syntax: ch_ange logi_n
+        se_t    logi_n
+
+Description: Allows a fairwitness to edit the login message
+   for the current conference.  The login file is shown whenever 
+   a user enters the conference.  The format of the display is 
+   controlled by the linmsg variable.
+
+See also: display login, file login

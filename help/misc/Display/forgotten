@@ -1,0 +1,7 @@
+
+Syntax: d_isplay f_orgotten
+
+Description: This will display a list of all forgotten item numbers in
+   the current conference.
+
+See also: forget, remember

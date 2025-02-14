@@ -1,0 +1,11 @@
+
+Syntax: cfcreate
+
+Description: This command can only be run by the conference administrator,
+   and is used to create a new conference.  When run, Yapp will prompt
+   for a short conference name (used to join it), a one line description,
+   the conference directory, logins or UIDs of fairwitnesses,
+   the conference type (see 'help security'), and email address if
+   the conference is linked to a mailing list (see 'help maillist').
+
+See also: list, join, cfdelete

@@ -1,0 +1,7 @@
+
+Syntax: d_isplay fair_witnesses
+                 fair_witnesslist
+                 fws_list
+
+Description: This will display the logins of all fairwitnesses of
+   the current conference.

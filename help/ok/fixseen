@@ -1,0 +1,8 @@
+
+Syntax: fix_seen [<range>]
+        seen [<range>]
+
+Description: This will mark all responses in items in the specified
+   range as seen.  If no range is specified, the default is "all".
+
+See also: display seen

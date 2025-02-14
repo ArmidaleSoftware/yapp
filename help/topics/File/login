@@ -1,0 +1,5 @@
+
+Description: By default, the login file is shown whenever a user enters
+   the conference.  This is controlled by the "linmsg" variable.
+
+See also: join, display login, change login, vars

@@ -1,0 +1,29 @@
+
+Description: A conference participation file contains information such 
+   as the status of items you have seen.  This is automatically
+   maintained by YAPP and modifying it is not recommended.  However, 
+   for informational purposes, the format is explained below.
+
+   The first line always contains the magic string "!<pr03>".
+   The second line contains the your full name in this conference.
+   Following that is one line per item in the conference, with three 
+   fields per line.  
+   The first field is the item number.
+   The second field is how many responses (including #0) you have
+   read in that item.  If this is negative, the item is forgotten.
+   The third field is the timestamp (in hex) of when you last accessed
+   the item.
+
+   An "unseen" item is one with 0 responses read, and a new timestamp
+   in your participation file.
+   A "brandnew" item is one which has a 0 timestamp in your participation 
+   file.
+   A "newresponse" item is one which has a positive timestamp in your
+   participation file, but less than the timestamp on the actual item.
+
+Example:
+!<pr03>
+Dave Thaler
+90 -31 2C5FEE56
+91 0 2C5FEE39
+92 0 0

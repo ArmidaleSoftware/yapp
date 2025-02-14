@@ -1,0 +1,139 @@
+.\" @(#)yapp.1 1.1 95/09/21 Armidale Software
+.ds ~ \u\(ap\d
+.TH YAPP 1 "21 September 1995"
+.SH NAME
+bbs, yapp \- text conferencing system
+.SH SYNOPSIS
+.B bbs
+[
+.B "\-qulosn " 
+]
+.RB [ "\-x " 
+.I program-file 
+] [ [
+.B "\-j " 
+]
+.I conference 
+]
+.SH DESCRIPTION
+.LP
+.I Yapp 
+is a customizable conferencing system for Unix, with both text-based,
+and WWW-based access capabilities.  It is backward compatible with 
+PicoSpan, an older, widely-used commercial conferencing system, and 
+contains many additional features.
+.SH OPTIONS
+.LP
+If no 
+.I conference
+is specified, 
+.I yapp
+looks for the file
+.B \&.cflist
+in the user's
+.B \&.cfdir
+directory if it exists, then in the user's home directory.
+If the file is found, the first conference listed is used as the
+startup conference.
+Otherwise, the default conference specified in the yapp
+.B rc
+file is used as the startup conference.
+.TP 14
+.B \-q
+Quiet mode.  Don't display any prompts or superfluous text.  Useful
+when writing 
+.I Yapp 
+scripts.
+.TP 
+.B \-u
+Turn off output buffering.
+If output is unbuffered,
+.I yapp
+ignores the setting of the 
+.I pager
+variable.
+.TP
+.B \-l
+Start in ``no conference'' mode.
+When starting in limbo,
+.I yapp
+ignores the user's
+.I \&.cflist
+file and the default conference setting in the system
+.I conflist
+file.
+.TP
+.B \-o
+Force observer status in all conferences.
+For the duration of the current
+.I yapp
+session, the user will not be allowed to enter responses in conferences.
+.TP
+.B \-s
+Strip non\-printing characters from input.
+.TP 
+.B \-n
+Don't source conference 
+.B rc
+files.
+.TP
+.BI "\-x\fR \fP" program-file\fR
+Read commands from the file 
+.I program-file
+instead of from standard input.
+.TP
+.BI "\-j\fR \fP" conference\fR
+Start in the conference named
+.I conference
+instead of the system default or the first conference specified in
+the user's
+.B \&.cflist
+file.
+.SH FILES
+.PD 0
+.TP 20
+.BI $\s-1HOME\s0/ .cfdir
+personal directory for storing yapp files.
+If this exists, this is
+.BI \s-1WORK\s0\fR,
+otherwise, 
+.B WORK 
+is
+.BI \s-1HOME\s0\fR.
+.TP 
+.BI $\s-1WORK\s0/ .cflist
+list of conferences you're interested in
+.TP
+.BI $\s-1WORK\s0/ .cfonce
+file of commands executed at startup time
+.TP 
+.BI $\s-1WORK\s0/ .cfrc
+file of commands executed when entering a conference
+.TP
+.BI $\s-1WORK\s0/ .*.cf
+conference participation files
+.TP 
+.B /usr/bbs
+base directory for 
+.I yapp
+files
+.TP
+.B /usr/bbs/rc
+global start-up file
+.TP
+.B /usr/bbs/conflist
+mapping between conference names and locations
+.PD
+.br
+.ne 6
+.SH SEE ALSO
+.BR cfcreate (1),
+.BR cfdelete (1) 
+.LP
+.IR "YAPP Manual" .
+.LP
+.I yapp 
+is found in 
+.BR /usr/local/bin/yapp , 
+as a link to 
+.BR /usr/local/bin/bbs .

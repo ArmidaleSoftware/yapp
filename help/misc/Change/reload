@@ -1,0 +1,11 @@
+
+Syntax: se_t    rel_oad
+        ch_ange rel_oad
+
+Description: These will immediately restart the current session as if
+   you had just entered the conference.  Anything you have seen 
+   since the last time the session information was saved will appear
+   still unseen.  (Note that leaving a conference normally causes
+   session information to be saved).
+
+See also: abort, set autosave, set saveseen, file partfile

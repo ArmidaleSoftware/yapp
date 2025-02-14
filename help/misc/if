@@ -1,0 +1,27 @@
+
+Syntax: if (icon operator icon) 
+        ... 
+        else
+        ...
+        endif
+
+Description: Allow conditional execution of commands according to some
+   criteria.  An 'icon' can be the name of a variable (NOT inside the
+   usual %{...} syntax), or an integer or string constant.  The else 
+   section is, of course, optional.  Operators can be any of the normal 
+   comparison relations: = (or ==), != (or <>), <, <=, >, or >=, as
+   well as the list containment relations: ~ and !~ (read "contains" 
+   and "does not contain").  Currently AND/OR criteria are not supported, 
+   but if statements may be nested.
+
+Examples:
+
+   if (foo!="")
+      echo ERROR: %{foo}
+   endif
+
+   if (nextitem > 0)
+      new
+   endif
+
+See also: language, variables

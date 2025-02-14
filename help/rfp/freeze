@@ -1,0 +1,9 @@
+
+Syntax: freeze 
+
+Description: This will cause the current item to be frozen.  No one 
+   can then respond to the item.  The forget can be undone with the 
+   thaw command.  All freeze actions are logged to the conference
+   log file.
+
+See also: display frozen, thaw, range, file log

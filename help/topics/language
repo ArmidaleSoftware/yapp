@@ -1,0 +1,51 @@
+Yapp extensions which provide steps toward a basic macro command language:
+   
+   `command`                 : command is executed and replaced by its output
+   eval [range] "sep"        : Expand sep string.  If a range is specified,
+                               then do this for each item in the range, using
+                               itemseps.  Otherwise, do it once as a confsep.
+   source filename [arg ...] : The filename containing commands is sourced as
+                               if it were an rc file.  During execution, 
+                               the temporary variables arg0, arg1, etc. 
+                               contain the filename and optional arguments
+                               specified.  Values may be retrieved with
+                               `eval %<arg1>%c` for instance.
+   %{variable}               : replace with value of variable
+   if (icon op icon)         : conditional execution constructs
+   [else]
+   endif
+
+Example of usage:
+
+   Goal: To allow the user to display all the conferences to which an
+         item is linked.
+
+   Solution:   
+         Ok: define findlink 1 "unix /m/thaler/findlink `eval %q%c`"
+         Ok: findlink 16
+         june
+         radio3
+         Ok:
+
+   Description:
+         The define creates a command whose argument can be an item
+         number, which is tacked on to the end of the unix command to
+         execute.
+ 
+         When "findlink 16" is done, `eval %q%c` is processed first,
+         and returns "june".  Then the unix command 
+         "/m/thaler/findlink june 16" is executed, which gives the
+         desired output.
+
+         The file /m/thaler/findlink contains:
+            #!/bin/sh
+            cd /usr/bbs/confs
+            inum=`ls -li $1/_$2 | cut -c1-5`
+            find . -inum $inum -print | cut -d/ -f2
+
+You can also write Yapp scripts and execute them from Unix.  To do
+so, you should use the following line as the first line of the script:
+
+   #!/usr/local/bin/bbs -uqx
+
+See also: if, variables, redirection

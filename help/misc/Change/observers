@@ -1,0 +1,9 @@
+
+Syntax: ch_ange obs_servers
+        se_t    obs_servers
+
+Description: Allows a fairwitness to edit a list of users for the 
+   current conference.  The use of this file depends on how (or if)
+   it is referenced from the conference access-control list.
+
+See also: file acl, file observers

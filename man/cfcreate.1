@@ -1,0 +1,41 @@
+.\" @(#)yapp.1 1.1 95/09/21 Armidale Software
+.ds ~ \u\(ap\d
+.TH CFCREATE 1 "21 September 1995"
+.SH NAME
+cfcreate \- create a new Yapp conference
+.SH SYNOPSIS
+.B cfcreate
+.SH DESCRIPTION
+.LP
+.I Cfcreate
+allows a cfadm to create a new Yapp conference.  
+.I cfcreate
+will prompt the cfadm for various information about the conference,
+and then create the conference.
+.SH FILES
+.PD 0
+.TP 20
+.B /usr/bbs/conflist
+mapping between conference names and locations
+.TP
+.B /usr/bbs/desclist
+mapping between conference names and descriptions
+.TP
+.B /usr/bbs/maillist
+mapping between conference names and email addresses
+.TP
+.B CONF/config
+conference configuration information
+.TP
+.B CONF/login
+conference entry text
+.B CONF/logout
+conference leaving text
+.PD
+.br
+.ne 6
+.SH SEE ALSO
+.BR yapp (1),
+.BR cfdelete (1) 
+.LP
+.IR "YAPP Manual" .

@@ -1,0 +1,8 @@
+
+Syntax: d_isplay rc
+
+Description: Shows you the rc file for the current conference.
+   When a conference is entered, any commands in the rc file are
+   executed unless the source flag is off.
+
+See also: change rc, set source, file rc

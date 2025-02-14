@@ -1,0 +1,8 @@
+
+Syntax: unretire 
+
+Description: This will cause the current item to be unretired.  
+   There will be no effect if the current item was not retired.
+   Unretire commands are logged to the conference log file.
+
+See also: display retired, retire, file log

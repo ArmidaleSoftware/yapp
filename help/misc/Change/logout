@@ -1,0 +1,10 @@
+
+Syntax: ch_ange logo_ut
+        se_t    logo_ut
+
+Description: Allows a fairwitness to edit the logout message for
+   the current conference.  The logout file is shown whenever a user 
+   leaves the conference.  The format of the display is controlled 
+   by the loutmsg variable.
+
+See also: display logout, file logout

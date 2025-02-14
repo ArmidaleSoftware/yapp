@@ -1,0 +1,6 @@
+
+Syntax: d_isplay who_ison
+
+Description: This is the same as the command "!who".  It runs the
+   system 'who' program which shows a list of what users are 
+   currently logged in.

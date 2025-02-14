@@ -1,0 +1,8 @@
+
+Syntax: d_isplay logi_n
+
+Description: Shows you the login file for the current conference.
+   The login file is shown whenever a user enters the conference.
+   The format of the display is controlled by the linmsg variable.
+
+See also: display logout, change login, file login

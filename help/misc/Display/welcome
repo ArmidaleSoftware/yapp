@@ -1,0 +1,8 @@
+
+Syntax: d_isplay w_elcome
+
+Description: Shows you the welcome file for the current conference.
+   The welcome file is displayed when a user joins the conference
+   for the first time.
+
+See also: change welcome, file welcome

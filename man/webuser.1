@@ -1,0 +1,210 @@
+.\" @(#)yapp.1 1.1 96/09/19 Armidale Software
+.ds ~ \u\(ap\d
+.TH YAPP 1 "19 September 1996"
+.SH NAME
+.B webuser  
+- allows administrative functions to be performed for web accounts.
+.SH SYNOPSIS
+.B webuser
+.RB [ " \-dehlprsuv " ]
+.RB [ "login" ]
+.SH DESCRIPTION
+.LP
+.B webuser 
+without options creates a local web account for 
+.IR login ,
+if one doesn't already exist,
+and sets the web password to be the same as the Unix password for 
+.IR login .  
+If no 
+.I login
+is specified, then an account is created associated with the current
+Unix user.
+.SH OPTIONS
+.LP
+The following options tell
+.B webuser  
+the administrative function 
+you wish to perform:
+
+.B \-d
+Disables the ability to login into the account for
+.I login 
+or the current Unix user
+
+.B \-e
+Enable ablity to login into the account for 
+.I login
+if specified, or the current Unix user, if the account has previously been 
+disabled
+
+
+.B \-h
+Displays the usage information for 
+.BR webuser .
+
+
+.B \-l
+List the assocated login for all web accounts
+
+.B \-p
+Change the password for
+.I login 
+if one is specified, otherwise it will change the password for the 
+web account associated with the current Unix user.  
+
+.B \-r
+Remove the web account for 
+.I login
+or the current Unix user.
+Only root or the User Administrator if specified in the
+.B yapp.conf 
+file may do this.
+
+.B \-s
+Show the account information for
+.I login 
+or for the web account assocated with the current Unix user.  This
+will print the Web login, Status (Disabled or Active), Full name,
+Email address and the time the user last read information.
+
+.B \-u
+Create or update the a web account assocated with the current Unix
+user, or 
+.I login 
+if specified.
+The user's web password will now be the same as their 
+Unix password.
+
+.B \-v
+Show the version of
+.RB webuser .
+
+If 
+.B webuser 
+is being run by a user, either no 
+.I login 
+should be specified or the user must specify their own login.
+
+If
+.B webuser
+is being executed by 
+root, nobody, or the User Administrator if specified in the
+.B yapp.conf 
+file, any 
+.I login 
+may be specified on the command line. 
+
+.SH USAGE
+.LP
+The Yapp
+.B newuser 
+command runs 
+.B webuser 
+if the login of the web account
+.B newuser 
+has been asked to create already exists as a Unix login. 
+See the Yapp Manual for more information on 
+.BR newuser . 
+
+You may wish to create a wrapper script
+for the Unix command 
+.BR passwd , 
+and have it run 
+.B webuser
+whenever a user changes their Unix password.  
+
+You can also incorporate 
+.B webuser 
+in the process of creating a Unix account if you wish all Unix accounts 
+to automatically have web accounts as well.
+
+.B webuser
+is also used for the administrative functions of removing web accounts  and
+resetting a web password.
+
+
+.SH ERROR MESSAGES
+.PD 0
+.TP 5
+webuser: Permission denied
+You are running 
+.B webuser 
+with the 
+.I login 
+option, but you do not have
+permission to access the password of the  explicitly listed 
+.IR login .  
+Try running 
+.B webuser 
+without 
+.I login 
+specified, or run 
+.B webuser 
+as root.
+
+.TP
+This program must be installed setuid root
+.B webuser 
+has not been installed as setuid root.  Make sure that
+the owner of 
+.B webuser 
+is root, and it is mode 4711. 
+
+.TP
+webuser: no such login
+.B webuser 
+was given a login which does not exist in the Unix password file.
+
+.TP
+webuser: cannot create a web account with root access
+.B webuser 
+was given a root login, and will not create a web account for such
+logins.
+
+
+.TP
+.RI "webuser:" login " is already enabled" 
+The account for
+.I login
+was already enabled for use.  You can check the status of the account
+using the
+.B \-s option.
+
+.TP
+.RI "webuser:" login " is already disabled" 
+The account for
+.I login
+was already disabled.  You can check the status of the account
+using the
+.B \-s option.
+
+
+.TP
+getting host name
+.B webuser
+was unable to get the fully qualified domain name for the current host.
+
+.TP
+rename
+.B webuser
+was unable to rename the temporary password file to the actual password
+file.
+
+
+.SH SEE ALSO
+.BR yapp (1),
+.BR passwd (1)
+.LP
+.IR "YAPP Manual" .
+.LP
+
+.SH BUGS
+Please report any bugs to yapp@armidale.ann-arbor.mi.us
+
+.SH NOTES
+.B webuser
+must run setuid root so that it can access the encrypted form of the
+user's password when shadow password files are used.
+
+Source code available upon request.

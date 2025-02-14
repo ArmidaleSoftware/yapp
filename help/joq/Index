@@ -1,0 +1,8 @@
+!<hl01>
+joq/Default
+r_egister:joq/join
+j_oin:joq/join
+p_articipate:joq/join
+o_bserver:joq/observe
+h_elp:misc/help
+q_uit:joq/quit

@@ -1,0 +1,7 @@
+
+Syntax: w_rite <filename>
+
+Description: This will write the contents of the text buffer out to
+   the specified filename.
+
+See also: read

@@ -1,0 +1,8 @@
+
+Syntax: unretire <range>
+
+Description: This will cause all items in the specified range to be
+   unretired.  There is no effect on any items specified which are not
+   retired.  Unretire commands are logged to the conference log file.
+
+See also: display retired, retire, file log

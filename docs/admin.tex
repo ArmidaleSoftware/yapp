@@ -1,0 +1,2861 @@
+\documentclass[twoside]{report}
+\usepackage{supertab}
+
+\makeindex
+\leftmargin 0in
+\oddsidemargin 0in
+\evensidemargin 0in
+\topmargin 0in
+\textwidth 6.5in
+\textheight 600pt
+
+\begin{document}
+\pagestyle{empty}
+\title{Yapp 3.0.15 Administration Guide}
+\author{Armidale Software}
+\maketitle
+\newpage
+\mbox{}
+\newpage
+\pagenumbering{roman}
+\pagestyle{headings}
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+\chapter{Introduction}
+%{
+   The Yapp conferencing system can be accessed from Unix and from the
+   World Wide Web.  Yapp can be configured to meet the needs of your 
+   users, and to create the look and feel you want for your conferencing 
+   system.
+
+   The Yapp conferencing system is composed of a set of 
+   ``conferences\index{conference}'', each
+   devoted to some general topic such as sports or computer games.
+   Conferences are referenced by their name, and can only be created by
+   a Yapp administrator.  Users who have administrative control over a
+   specific conference are called ``fairwitnesses\index{fairwitness}''.
+   
+   Within each conference, a series of ``items\index{item}'' can exist, 
+   each devoted to some specific subject, such as ``Detroit Tigers''.  
+   Items are usually referenced by a number.  Conferences can be 
+   configured such that items can be created by users.
+ 
+   Each item consists of a message followed by zero or more 
+   ``responses\index{response}'' to the original message.  Responses are 
+   also referenced by a number, and can be entered by users.
+%}
+
+\chapter{Getting Started} \label{c:start}
+
+\section{Installing Yapp from scratch}~\label{s:install}
+%{
+
+   To get started running Yapp, you need to have the following:
+   \begin{itemize}
+   \item a Yapp script distribution\index{generic distribution}.
+   \item a Yapp binary distribution\index{binary distribution} for your platform.
+           Binaries for several operating systems are available at:
+           \begin{verbatim}
+           ftp://armidale.ann-arbor.mi.us/pub/yapp/
+           \end{verbatim}
+           \vspace{-12pt}
+   
+   \item a license\index{license} provided by Armidale Software.
+         To obtain a Yapp license, send email to:
+
+            {\centering yapp@armidale.ann-arbor.mi.us \\}
+   \end{itemize}
+   
+   Once you have acquired the above items, you may proceed as follows:
+   \begin{enumerate}
+   %{
+   \item
+      Decide on what login to use to own Yapp files.  Typically, a separate 
+      account, is created to own the bbs files.  We will refer to this
+      account as {\em cfadm}\index{cfadm}.  Access to this account is needed 
+      for a Yapp administrator to create and delete new conferences.  We
+      will refer to anyone with access to the {\em cfadm} account as the
+      ``Yapp administrator''.
+
+   \item Log in as {\em cfadm}, and uncompress and untar the generic 
+      distribution and the binary distribution in the destination directory 
+      (e.g. /usr/bbs)  We will herafter refer to this directory as
+      {\em bbsdir}\index{bbsdir}.  For example:
+      \begin{verbatim}
+      $ cd /usr/bbs 
+      $ gunzip yapp.3.0.12-generic-dist.tar.gz 
+      $ tar -xvf yapp.3.0.12-generic-dist.tar
+      $ gunzip yapp3.0.12-solaris-bin.tar.gz
+      $ tar -xvf yapp3.0.12-solaris-bin.tar
+      \end{verbatim}
+      \vspace{-12pt}
+
+   \item While still logged in as {\em cfadm}, run the 
+      Install\index{Install} script from the {\em bbsdir} directory.
+      This will prompt you for the remaining items and may give you
+      additional information about what needs to be done.  The default
+      value will be shown in square brackets.  If you wish to use the
+      defaults shown, you may simply hit enter at the prompts.
+      \begin{verbatim}
+      $ ./Install
+      \end{verbatim}
+      \vspace{-12pt}
+
+      \begin{description}
+      \item[{Login to be used as bbs owner [cfadm\index{cfadm}]:}] 
+         \mbox{}\newline
+         This should be the {\em cfadm} login, and must be the same as the 
+         login you are running the script as.
+
+      \item[{Unix login to be used as alternate user administrator[root]:}]
+         \mbox{}\newline
+          This allows for the administrator of the WWW acounts to be 
+          someone other than root.  This is the person who can change
+          passwords, enable/disable accounts, etc.
+
+      \item[{WWW login to be used as sysop [sysop]:}] 
+         \mbox{}\newline
+         This is the login which 
+         will be able to access Yapp administrative functions from the web.
+         (We will refer hereafter to this login as {\em sysop}\index{sysop}.)
+         It may be the same as {\em cfadm}.
+
+      \item[{Unix login used by httpd to invoke programs as [nobody]:}] 
+         \mbox{}\newline
+         This is the login (typically ``nobody\index{nobody}'') which httpd 
+         uses to execute CGI scripts.  (We will refer hereafter to this login 
+         as {\em nobody}.) Its value can be found for the NCSA and Apache web 
+         servers by looking up the value of User in the web server's 
+         httpd.conf file.
+
+      \item[{Enter bbsdir\index{bbsdir} [/usr/bbs]:}] 
+         \mbox{}\newline
+         This is the main Yapp subdirectory, and should be the same as the 
+         current directory when invoking the Install script.
+
+      \item[{Enter wwwdir\index{wwwdir} [/usr/bbs/www]:}] 
+         \mbox{}\newline
+         This is the subdirectory under which Yapp will put all web-related 
+         files and CGI script directories.
+
+      \item[{Enter licensedir\index{licensedir} [/usr/bbs/license]:}] 
+         \mbox{}\newline
+         This is the subdirectory which Yapp will use for your license 
+         information.
+
+      \item[{Enter confdir\index{confdir} [/usr/bbs/confs]:}] 
+         \mbox{}\newline
+         This is the subdirectory under which Yapp will look for individual 
+         conference directories.
+
+      \item[{Enter userhome\index{userhome} [/usr/bbs/www/home]:}] 
+         \mbox{}\newline
+         This is the subdirectory under which Yapp will keep home directories 
+         for web-only users.
+
+      \item[{Enter userfile\index{userfile} [$\sim$/passwd]:}] 
+         \mbox{}\newline
+         This is where Yapp will keep miscellaneous user information for 
+         web-only users.  If the filename begins with a `$\sim$', Yapp will 
+         use a separate file for each web user, stored in their home 
+         directory.  Otherwise, Yapp will keep a single shared file in the 
+         indicated location, with one line per web user.
+
+      \item[{Enter passfile\index{passfile} [/usr/bbs/etc/.htpasswd]:}] 
+         \mbox{}\newline
+         This is the password file used for web logins, where encrypted 
+         passwords are stored.
+
+      \item[{Enter sendmail\index{sendmail} [/usr/lib/sendmail]:}]  
+         \mbox{}\newline
+         This is the location of the {\tt sendmail} program on your system.  
+         Yapp attempts to find the correct location itself and displays it 
+         as the default.
+
+      \item[{Enter maildir\index{maildir} [/var/mail]:}] 
+         \mbox{}\newline
+         This should be set to the system mail directory.  Yapp will look 
+         for the user's mailbox there and inform the user when new mail 
+         arrives.
+
+      \item[{Allow hosts to freeze items linked to other conferences? [true]:}]
+         \index{freezelinked}
+         \mbox{}\newline
+         Yapp allows an item to simultaneously exist in multiple conferences,
+         each controlled by their own fairwitnesses (hosts).  By default,
+         a host in any of those conferences will be able to do administrative
+         functions on the item.  You can disable this feature by answering 
+         {\bf false}.
+
+      \item[{Allow users to censor/scribble responses in frozen items? [true]:}]
+         \index{censorfrozen}
+         \mbox{}\newline
+         When this feature is enabled, users can censor, scribble, and edit
+         their own responses in frozen items.  You can disable this feature 
+         by answering {\bf false}.
+
+      \item[{Use compressed DBM file for user information? [false]:}]
+         \index{userdbm}
+         \mbox{}\newline
+         This refers to the ``userfile'' mentioned above, and is only valid
+         when separate user files are kept per user.  Answering {\bf false}
+         means that information is kept as plain text.  Answering {\bf true}
+         tells Yapp to keep information in DBM format.  Note that 
+         {\tt webuser}\index{webuser} does not currently support DBM 
+         format files.
+
+      \item[{Participation file directory? [/usr/bbs/part]:}]
+         \index{partdir}
+         \mbox{}\newline
+         Yapp can allow a user to log in in via either Unix or the WWW and
+         maintain a single set of data indicating what the user has 
+         previously read.  However, if such combining is used, compatibility 
+         with PicoSpan is lost.  If you don't run PicoSpan, just hit return.  
+         If you do run PicoSpan, you should enter the word {\bf work}.
+
+         If you are running the Install script after upgrading~\index{upgrade}, 
+         and you are changing from using the {\bf work} directory to a 
+         single set of data accessable from either Unix or the WWW then 
+         you will see the following message:
+
+   \begin{verbatim}
+       It looks like you are changing from using user-owned participation
+       files, to using cfadm-owned participation files.  If you wish to 
+       retain existing information, any participation files under users' home 
+       directories must be placed under the new directory.  Do you want
+       to have this automatically done now? [yes]
+   \end{verbatim}
+
+         If you type {\em no} then you will need to manually move any files that
+         you want to have migrated to the new directory structure.
+
+      \item[{Padding\index{padding} size? [78]:}]
+         \mbox{}\newline
+         Yapp allows authors to edit their item subjects and response text
+         as long as the new text fits into the old space.  The padding option
+         tells Yapp to leave extra space when entering subjects and responses
+         so that there is extra leeway when editing.  Be aware that this will
+         cause older Yapp binaries to display ``,E'' at the end of responses, 
+         so you should currently use a padding size of 0 if you require 
+         backward compatability.
+
+      \item[Changing to cfadm-owned participation files]
+         \mbox{}\newline
+         If you are changing from using user-owned participation
+         files to using {\em cfadm}-owned participation files, and you wish 
+         to retain existing information about what users have already seen, 
+         then participation files under users' home directories must be 
+         placed under the new directory subtree.  If you want the Install
+         script to automatically do this for you, hit return at the prompt.
+         Otherwise, answer {\bf no}.
+      \end{description}
+
+      Once you have answered the above questions, the Install script will 
+      attempt to install the options you have requested.  Afterwards, it
+      will report any outstanding installation steps which must be performed
+      by root.  Those items are described below.
+
+   \item If directed to do so by the Install script, copy or link the 
+      file ./yapp.conf\index{yapp.conf} into one of the following places:
+
+      \begin{tabular}{l}
+      /etc/yapp.conf \\
+      /usr/local/etc/yapp.conf \\
+      /usr/bbs/yapp.conf \\
+      $\sim$cfadm/yapp.conf\\
+      \end{tabular}
+
+   \item If directed to do so by the Install script, copy or link 
+         {\em bbsdir}/bin/bbs to /usr/local/bin/bbs, where it should be 
+         mode 4711, and owned by {\em cfadm}.
+
+         Additionally (if directed to), you may want to copy or link 
+         {\em bbsdir}/webuser\index{webuser} to /usr/local/bin/webuser.  It 
+         should be mode 4711 and owned by root.  (See section~\ref{s:webuser} 
+         on webuser for more information.)
+
+   \item The man pages for bbs and webuser are in the {\em bbsdir}/man 
+         directory.  These web pages can be installed in a standard man 
+         directory if you wish.  For example:
+         \begin{verbatim}
+         $ cp /usr/bbs/man/* /usr/bbs/man/man1
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         You may also print the Yapp Manual\index{Yapp manual} by running the 
+         {\tt printman}\index{printman} command in the {\em bbsdir}/help 
+         directory.  For example:
+         \begin{verbatim}
+         $ cd \usr\bbs
+         $ printman | lpr
+         \end{verbatim}
+         \vspace{-12pt}
+   
+   \item You should install the license you obtained from Armidale Software in
+      the license directory ({\em bbsdir}/license).  The file should be called
+      {\em bbsdir}/license/registered.  It should be owned by {\em cfadm},
+      mode 644.
+
+   \item 
+   %{
+      Tell your web server about Yapp:
+
+      \subsubsection*{Configuring the NCSA or Apache HTTP servers}
+      \index{httpd!NCSA} \index{httpd!Apache} 
+      %{
+         Add the /yapp-bin/ script alias to your server configuration 
+         file (srm.conf) where {\em bbsdir} is the appropriate directory for 
+         your system): 
+         \par
+
+            \qquad \qquad  ScriptAlias /yapp-bin/ {\em bbsdir}/www/cgi-bin/
+
+         \par
+
+         Add the /yapp-icons/ alias to your server configuration file 
+         (srm.conf) where {\em bbsdir} is the appropriate directory for 
+         your system): 
+         \par
+
+            \qquad \qquad  Alias /yapp-icons/ {\em bbsdir}/www/gifs/
+         \par
+
+         After configuring your HTTP server, restart the httpd daemon.
+      %}
+
+      \subsubsection*{Configuring the CERN HTTP server}
+      \index{httpd!CERN} 
+      %{
+         The Cern server requires a separate Exec directive for each directory 
+         containing cgi programs. So, you need to put the following lines in 
+         your server configuration file (where {\em bbsdir} is the appropriate 
+         directory for your system): \\
+{   
+      \qquad Exec    /yapp-bin/restricted/*  {\em bbsdir}/www/cgi-bin/restricted/*\\
+      \qquad Exec    /yapp-bin/public/*      {\em bbsdir}/www/cgi-bin/public/*\\
+}
+
+         Since the cgi-bin directory may not be within the directory tree for 
+         the server you may need to follow these steps: 
+         \begin{enumerate}
+         %{
+            \item To allow everyone with a password to access Yapp's restricted 
+                  directory, set your configuration as follows. 
+
+                  {\centering         
+                  \begin{tabular} {lll}
+                  Protection&   YAPP    \{\\
+                  AuthType&     Basic\\
+                  ServerID&     yapp\\
+                  PasswordFile& {\em bbsdir}/etc/.htpasswd\\
+                  GetMask&         All\\
+                  \}& \  \\
+                  \end{tabular}
+
+                  Protect /yapp-bin/restricted/*  YAPP\\
+                  }
+
+                  If you would like to define a group of users who may have 
+                  access to the restricted directory you must create a 
+                  separate groupfile.  For more information, see Cern's 
+                  documentation at:
+
+   {\centering http://www.w3.org/pub/WWW/Daemon/User/Config/AccessAuth.html\\ }
+
+            \item In the Yapp {\em bbsdir}/www/cgi-bin/restricted directory, 
+                  you must create a file called 
+                  {\tt .www\_acl}\index{.www\_acl}. That file should contain 
+                  the line: 
+
+                     {\centering * : GET,POST : All\\}
+
+                  This will allow all users with passwords access to the 
+                  restricted directory.
+         %}
+         \end{enumerate}
+
+         After configuring your HTTP server, restart the httpd daemon.
+      %}
+   %}
+
+   \item The following are links which you may wish to add to your own pages.
+      %{
+         \begin{description}
+         %{
+         \item [The main menu of Yapp:]
+             /yapp-bin/restricted/main
+   
+         \item [The newuser login page:]
+             /yapp-bin/public/newuser
+   
+         \item [An index of read-only conferences:]
+             /yapp-bin/public/index
+         %}
+         \end{description}
+
+         Example HTML excerpt:
+         \begin{verbatim}
+      <ul>
+      <li><A HREF="/yapp-bin/public/newuser">Register as a new user</A><P>
+      <li><A HREF="/yapp-bin/restricted/main">Log in as an existing user</A><P>
+      <li><A HREF="/yapp-bin/public/list">View read-only conferences</A>
+      </ul><P>
+         \end{verbatim}
+      %}
+
+%DT9/9/96
+% I removed this because it's really part of installing httpd, not
+% installing Yapp.
+%   \item If one does not already exist, create an account for the 
+%      {\em nobody}\index{nobody} login you specified when running the 
+%      Install\index{Install} script.  
+
+   \item Optionally create a mail alias to use with mailing 
+         list~\index{mailing list} conferences by adding the following 
+         line to /etc/aliases.\index{cflink}\\
+
+         cflink:``\vline \ /usr/local/bin/bbs -i'' \\
+
+         Then to activate the new alias do:
+         \begin{verbatim}
+         $ newaliases
+         \end{verbatim}
+         \vspace{-12pt}
+
+         See section~\ref{s:maillist} for more information on configuring 
+         mailing list conferences.
+
+   \item If the Yapp user home directory is first created by the Install
+         script, it will not be owned by the {\em nobody}\index{nobody} 
+         login.  The Install script will tell you to chown this directory 
+         if it needs to be done (e.g. ``As root: chown nobody 
+         /usr/bbs/www/home'').  For example:
+         \begin{verbatim}
+         $ chown nobody /usr/bbs/www/home
+         \end{verbatim}
+         \vspace{-12pt}
+
+   \item (Solaris\index{Solaris} only) When a script's shell is a setuid 
+      program, Solaris doesn't do the setuid\index{setuid}.  This is a 
+      problem for Yapp scripts, since Yapp must run setuid {\em cfadm}.  
+      A workaround is to make all Yapp scripts in 
+      {\em bbsdir}/www/cgi-bin/public and 
+      {\em bbsdir}/www/cgi-bin/restricted setuid cfadm.  If you are running
+      Yapp on Solaris, you need to make all Yapp scripts be owned by 
+      {\em cfadm}, mode 4755.
+         \begin{verbatim}
+         $ cd /usr/bbs/www/cgi-bin/restricted
+         $ chown cfadm *
+         $ chmod 4755 *
+         $ cd /usr/bbs/www/cgi-binn/public
+         $ chown cfadm *
+         $ chmod 4755 *
+         \end{verbatim}
+
+
+
+   \item If the {\em sysop} and {\em cfadm} logins are different, you should
+         immediately go through the newuser process (at 
+         http://localhost/yapp-bin/public/newuser) and create the {\em sysop}
+         web account.  This login will be able to access administration
+         functions from the WWW.
+
+   \item You may wish to customize the WWW pages of Yapp.  See the System
+         Configuration section \ref{s:sysconfig} for more information.
+
+   %}
+   \end{enumerate}   
+%}
+
+\section{Upgrading from Yapp 2.X}
+%{
+   \index{upgrade}
+   Before doing the installation, you should make a backup of all 
+   of your Yapp files as they currently exist.  This includes all
+   files located in any subdirectories of your Yapp directory 
+   ({\em bbsdir}).
+   
+   You will also need to obtain a new license file from Armidale Software 
+   (send email to yapp@armidale.ann-arbor.mi.us).  Yapp 3.0 will
+   not accept a Yapp 2.X license.
+
+   Upgrading from Yapp 2.X can then be done using the same installation 
+   procedure described in section~\ref{s:install}.  Your existing conferences 
+   should be unaffected by the installation process.  
+
+   If you need help with your upgrade, contact your provider for Yapp.
+%}
+
+\section{Upgrading from Yapp 3.0 -- 3.0.15}
+%{
+   \index{upgrade}
+   \subsection{Preparation}
+   %{
+      If you need help with your upgrade, contact your provider for Yapp.
+   
+      \begin{enumerate}
+      %{
+   
+         \item Make a backup of all of your Yapp files as they currently exist.
+               This includes all files located in any subdirectories of your 
+               Yapp directory ({\em bbsdir}).
+   
+         \item Determine the current version of your binary and scripts.
+               One way to accomplish this is to go to the debug~\index{debug} 
+               pages provided with Yapp. Check the page:
+      
+               http://localhost/yapp-bin/public/debug
+   
+         \item If you are running Yapp 3.0.10 or earlier and are upgrading to 
+               Yapp 3.0.11 or later, and you are running on any of the following
+               platforms: Solaris,\dots  then you need to obtain a new license
+               file (send email to yapp@armidale.ann-arbor.mi.us).
+   
+         \item Obtain the generic distributions assocated with your current 
+               version of Yapp, and the version to which you wish to upgrade. 
+               Also obtain the binary distribution for the version you wish to 
+               upgrade.  If there is no new generic distribution associated with 
+               the binary upgrade, ignore the instructions for the generic 
+               distribution upgrade.  The distribution files should be 
+               available from:
+   
+               {\centering ftp://armidale.ann-arbor.mi.us/pub/yapp}
+   
+               FTP the files to your Yapp bbs directory ({\em bbsdir}).
+      %}
+      \end{enumerate}
+   %}
+   
+   \subsection{Upgrading the binaries}
+   %{
+      \begin{enumerate}
+      %{
+      \item {\em Note: This next step may temporarily cause your BBS to stop
+         functioning properly.  This is because you will be in the middle 
+         of an upgrade.}
+   
+         Log in as the Yapp administrator ({\em cfadm}), and extract the
+         new binary distribution in the {\it bbsdir} directory.
+   
+         For example if you are upgrading to Yapp-3.0.12 on a BSDI platform:
+         \begin{verbatim}
+         $ cd /usr/bbs
+         $ tar xvf yapp3.0.12-bsdi-bin.tar
+         \end{verbatim}
+         \vspace{-12pt}
+   
+      \item From the {\em bbsdir} directory run the Install script.  
+         For example:
+         \begin{verbatim}
+         $ ./Install
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         For more information on the Install script see section~\ref{s:install} 
+         on installing Yapp, and section~\ref{s:yapp.conf} on yapp.conf.  
+         The defaults listed will be your former settings, if you had former
+         default settings.  You are running the Install script again because 
+         there may now be additional defaults that you need to set.
+   
+      \item If you did not see a line similar to:
+   
+            ``Successfully installed /etc/yapp.conf''
+   
+         then you need to copy the file {\em bbsdir}/yapp.conf to the directory 
+         where your yapp.conf file is kept.  This may require you to be 
+         logged in as root.  See section~\ref{s:yapp.conf} on yapp.conf
+         to see the directories in which this file may be placed.
+   
+      \item Now copy or link the new Yapp binary to the /usr/local/bin 
+         directory.  You may need to be logged in as root to do this.
+   
+         For example:
+         \begin{verbatim}
+         $ ln -s /usr/bbs/bin/bbs /usr/local/bin/bbs
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         Make sure that /usr/local/bin/bbs is owned by the conference 
+         adminstator ({\em cfadm}) and that it is mode 4711.
+   
+         For example, to change the owner and the mode (you will need to be
+         logged in as root):
+         \begin{verbatim}
+         $ chown cfadm /usr/local/bin/bbs
+         $ chmod 4711 /usr/local/bin/bbs
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         You may also wish to copy {\em bbsdir}/bin/webuser into /usr/local/bin.  
+         See the section on webuser, and the man page for webuser in
+         Appendix~\ref{a:manpages} for more information on webuser.
+   
+      \item The man pages for bbs and webuser are in the {\em bbsdir}/man 
+         directory.  These web pages can be installed in a standard man 
+         directory if you wish.  For example:
+         \begin{verbatim}
+         $ cp /usr/bbs/man/* /usr/bbs/man/man1
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         You may also print the Yapp Manual\index{Yapp manual} by running the 
+         {\tt printman}\index{printman} command in the {\em bbsdir}/help 
+         directory.  For example:
+         \begin{verbatim}
+         $ printman | lpr
+         \end{verbatim}
+         \vspace{-12pt}
+      %}
+      \end{enumerate}
+   %}
+   
+   \subsection{Upgrading the scripts}
+   %{
+      \begin{enumerate}
+      %{
+   
+      \item While logged in as the Yapp administrator ({\em cfadm}), 
+         run the Upgrade script located in your Yapp directory ({\em bbsdir}).
+         
+
+         \begin{verbatim}
+         $ ./Upgrade
+         \end{verbatim}
+
+         If you do not have an Upgrade script, you can ftp one from :
+         \begin{verbatim}
+         ftp://armidale.ann-arbor.mi.us/pub/yapp/Upgrade
+         \end{verbatim}
+         \vspace{-12pt}
+
+      \item You will receive a list of files which could not easily be 
+         upgraded when the script is finished.  You will need to manually patch
+         the files which are listed.
+   
+         You should view the contents of each rejected patch (filename.rej) 
+         and the file you were trying to patch at the same time.  
+         You can do this by using multiple screens, or by printing the patch 
+         file.
+   
+         While viewing a patch file (or filename.rej):
+
+         \begin{tabular}{ll}
+         ``-'' & Means that the indicated line is deleted\\
+         ``+'' & Means that the indicated line is added\\
+         ``!'' & Means that the indicated line was changed\\
+         \end{tabular}
+   
+         For more infomation on reading the patch file, see the man page for
+         diff(1).   The patch file is in standard {\tt diff -c} format.
+   
+         You will see for each change, the original entry on the top, 
+         and your changes underneith the --\#,\#-- line.  You will need to 
+         determine what the conflicts are between your changes, 
+         and the existing new file.  Your original file is saved in 
+         filename.orig.
+   
+      \item  Manually change the distribution file to incorporate any changes 
+         you have made.
+   
+         When you are done changing the distribution file, remove the 
+         files filename.rej and filename.orig. 
+          
+      \item Check to make sure you have made all of your changes to the new
+         distribution.  The BBS should be working again, and you should
+         be able to test all WWW pages, and to use the Unix version of bbs.
+   
+         If you notice a bug in the new distribution, send email to:
+            \begin{verbatim} 
+            yapp@armidale.ann-arbor.mi.us.
+            \end{verbatim}
+      %}
+      \end{enumerate}
+   %}
+%}
+
+\chapter{User Administration} \label{c:user}
+%{
+   \section{Creating WWW accounts for existing Unix users} \label{s:webuser}
+   %{
+       In the binary distribution\index{distribution}, there is a Unix command 
+       called {\tt webuser}\index{webuser}.  Webuser without any options will 
+       create a web account for an existing Unix account.  To allow all 
+       Unix users automatic access to the web using their Unix login and 
+       password, {\tt webuser} should be run when the Unix account is created.
+   
+    
+       For more information on webuser, see the man page for webuser in 
+       Appendix~\ref{a:manpages}.
+   %}
+
+   \section{Deleting WWW accounts}
+   %{
+      To delete WWW accounts you should run the Unix command 
+      {\tt webuser -r {\em login} }\index{webuser}  This will remove the 
+      directory and all account information for {\em login}.  You must be
+      either be root or the User Administrator\index{User Administrator} 
+      which we will refer to as {\em usradm}\index{usradm} if one is 
+      defined in the yapp.conf file.
+   %}
+
+   \section{Resetting the password on a WWW account}
+   %{
+      The password on a WWW account can be reset by running the Unix command
+      {\tt webuser -p {\em login} }\index{webuser}.  This will change only a 
+      web password for {\em login}. You must either be root or {\em usradm} to 
+      change the password of an arbitrary login.
+
+      If a Unix user executes {\tt webuser -p}\index{webuser} it will update 
+      the web password assocated with the user's login, as long as the 
+      web account already exists.
+      
+      You may wish to create a wrapper script around the Unix command 
+      {\tt passwd} so that whenever a user updates their Unix password,
+      {\tt webuser}\index{webuser} is called to update their web password 
+      as well.
+
+   %}
+   \section{Enabling and disabling a WWW account}
+   %{
+      As root or {\em usradm}\index{usradm} you have the ability to 
+      enable or disable WWW accounts.  When a WWW account is created the 
+      status is set to enabled.
+
+      To disable an existing account run the Unix command
+      {\tt webuser -d {\em login}}\index{webuser}.  This will not 
+      perminently remove the user's files, but the user will no longer 
+      be allowed access via the WWW.
+
+      To enable an account which has been disabled run the Unix command
+      {\tt webuser -e {\em login}}\index{webuser}.  This will allow the 
+      user access via the WWW which was previously restricted.
+      
+   %}
+
+   \section{Getting a status report on a WWW account}
+   %{
+      A status report on a WWW account will show you the login, 
+      enabled/disabled status, full name, email address, and the time they
+      last accessed their account.  To get a status report on an individual
+      account run the Unix command 
+      {\tt webuser -s {\em login}}\index{webuser}.  
+      
+   %}
+
+   \section{Listing all WWW accounts}
+   %{
+      A listing of all WWW accounts will show you the login, date of last
+      access, email address, and full name of each WWW user.  This list can
+      be generated by running the Unix command {\tt webuser -l}\index{webuser}.
+      Specifing {\em login} on the command line does not restrict the 
+      report to a single user.
+   %}
+%}
+ 
+\chapter{Conference Administration} \label{c:conf}
+%{
+   \section{Creating conferences} \label{s:create}
+   %{
+      There are three ways to create conferences.  
+   
+\renewcommand {\theenumi}{\Alph{enumi}}
+\renewcommand {\labelenumi}{\theenumi.}
+
+      \begin{enumerate}
+      %{
+         \item From a Yapp prompt, run the command {\tt cfcreate}
+            if you are logged in as {\em cfadm}
+   
+         \item Log into Unix as the conference adminstrator ({\em cfadm}).  Run
+            {\tt cfcreate} from the Unix prompt
+   
+         \item  From the WWW, you can access the {\em Create a conference} 
+            link on the {\em Index of Conferences} page while logged in as 
+            {\em sysop}.
+      %}
+      \end{enumerate}
+
+\renewcommand {\theenumi}{\arabic{enumi}}
+\renewcommand {\labelenumi}{\theenumi.}
+
+      In any method you will be prompted for the following:
+      \begin{description}
+      \item[A short conference name]
+         \mbox{}\newline
+         A short name is the conference name, including the underscore to 
+         indicate the minimum name which must be typed to access the 
+         conference.  
+         For example, soft\_ware could be the short name of the ``software'' 
+         conference.  When joining the conferance ``soft'', ``softw'', 
+         ``softwa'', ``softwar'', and ``software'' would all be equivilent.
+
+      \item[A one line description]
+         \mbox{}\newline
+         The one line description is what gets displayed as the description 
+         of the conference when listing the index of conferences.
+
+      \item[The conference directory]
+         \mbox{}\newline
+         The conference subdirectory to be created by Yapp.  This directory 
+         will house the conference related files.
+
+      \item[Logins or UIDs of fairwitnesses]
+         \mbox{}\newline
+         The ``fairwitnesses'' are the ones who administrate the needs of a 
+         conference on a day to day basis. You need not list {\em cfadm} as a 
+         fairwitness, since it is automatically a fairwitness in every 
+         conference.
+
+      \item[The conference security type]
+         \mbox{}\newline
+         The conference type is kept in the config file for a conference, and 
+         can only be changed by {\em cfadm}.  It can be set either 
+         numerically, or with a combination of keywords.\\
+
+         {\em NOTE: only the MAILLIST and REGISTERED flags are 
+              significant when a conference acl\index{acl} file exists.  The 
+              others are obsoleted by the acl system. See section~\ref{s:acl} 
+              or the Yapp manual on ``file acl'' for more information.
+         }
+
+\begin{tabular}{llp{7cm}}
+   Type      & Code  & Description\\ \hline
+   PUBLIC    & 0     & Public Conference \\
+   PRESELECT &   4   & Access restricted to user list (in `ulist' file)\\
+   PASSWORD  &   5   & Access requires password (in `secret' file)\\
+   PARANOID  &   6   & Use both a user list and a password together\\
+   PROTECTED &   8   & Public except item files are made mode 600\\
+   READONLY  &  20   & Anyone not in ulist may observe\\
+   READPASS  &  21   & Anyone who fails the password check may observe\\
+   READPARA  &  22   & Anyone who fails either check may observe\\
+   MAILLIST  &  \#+64 & Mailing list conference (usually code 72)\\
+   REGISTERED&  \#+128& Registered mailing list conference (usually code 200)\\
+   NOENTER   &  \#+256& Only fairwitnesses may enter new items\\ \hline
+\end{tabular}
+\vspace{12pt}
+
+         Keywords are:
+
+         \begin{tabular}{lr}
+            public     &  0\\
+            ulist      &  4\\
+            password   &  5\\
+            protected  &  8\\
+            readonly   & 16\\
+            maillist   & 64\\
+            registered &128\\
+            noenter    &256\\
+         \end{tabular}
+
+         A ``registered'' maillist~\index{maillist} conference is one in 
+         which only mail from registered users gets posted to the conference.  
+         If the sender's email address does not match the email address 
+         of some user known to Yapp, the email is silently dropped.
+
+      \item[Let a fairwitness change the access control list?]
+         By default only the Conference Administrator can change the 
+         access control list.  If you wish fairwitnesses of the conference
+         to be able to change the security answer yes.  You must answer
+         either yes or no to this question.
+
+      \item[Email address(es) (if the conference is linked to a mailing list)]
+         \mbox{}\newline
+         The email addresses are the addresses which the conference will send
+         mail to, and recieve mail from.  See section~\ref{s:maillist} 
+         for more information on configuring a mailing list conference.  The
+         addresses must be comma separated.
+      \end{description}
+
+%      \subsubsection{}
+         When a conference is created the following things happen:
+         \begin{enumerate}
+         %{
+         \item an entry is added to the {\em bbsdir}/conflist file
+         \item an entry is added to the {\em bbsdir}/desclist file
+         \item the subdirectory you specified is created
+         \item the conference config file is created, and placed in the 
+            subdirectory
+         \item the login file (displayed when a user logs into the conference 
+            from Unix) is created and placed in the subdirectory
+         \item the logout file (displayed when a user logs out of the conference 
+            from Unix) is created and placed in the subdirectory
+         %}
+         \end{enumerate}
+   %}
+
+   \section{Deleting conferences} \label{s:delete}
+   %{
+      There are three ways to delete\index{delete conference} conferences.  
+
+\renewcommand {\theenumi}{\Alph{enumi}}
+\renewcommand {\labelenumi}{\theenumi.}
+
+      \begin{enumerate}
+      %{
+         \item From a Yapp prompt run the command ``cfdelete'' \index{cfdelete}
+            if you are logged in as {\em cfadm}.
+
+            If no conference name is specified after the command, Yapp will
+            prompt for a conference name.  If the conference you specify is not 
+            empty, it will not be deleted and Yapp will simply issue an error
+            message.  To delete a conference with items in it, you must first 
+            {\tt kill} all the items.
+
+         \item Log into Unix as the conference administrator ({\em cfadm}) and 
+            run cfdelete from a Unix prompt.
+
+            Yapp will then prompt for a conference name.  If the conference
+            you specify is not empty, it will not be deleted and Yapp will 
+            simply issue an error message.  To delete a conference with items 
+            in it, you must first {\tt kill} all the items.
+   
+         \item From the WWW, you can access the {\em Delete Conference} link on 
+            the {\em Index of Conferences} next to the Conference name if you
+            are logged in as {\em sysop}\index{sysop}.
+   
+            The {\em Delete Conference} link will not appear on the Index of 
+            Conferences page while the conference still contains items.  The 
+            Kill button is available on the item read page and is used to remove 
+            the items in a conference before it can be deleted.
+      %}
+      \end{enumerate}
+   
+\renewcommand {\theenumi}{\arabic{enumi}}
+\renewcommand {\labelenumi}{\theenumi.}
+
+      When a conference is deleted, the following happens:
+      \begin{enumerate}
+      \item Its entry is removed from the conflist\index{conflist}
+      \item Its entry is removed from the desclist\index{desclist}
+      \item The conference directory and contents are removed 
+      \item If a common participation file directory 
+            ({\em partdir}\index{partdir}) is used, all members'
+            participation files will be removed, and the conference will be
+            removed from their conference hotlist if necessary.
+      \end{enumerate}
+   %}
+   
+   \section{Modifying the options on an existing conference} \label{s:modify}
+   %{
+      \subsection{The acl file} \label{s:acl}
+       %{
+         The access control list (acl\index{acl}) contains the security
+         requirements for a conference, and are modifiable by a
+         conference administrator.  The file can be change from Unix with the
+         {\tt change acl} command, or from the WWW from the fairwitness
+         page.  If the acl file exists, it overrides the security options 
+         in the conference type in the config file.
+         
+         The acl\index{acl} file should consist of ``r'', ``w'', 
+         ``c'', and ``a'' lines, which may occur in any order.  The ``r'' line 
+         specifies who may read items in the conference (and thus, who 
+         may join the conference).  The ``w'' line specifies who may write 
+         responses to existing items.  The ``c'' line specifies who may 
+         create new items. The ``a'' line specifies who can edit the 
+         acl file.
+        
+         Each line consists of the type (r/w/c/a), followed by one or more
+         fields (in any order) from the following list, each optionally 
+         prefixed with a `+' or a `-':
+         \par
+         \begin{tabular}{lp{4.5in}} 
+            Field Name                   & Description \\ \hline
+            all                          &  Anyone \\
+            registered                   &  Users with accounts \\
+            fwlist                       &  Fairwitnesses \\
+            originlist\index{originlist} &  Anyone passing an origin check \\
+            password\index{password}     &  Anyone who knows the conference 
+                                            password \\
+            f:ulist\index{ulist}         &  Anyone listed in the ulist file \\
+            sysop\index{sysop}           &  Conference Administrators \\
+            f:observers\index{observers} &  Anyone listed in the 
+                                            observers file \\
+            f:{\tt filename}             &  Anyone listed in the 
+                                            {\tt filename} file \\
+         \end{tabular}
+      \vspace{12pt}
+
+
+         Conferences which require a password as part of the security are
+         not currently supported from the WWW.
+       
+         If a +, or nothing, precedes the field, a user must satisfy the
+         indicated condition for permission to be granted.  If a - precedes 
+         the field, a user must NOT satisfy the indicated condition.
+         In order for permission to be granted, a user must satistify ALL
+         conditions in the appropriate line.  
+      
+      Example:
+      {\tt
+         \begin{verbatim}
+         r +all +registered
+         w +all +registered -f:observers
+         c +all +registered +fwlist
+         a +sysop
+         \end{verbatim}
+      }
+      
+         In the example file above, any registered user may join the conference
+         and read items.  All registered users except those listed in the 
+         ``observers'' file are able to respond.  Only fairwitnesses are able
+         to enter new items, and only the Conference administrator may change
+         the acl file.  If no ``a'' line is included, it defaults to 
+         ``a + sysop''.
+     
+         For more information see section~\ref{s:ulist} on the ulist file, 
+         section~\ref{s:observers} for the observers file, 
+         section~\ref{s:origin} for information on the origin list,
+         and section~\ref{s:secret} for more information on 
+         password protected conferences.
+      %}
+
+      \subsection{The ulist file} \label{s:ulist}
+      %{
+         The ulist\index{ulist} is a file containing a list of people 
+         who are authorized to be in a conference.  For private conferences 
+         which have a fixed user list, this list should be created and 
+         maintained by a fairwitness.  For public conferences, this 
+         file is automatically maintained by Yapp.  It contains a list of 
+         logins and/or UIDs of participants separated by whitespace 
+         (spaces, tabs, or newlines).  Any lines beginning with a 
+         ``\#'' character are interpreted as comments, and ignored. 
+ 
+         A filename may also appear in the ulist, signifying that the
+         contents of filename should also be considered as part of the
+         ulist.  This allows for one master list to be maintained for
+         several conferences, or for a conference ulist to be the union
+         of the individuals listed in several different files.
+
+         For more information see {\tt file ulist} and {\tt change ulist} in 
+         the Yapp Manual.
+
+      %}
+
+      \subsection{The observers file} \label{s:observers}
+      %{
+
+         An observers file \index{observers file} can be maintained for 
+         each conference, and can only be edited by a fairwitness.
+         To edit this file from Unix, type {\tt change observers}
+         at the {\tt ok} prompt.  This file can also be edited from the
+         fairwitness page on the WWW.  The observers file contains a list 
+         of users, specified by either login or UID, and separated by 
+         whitespace.  
+
+         A filename may also appear in the observers file, signifying that the
+         contents of filename should also be considered as part of the
+         observers list. 
+
+         This user list can be referenced in the acl file to allow (for example)
+         preventing the indicated users from responding in the conference.
+         See section~\ref{s:acl} for more information on the acl file.
+
+      %}
+
+      \subsection{The originlist file} \label{s:origin}
+      %{
+
+        The originlist\index{originlist} file is used for conferences 
+        in which partipation is restricted to users on machines in a 
+        particular domain or IP address prefix.  It contains a list 
+        of hostnames, domain names, IP addresses and/or subnet prefixes 
+        separated by whitespace (spaces, tabs, or newlines).  Any lines 
+        beginning with a "\#" character are interpreted as comments, and 
+        ignored.  For a Unix or web user to be allowed to join the 
+        conference, their host must match one of the hostnames.  This file 
+        must reside in the conference directory and can be edited from 
+        the WWW from the fairwitness page.  It can also be change
+        from Unix with the command {\tt change originlist}.
+
+        \begin{tabular}{lp{4.5in}} 
+           Example & Description \\ \hline
+           ann-arbor.mi.us  &  allows any hostname equal to or ending with
+                               "ann-arbor.mi.us" \\
+           141.211.39.193   &  allows the indicated IP address\\
+           141.211.39       &  allows any IP address starting with 
+                               "141.211.39" \\
+           141.211.38/23    &  allows any IP address in the indicated subnet
+                               range (i.e. any address whose high 23 bits match
+                               141.211.38) \\
+        \end{tabular}
+
+      %}
+
+      \subsection{The secret file} \label{s:secret}
+      %{
+          A file named {\tt secret} can be maintained in each conference,
+          and should consist of a single line containing the
+          exact password\index{password} needed to access the conference.  
+          This file is only used if the conference security type warrants it, 
+          or if it is referanced by the acl file.
+ 
+          This file can only be changed by a fairwitness of the conference
+          from Unix.  Password protected conferences are not supported 
+          through the WWW.  To change the contents of this file type 
+          {\tt change secret} at the {\tt ok} prompt.  
+
+      %}
+   
+   %}
+
+
+
+   \section{Configuring mailing list conferences} \label{s:maillist}
+   %{
+     \index{maillist}
+      A mailling conference is usually configured to both send
+      and recieve mail.  The conference is configured to send mail
+      if the conference type includes the `maillist' flag, and 
+      one or more email addresses are present on line 6 of the conference 
+      config file.  Both of these fields are defined when a conference
+      is created.  This information can be changed by {\em cfadm} 
+      with the {\tt change config} command, or by the {\em sysop} 
+      from the conference fairwitness page.
+
+      For more information about these fields see section \ref{s:create} on 
+      creating conferences.
+   
+      If you wanted to create a conference linked to the Yapp mailing list,
+      the following would be on line 6 of the Yapp conference config file:\\
+   
+        {\centering yapp@umich.edu} \\
+  
+      In order for Yapp to post the information recieved from a mailing list
+      to the correct conference the information in {\em bbsdir}/maillist
+      needs to be updated. The file maillist\index{maillist} specifies
+      which incoming mail addresses go to which conference.  (This is necessary
+      because multiple incoming addresses may actually be the same list.) 
+      The maillist file is updated automatically when you create a conference,
+      or when you change the conference configuration file.
+   
+      The first line of the {\em bbsdir}/maillist\index{maillist} file should 
+      be the string ``!$<$hl01$>$''.
+      The second line should contain the directory of the default conference
+      which, if it matches a conference name, will collect mail which doesn't
+      match anything else.  If it isn't a conference name, excess mail will
+      be lost. The remaining lines should consist of an email address, 
+      a colon, and a conference name.  A conference may have multiple entries 
+      in order to send multiple addresses to the same conference.
+   
+      Example:\\
+      \qquad   !$<$hl01$>$\\
+      \qquad  lost\\
+      \qquad   yapp@umich.edu:yapp\\
+      \qquad   cseg@zip.eecs.umich.edu:cseg\\
+      \qquad   cseg@dip.eecs.umich.edu:cseg\\
+      \qquad   cseg@quip.eecs.umich.edu:cseg\\
+      \qquad   amber@hagar.ph.utexas.edu:amber\\
+      \qquad   oberon@amber.uchicago.edu:amber\\
+      \qquad   mlist-amber@nntp-server.caltech.edu:amber\\
+  
+
+      Although a conference may be configured to recieve mail, if 
+      the appropriate mail alias is not set up, or if the mail alias
+      is not on the appropriate mailing list Yapp won't
+      post any information to the conference.  Information for 
+      configuring the mail alias can be found in section \ref{s:install}.
+      
+
+      To be placed on the Yapp conference email list, send email to 
+         \begin{verbatim} 
+         yapp@armidale.ann-arbor.mi.us
+         \end{verbatim}
+   
+      Ask to be placed on the Yapp conference list, and include the email 
+      address of the alias you created to receive mail.  
+      (``yapp@umich.edu'' is a mailing list maintained at an X.500 
+      directory server.  Fingering it will give the current list of members.)  
+   
+      Once the email address is added to the mail list of interest, your 
+      bi-directional link will be complete.
+   
+      For more information on correcting problems with a maillist conference, 
+      see section~\ref{s:tmaillist}.
+   %}
+%}
+
+\chapter{Configuring the Look and Feel of the BBS} \label {c:configur}
+%{
+   
+  \section{Changing Yapp configuration parameters} \label{s:yapp.conf} 
+   %{
+      Yapp configuration parameters\index{configuration parameters} are 
+      contained in a yapp.conf\index{yapp.conf} file, which is maintained 
+      by the Install\index{Install} script (see section~\ref{s:install} on 
+      installing Yapp).  The yapp.conf file can only be changed by a Yapp 
+      administrator ({\em cfadm}). Yapp searches for this file in the 
+      following places (in order):
+
+      \begin{tabular}{l}
+       /etc/yapp.conf \\
+       /usr/local/etc/yapp.conf \\
+       {\em bbsdir}/yapp.conf \\
+       $\sim$cfadm/yapp.conf \\
+       ./yapp.conf \\
+      \end{tabular}
+   
+      This file consists of zero or more lines of the form:
+
+         {\centering {\em parameter}:{\em value}\\}
+
+      where {\em parameter} is one of those listed below.
+      \vspace{12pt}
+
+      \tablefirsthead{Parameter & Description & Default \\ \hline}
+      \tablehead{\multicolumn{3}{l}{\small\slshape continued from previous page}\\\hline Parameter & Description &  Default \\ \hline}
+      \tabletail{\hline\multicolumn{3}{r}{\small\slshape continued on next page}\\}
+      \tablelasttail{\hline}
+      \begin{supertabular}{lp{7cm}l}
+      %{
+          bbsdir\index{bbsdir}             & Base Yapp directory ({\em bbsdir})
+             & /usr/bbs\\
+          byteswap\index{byteswap}         & Byteswap constant (do not change)&  1 \\
+          censorfrozen\index{censor}       &  
+             Whether users can censor/scribble responses in frozen items & 
+             true \\
+          cfadm\index{cfadm}               &  Unix login which ``owns'' Yapp files&  cfadm \\
+          confdir\index{confdir}           &  
+             Parent directory under which new conferences should be created &   
+             {\em bbsdir}/confs\\
+          freezelinked\index{freezelinked} &
+             Whether fairwitnesses can freeze items  which are linked to 
+             other conferences             & true \\
+          licensedir\index{licensedir}     & Directory holding license 
+             information                   & /usr/bbs/license\\
+          maildir\index{maildir}           & Unix mailbox directory 
+                                           &  /usr/spool/mail\\
+          nobody\index{nobody}             &  Unix login which httpd uses to run 
+             CGI programs & nobody\\
+          padding\index{padding}           & Subject/response padding size  
+                                           & 0\\
+          partdir\index{partdir}           & Participation file directory   
+                                           & WORK\\
+          passfile\index{passfile}         & Full pathname of the .htpasswd 
+             file in which httpd looks up web passwords 
+                                           & /usr/bbs/etc/.htpasswd\\
+          safe\index{safe}                 & Whether to auto set nosource for 
+             {\em cfadm} and set observe nosource for root & true\\
+          sendmail\index{sendmail}         & Full pathname of Unix sendmail 
+             program                       & /usr/lib/sendmail \\
+          sysop\index{sysop}               & Web login of Yapp administrator 
+                                           & (same as Yapp owner)\\
+          userdbm\index{userdbm}           & Use compressed DBM file for 
+             userfile?                     & false \\
+          userfile\index{userfile}         & Full pathname of file holding 
+             extra web user account information 
+                                           & /usr/bbs/etc/passwd\\
+          userhome\index{userhome}         & Base path of www user home 
+             directories                   &  /usr/bbs/home\\
+          usradm\index{usradm}             & Unix login to be used as 
+             alternate user administrator  & root \\
+          wwwdir\index{wwwdir}             & Base path of Yapp's www files 
+                                           & {\em bbsdir}/www \\
+     %}
+     \end{supertabular}
+   %}
+
+   \section{Using separators and macros} \label{s:sep}
+   %{
+      {\em Separator strings}\index{separators} are a way of customizing 
+      output.  Separator strings can be saved in variables, many of which 
+      have default values.  There are six types of separators:
+
+      \vspace{12pt}
+      \begin{tabular}{ll}
+      Type & Description \\ \hline
+      miscsep& value applies in all cases\\
+      confsep& value applies to conference information (based on context)\\
+      itemsep& value applies to item information (based on context) \\
+      misccond& condition works in all cases\\
+      confcond& condition works for conference information only\\
+      itemcond& condition works for item information only\\ \hline
+      \end{tabular}
+      \vspace{12pt}
+
+      In general, each separator code is of the form: \%\#X
+      where \# is an optional number , `z' or `$\wedge$'
+      and X is some character.  The \# represents the
+      width of the field when displayed, or indicates the format 
+      of the date in date separators, or a file number when a condition 
+      references a file number by definition.  See the entries on 
+      {\tt datesep} and {\tt date} in the Yapp Manual for 
+      more information about the date formats.
+
+      Some exceptions are:
+
+      \begin{tabular}{lp{10cm}}
+      \%$<$var$>$  &   means expand entire variable here (the $<>$ are literals) and
+                 capitalize it if $\wedge$ was specified \\
+
+      \%\{var\}  &   means expand entire variable here (the \{\} are literals) and
+                 capitalize it if $\wedge$ was specified \\
+
+      \$\{var\}  &   means expand variable here without re-expanding recursively
+                 and capitalize it if $\wedge$ was specified \\
+
+      \%(X ... \%)& means expand ... only if X condition holds (note that
+                 \%E in ... functions as an ELSE clause) \\
+
+      \%((icon op icon) ... \%) & means expand ... only if the given condition
+                 holds.  See syntax for the {\tt if} command for more information. \\
+
+      \%`command` &means replace with output of the given command \\
+      \end{tabular}
+
+
+
+      \subsection{Conference separators }
+      %{
+
+         Conference separators are only applicable in conference separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  A code is specified with: \%Z\#X 
+      where Z is an optional `Z' or `z' meaning print `No' or `no' in place of 0
+        \# is an optional number (indicating field width or a file number),
+        X is some character below.
+   
+         \tablefirsthead{Separator & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Separator & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{ll}
+         %{
+
+            b     &number of brandnew\index{brandnew:separator} items \\
+            C     &string text for index command \\
+            d     &conference directory \\
+            f     &number of first item \\
+            g     &dump entire file \# \\
+            i     &number of items \\
+            k     &number of things processed so far in the current report \\
+            l     &number of last item \\
+            L     &name of current conference \\
+            m     &last modification date of conference (timestamp on 
+                   summary file) \\
+            n     &number of new (brandnew or newresponse) items \\
+            o     &date of last session in conference (timestamp on 
+                   participation file) \\
+            p     &participation file name \\
+            q     &last component of conference directory \\
+            Q     &if not in a conference, print message and abort separator \\
+            r     &number of newresponse\index{newresponse:separator} items \\
+            s     &name of conference \\
+            t     &conference security type (number) \\
+            u     &your full name in this conference \\
+            v     &your login \\
+            w     &your Yapp directory (usually your home directory or 
+                   .cfdir directory) \\
+            y     &number of unseen items                  \\
+         %} 
+         \end{supertabular} 
+
+         File numbers for separators which access file numbers for a 
+         conference are:
+
+         \begin{tabular}{ll}
+         %{
+            File Number & Description \\ \hline
+
+            0           & login\index{files!login} \\
+            1           & logout\index{files!logout} \\
+            2           & index\index{files!index} \\
+            3           & bulletin\index{files!index} \\
+            4           & welcome\index{files!welcome} \\
+            5           & htmlheader\index{files!htmlheader} \\
+         %}
+         \end{tabular} 
+      %}
+
+      \subsection{Conference conditionals}
+      %{
+
+         Conference conditionals apply only to conference separator
+         variables.  For any codes which use a number, the number defaults to 0
+         unless otherwise stated.  Codes inside conditionals are used only if
+         the condition is true.  A code is specified with: \%(!\#X 
+         where ! is an optional `!' or `\~' meaning to negate the condition
+         \# is an optional number, and  X is some character below.
+
+         \tablefirsthead{Separator & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Separator & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{ll}
+         %{
+            b     & if there are brandnew\index{brandnew:condition} 
+                    items in the conference \\
+            B     & if processing the conference you are in \\
+            C     & if you are currently in some conference \\
+            f     & if summary file exists (for the conference you are in ?) \\
+            F     & if \# file exists \\
+            i     & if any items exist in the conference  \\
+            j     & if you just joined this conference for the first time \\
+            k     & if processing the conference that is current in 
+                    your conflist \\
+            l     & if you are only an observer\index{observer:condition} \\
+            m     & if you have mail \\
+            n     & if there are new (brandnew or newresponse) items \\
+            N     & if \# file is new \\
+            O     & if you were previously in another conference this session \\
+            r     & if there are newresponse\index{newresponse:condition} 
+                    items \\
+            s     & if you are a fair-witness\index{fairwitness:condition} \\
+            x     & if \# flag is on (1=report header, 2=line in body, 
+                    4=report summary) \\
+            y     & if there are unseen\index{unseen:condition} items \\
+         %}
+         \end{supertabular}
+\vspace{12pt}
+
+         File numbers for separators which access file numbers for a 
+         conference are:
+
+
+         \begin{tabular}{ll}
+         %{
+            File Number & Description \\ \hline
+
+            0           & login \\
+            1           & logout \\
+            2           & index \\
+            3           & bulletin \\
+            4           & welcome \\
+            5           & htmlheader \\
+         %}
+         \end{tabular}
+
+\vspace{12pt}
+
+      %}
+
+      \subsection{Conference separator variables}
+      %{
+
+         \tablefirsthead{Variable & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Variable & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{ll}
+         %{
+            bullmsg  &     output of ``display bulletin''\\
+               &\hspace{1cm} Default :``\%(1x\%3g\%)\%c''\\
+            checkmsg  &    conference information for check command\\
+               & \hspace{1cm} Default :``\%(1x$\backslash$nNew resp 
+                 \$\{item\}s\ \ \$$\wedge$\{conference\} name$\backslash$n\%)
+                 $\backslash$\\
+               & \hspace{1cm}\%(2x\%(k--\%E\ \ \%)\%(B$>$\%E \%)\%4r \%4b
+                 \ \ \ \ \%s$\backslash$ \\
+               & \hspace{1cm}\%(B\ \ (where you currently are!)\%)\%)''\\
+            confindexmsg & format of a conference description line for 
+                           index command\\
+               & \hspace{1cm} Default :``\%20s.....\%c''\\
+            confmsg     &  output of ``display conference''\\
+               & \hspace{1cm} Default :``\%Q\$\{conference\} name\ \ \ :
+                 \%s $\backslash$n \\
+               & \hspace{1cm} Directory\ \ \ \ \ \ \ \ \ : \%d$\backslash$n$
+                 \backslash$\\
+               & \hspace{1cm} Participation file: \%w/\%p$\backslash$n$
+                 \backslash$ \\
+               & \hspace{1cm} Security type\ \ \ \ \ : \%t$\backslash$n$
+                 \backslash$\\
+               & \hspace{1cm}\%(i\%i \$\{item\}\%S numberd \%f-\%l$
+                 \backslash$ \\
+               & \hspace{1cm}\%ENo \$\{items\} yet.\%)''\\
+            edbprompt  &   prompt to confirm response entry\\
+               & \hspace{1cm} Default :``Ok to enter this response? ''\\
+                 groupindexmsg &format of a group header line for index command\\
+               & \hspace{1cm} Default :``\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **\%C**''\\
+            indxmsg &      output of ``display index''\\
+               & \hspace{1cm} Default :``\%(1x\%2g\%)\%c''\\
+            joinmsg &      output of ``join'' with no arguments\\
+               & \hspace{1cm} Default :``Join: which \$\{conference\}?
+                 $\backslash$n$\backslash$\\
+               & \%QYou are currently in the \%s \$\{conference\}.''\\
+            joqprompt &    prompt when deciding to become a member of a 
+                           conference\\
+               & \hspace{1cm} Default :``$\backslash$nJoin, quit, or help? ''\\
+            linmsg  &      output when entering a conference\\
+               & \hspace{1cm} Default :``\%(1x\%(2x$\backslash$n\%)
+                 \%0g\%)\%(2x\%(3N\%3g\%)$\backslash$\\
+               & \hspace{1cm}\%(1x$\backslash$n\%)\%(n\%(r\%r newresponse \$
+                 \{item\}\%S\%)$\backslash$\\
+               & \hspace{1cm}\%(b\%(r and \%)\%b brandnew \$\{item\}\%S\%)
+                 $\backslash$n\%)$\backslash$\\
+               & \hspace{1cm}\%(i\%i \$\{item\}\%S numbered \%f-\%l$\backslash$n
+                 \%)$\backslash$\\
+               & \hspace{1cm}\%(sYou are a \$\{fairwitness\} in this 
+                 \$\{conference\}.$\backslash$n\%)$\backslash$\\
+               & \hspace{1cm}\%(lYou are an observer of this \$\{conference\}.
+                 $\backslash$n\%)$\backslash$\\
+               & \hspace{1cm}\%(jYour name is $\backslash$``\%u$\backslash$'' 
+                 in this \$\{conference\}. $\backslash$n$\backslash$\\
+               & \hspace{1cm}\%($\sim$O\%(4F$\backslash$n\%4g$\backslash$\\
+               & \hspace{1cm}\%E$\backslash$n$>>>>$ New users: type HELP 
+                 for help.  $\backslash$n\%)\%)\%)\%)\%c''\\
+            listmsg  &     conference information for list command\\
+               & \hspace{1cm} Default :``\%(1x$\backslash$n\$\{item\}s sec time
+                 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \$\{conference\}
+                 $\backslash$n\%)$\backslash$\\
+               & \hspace{1cm}\%(2x\%(B$>$\%E \%)\%4i \%2t\%(sF\%E\%(lR\%E \%)\%) 
+                 \%m \%s\%)''\\
+            loutmsg  &     output when leaving a conference\\
+               & \hspace{1cm} Default :``\%(1x\%1g\%)\%c''\\
+            mailmsg  &     announcement when you have mail\\
+               & \hspace{1cm} Default :``You have \%(2xmore \%)mail.''\\
+            noconfp  &     main Yapp prompt, if not in a conference\\
+               & \hspace{1cm} Default :``$\backslash$nType HELP CONFERENCES for 
+                 a list of \$\{conferences\}s.$\backslash$n$\backslash$\\
+               & \hspace{1cm}Type JOIN $<$NAME$>$ to access a \$\{conference\}.
+                 $\backslash$n YAPP: ''\\
+            obvprompt &    prompt after each item when reading, if respond 
+                           is not allowed\\
+               & \hspace{1cm} Default :``$\backslash$n[\%\{curitem\}/\%l] 
+                 Can't respond, pass? ''\\
+            partmsg   &    person info, for participants command\\
+               & \hspace{1cm} Default :``\%(2x\%10v \%o \%u\%)$\backslash$ \\
+               & \hspace{1cm}\%(4x$\backslash$n\%k participant\%S total.\%)
+                  $\backslash$ \\
+               & \hspace{1cm}\%(1x$\backslash$n\ \ \ \ \ login\ \ \ \ \ \ \ \ 
+                 \ \ \ last time on\ \ \ \ \ name$\backslash$n\%)'' \\
+            printmsg  &    report header, for print command\\
+               & \hspace{1cm} Default :``\%QPrinted from \$\{conference\} 
+                 \%d (\%s)''\\
+            prompt   &     main Yapp prompt, if in a conference\\
+               & \hspace{1cm} Default :``$\backslash$nYAPP:\ ''\\
+            rfpprompt &    prompt after each item when reading, if respond 
+                 is allowed\\
+               & \hspace{1cm} Default :``$\backslash$n[\%\{curitem\}/\%l] 
+                 Respond, forget, or Pass?\ ''\\
+            scribok   &    prompt to verify scribbling\\
+               & \hspace{1cm} Default :``Ok to scribble this response? ''\\
+            text     &     prompt while entering text (no separators allowed 
+                           for this prompt)\\
+               & \hspace{1cm} Default :``$>$''\\
+            wellmsg  &     output of ``display welcome''\\
+               & \hspace{1cm} Default :``\%(1x\%4g\%)\%c''\\
+         %}
+         \end{supertabular}   
+      %}
+\vspace{12pt}
+
+      \subsection{Item separators }
+      %{
+
+         Item separators apply in only for item separator
+         variables.  For any codes which use a number, the number defaults to 0
+         unless otherwise stated.  A code is specified with: \%Z\#X 
+         where Z is an optional `Z' or `z' meaning print `No' or 
+         `no' in place of 0, \# is an optional number, and X is some 
+         character below.
+   
+
+         \tablefirsthead{Separator & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Separator & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{ll}
+         %{
+            a     & full name of author of current response \\
+            C     & short name of current conference \\
+            d     & timestamp of current response (default format is 1) \\
+            e     & email address of author of current response \\
+            h     & subject (header) of current item \\
+            i     & current item number \\
+            l     & login of author of current response \\
+            k     & size in Kbytes of text of current response (rounded up) \\
+            L     & text of current line of current response \\
+            n     & highest response number in current item \\
+            N     & current line number in current response \\
+            p     & number of parent response \\
+            q     & size in bytes of text of current response \\
+            r     & current response number \\
+            s     & number of lines of text in current response \\
+            t     & timestamp of current response (default format is 0) \\
+            u     & uid of author of current response \\
+         
+         %}
+         \end{supertabular}
+\vspace{12pt}
+
+      %}
+
+      \subsection{Item conditionals}
+      %{
+
+         Item conditionals apply only to item separator
+         variables.  For any codes which use a number, the number defaults to 0
+         unless otherwise stated.  Codes inside conditionals are used only if
+         the condition is true.  A code is specified with: \%(!\#X 
+         where ! is an optional `!' or `\~' meaning to negate the condition
+         \# is an optional number (as explicitly defined), 
+         and X is some character below.
+   
+         \tablefirsthead{Conditional & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Conditional & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{ll}
+         %{
+            B     & if starting to process another report  \\
+            D     & if date flag is on \\
+            F     & if numbered flag is on \\
+            I     & if starting to process another item \\
+            L     & if there is text at current response line \\
+            N     & if current response number > 0 \\
+            O     & if starting to process another item  \\
+            p     & if response is a response to another one \\
+            P     & if last number output was not 1 \\
+            R     & if starting to process another response \\
+            T     & if formfeed flag is on \\
+            U     & if uid flag is on    \\
+            V     & if current response is censored  \\
+            W     & if current response is scribbled \\
+            x     & if \# flag is on (1=report header, 2=line in body, 
+                    4=report summary) \\
+            X     & if current response is retired   \\
+            Y     & if current response is forgotten \\
+            Z     & if current response is frozen    \\
+          %}
+          \end{supertabular}
+\vspace{12pt}
+
+
+      %}
+
+      \subsection{Item separator variables}
+      %{
+
+      \tablefirsthead{Variable & Description \\ \hline}
+      \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Variable & Description \\ \hline}
+      \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+      \tablelasttail{\hline}
+      \begin{supertabular}{ll}
+      %{
+          fsep\index{fsep} &  output of find command \\
+             & \hspace{1cm} Default :``\%(R\#\%i.\%r \%a (\%l) 
+               $\backslash$n\%)\%7N: \%L'' \\
+          isep\index{isep} &  long item header (default for read command) \\
+             & \hspace{1cm} Default :``$\backslash$n\$$\wedge$\{item\} 
+               \%i entered \%d by \%a (\%l)$\backslash$n \%h''\\
+          ishort\index{ishort} & short item header (default for browse command) \\
+             & \hspace{1cm} Default :``\%(B\$$\wedge$\{item\} Resps \$$\wedge$
+               \{subject\}$\backslash$n$\backslash$n\%)\%4i \%5n \%h'' \\
+          nsep\index{nsep} &    new response status, for read command\\
+             & \hspace{1cm} Default :``$\backslash$n\%(N\%r new of \%)
+               \%zn response\%S total.''\\
+          replysep\index{replysep} & response included in reply mail text\\
+             & \hspace{1cm} Default :``\%(1xIn \#\%i.\%r of the \%C 
+               \$\{conference\}, you write:\%)$\backslash$\\
+             & \hspace{1cm}\%(2x$>$ \%L\%)\%(4x\%)''\\
+         rsep\index{rsep} & response header for read command\\
+             & \hspace{1cm} Default :``$\backslash$n\#\%i.\%r \%a (\%l) '' \\
+         txtsep\index{txtsep} &     line of response text in read command \\
+             & \hspace{1cm} Default :``\%(L\%(F\%7N:\%)\%X\%L\%)'' \\
+         zsep\index{zsep} &       item footer, for read command \\
+            & \hspace{1cm} Default :``\%(T$\wedge$L\%)\%c''\\
+      %}
+      \end{supertabular} 
+      %}
+
+      Following are some of the reserved variable names.  Most have default 
+      values that can be checked with {\tt display} {\em variable}.  Undefined 
+      variables expand to the empty string, rather than generating an error.
+
+%      \begin{table}[h]
+%      \caption{WWW read-only variables\label{t:wwwROvars}}
+%      \centering
+      \subsection*{WWW Read/only variables}
+      %{
+         \begin{tabular}{lp{4.5in}} 
+         Variable Name & Description \\ \hline
+         nobody\index{nobody} 
+            & login of account which CGI scripts run as \\
+         pathinfo\index{pathinfo}   
+            & contents of PATH\_INFO environment variable\\
+         querystring\index{querystring} 
+            & contents of QUERY\_STRING environment variable 
+              (note that variables sent via QUERY\_STRING are 
+              automatically set for you in Yapp.) \\
+         requestmethod\index{requestmethod}
+            & contents of REQUEST\_METHOD environment variable\\
+         remoteaddr\index{remoteaddr} 
+            & contents of REMOTE\_ADDR environment variable\\
+         remotehost\index{remotehost} 
+            & contents of REMOTE\_HOST environment variable\\
+         sysop\index{sysop}   &   login of sysop account\\
+         wwwdir\index{wwwdir} &   base directory for Yapp www files\\ \hline
+         \end{tabular}
+      %}
+%      \end{table}
+\vspace{12pt}
+
+      \subsection*{Miscellaneous Read/only variables}
+      %{
+         \tablefirsthead{Variable & Description \\ \hline}
+         \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline Variable & Description \\ \hline}
+         \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin {supertabular}{ll}
+         %{
+         address    &  mailing list email address of a maillist~\index{maillist} conference \\
+         bbsdir     &  bbs system base directory~\index{bbsdir} \\
+         brandnew   &  number of brandnew items~index{brandnew} \\
+         cacl       &  access control list for creating new items in this conference~\index{cacl} \\
+         canaacl    &  can change access control list~\index{canaacl} \\
+         cancacl    &  can create topics in conference according to access control list~\index{cancacl} \\
+         canracl    &  can read conference according to access control list ~\index{canracl}\\
+         canwacl    &  can respond to items in conference according to access control list~\index{canwacl} \\
+         cflist     &  list of conferences in your .cflist \index{cflist}\\
+         conflist   &  list of possible conferences \index{conflist} \\
+         confname   &  short name of current conference \index{confname} \\
+         curitem    &  current item number \index{curitem}\\
+         curline    &  current line number of response \index{curline}\\
+         curresp    &  current response number \index{curresp}\\
+         cursubj    &  current item subject \index{cursubj} \\
+         email      &  your email address \index{email}\\
+         exit       &  exit status of last Unix command executed \index{exit}\\
+         firstitem  &  first item number \index{firstitem}\\
+         fromlogin  &  login of current response author \index{fromlogin}\\
+         fromname   &  full name of current response author \index{fromname}\\
+         fullname   &  your full name in this conference \index{fullname}\\
+         fwlist     &  list of fairwitnesses in this conference \index{fwlist}\\
+         highresp   &  highest response number in range specified \index{highresp}\\
+         home       &  your home directory \index{home}\\
+         hostname   &  hostname of local system on which Yapp is running \index{hostname}\\
+         isbrandnew &  is the current item brandnew \index{isbrandnew}\\ 
+         isnew      &  is the current item brandnew or contain a new response \index{isnew}\\ 
+         isnewresp  &  does the current item contain a new response \index{isnewresp}\\ 
+         lastitem   &  last item number \index{lastitem}\\
+         lastresp   &  number of responses in current item \index{lastresp}\\
+         login      &  your login \index{login}\\
+         lowresp    &  lowest response number in range specified \index{lowresp}\\
+         mode       &  current prompt index \index{mode}\\
+         newresp    &  number of newresponse items \index{newresp}\\
+         nextconf   &  next conference in your .cflist with new items \index{nextconf}\\
+         nextitem   &  next item in specified range \index{nextitem}\\
+         numitems   &  number of items \index{numitems}\\
+         partdir    &  directory containing your participation files and .cflist \\
+         pid        &  current Yapp process id \index{pid}\\
+         prevconf   &  previous conference in your .cflist with new items \index{prevconf}\\
+         previtem   &  previous item in specified range \index{previtem}\\
+         racl       &  access control list for joining and reading current conference \index{racl}\\
+         seenresp   &  highest response number seen \index{seenresp}\\
+         status     &  current internal status flags \index{status}\\
+         uid        &  your uid \index{uid}\\
+         unseen     &  number of unseen items\index{unseen} \\
+         wacl       &  access control list for writing responses in current conference \index{wacl}\\
+         work       &  your Yapp work directory \index{work}\\
+         %
+         \end{supertabular}
+      %}
+\vspace {12pt}
+
+      \subsection*{Extra variables imported from environment variables}
+      %{
+
+         \begin{tabular}{ll}
+         Variable Name & Description \\ \hline
+         alpha         & Value is value of ALPHA environment variable\\
+         beta          & Value is value of BETA environment variable\\
+         gamma         & Value is value of GAMMA environment variable\\
+         delta         & Value is value of DELTA environment variable\\ \hline
+         \end{tabular}
+
+         \vspace{12pt}
+
+         For more information on separators and conditionals see the entries 
+         on {\tt miscseps}, {\tt confseps}, {\tt itemseps}, {\tt miscconds},
+         {\tt confconds}, {\tt itemconds}, {\tt fileseps}, and {\tt dateseps} 
+         in the Yapp Manual.
+      %}
+   %}
+
+   \section{Customizing WWW output and options} \label{s:sysconfig}
+   %{
+      An rc file\index{rc files!web} containing global commands and 
+      definitions for the WWW is located in {\em bbsdir}/www/rc.  It contains 
+      the default WWW settings. 
+   
+      If you would like to customize these defaults you may change them by 
+      accessing the {\em Configure System}\index{configure system page} link 
+      from the Main Menu page while logged in as {\em sysop}\index{sysop}.  
+      The modifications will be stored in the rc.{\em yapp-bin} file, where 
+      {\em yapp-bin} is the directory alias used by httpd.  See 
+      chapter~\ref{c:start} on Getting Started for more on information 
+      setting up the directory alias.
+
+      For more information on the separators used in the default macros, 
+      see section~\ref{s:sep} on Separators and Macros.
+
+      \subsection{Using the Configure System page}
+      %{
+
+      The Configure system page allows the {\em sysop} to configure the system 
+      for the WWW.  From this page you can change the following types of items: 
+      System Identification, Configuration Options, Terms, Page Format, 
+      Text Format, Return Buttons~\index{buttons}, Other Buttons, and 
+      HTML Tags in Responses.
+
+      \subsubsection*{SYSTEM IDENTIFICATION}
+  
+         \begin{description}
+         \item[Local Host Name in URLs] 
+         \mbox{}\newline
+            This is your WWW host name to be included in URLs.
+
+         \item[Local HTTP port in URLs] 
+         \mbox{}\newline
+            Port number to include in URLs for your host.
+
+         \item[URL of welcome page]
+         \mbox{}\newline
+            This is the URL of the page you wish users to see when they follow 
+            the ``Return to welcome page'' link.
+         \end{description}
+
+      \subsubsection*{TERMS}
+       
+         Here, you can redefine some of the terms used in messages and on 
+         WWW pages to be more understandable to your users.
+
+         You can redefine the terms:
+         \vspace{12pt}
+
+         \begin{tabular}{ll}
+            Variable    & Default Value\\ \hline
+            conference\index{conference}   &   conference\\
+            fairwitness\index{fairwitness} &   fairwitness\\
+            item\index{item}               &   item\\
+            subject\index{subject}         &   subject\\ \hline
+         \end{tabular}
+
+         \vspace{12pt}
+         See section~\ref{s:var} on Yapp configuration variables for more 
+         information on these terms.
+
+      \subsubsection*{CONFIGURE OPTIONS}
+
+         {\bf Do you wish users to be able to enter responses using a 
+          pseudonym? }
+         \par
+         If you do not allow pseudonyms, the user's full name in the conference
+         will always be used when entering responses from the web.
+
+      \subsubsection*{PAGE FORMAT}
+
+         Each web page is essentially divided into three pieces: the header,
+         the body, and the footer.  Here you can define:
+         \vspace{12pt}
+
+         \begin{tabular}{lll}
+            & Variable Name & Description \\ \hline
+            & header\index{header} & Standard page header \\
+            & footer\index{footer} & Standard page footer \\ \hline
+         \end {tabular}
+
+         \vspace{12pt}
+         To customize the body of a page, you will need to edit the template
+         associated with the page.  The templates are located in the
+         {\em bbsdir}/www/templates directory.  See section~\ref{s:template}
+         for more information on the templates.
+
+      \subsubsection*{TEXT FORMAT}
+      %{
+
+         This is where you define text formats for specific pages.
+
+         \begin{tabular}{lll}
+         & Variable Name & Description \\ \hline
+         & ishort\index{ishort} & Format of the list of topics inside a conference \\
+         && - Changes appearance on a Conference Welcome Page \\
+
+         & isep\index{isep} & Format of a topic header \\
+         &&            - Changes appearance on a Read Item Page\\
+
+         & rsep\index{rsep} & Format of a response header \\
+         &&         - Changes appearance on a Read Item Page \\
+
+         & censored\index{censored} & Format of a censored notice \\
+         &&      - Changes appearance on a Read Item Page \\
+
+         & scribbled\index{scribbled} & Format of a scribbled notice  \\
+         &&   - Changes appearance on a Read Item Page\\ \hline
+         \end{tabular}
+
+         \vspace{12pt}
+         {\em NOTE: A Conference Welcome Page is the first page you come to when
+            entering a conference.  Normally the contents of the conference 
+            htmlheader file are displayed at the top of the page. 
+
+            A Read Item Page, is the page you get when you follow the link to 
+            any of the items/topics on a Conference Welcome Page.
+         }
+      %}
+
+      \subsubsection*{RETURN BUTTONS}
+         \index{buttons}
+         Here you define the buttons which can be used to return to other 
+         pages.
+
+         \vspace{12pt}
+         \begin{tabular}{lll}
+         &Variable Name & Description \\ \hline
+         & confreturn\index{confreturn} & Return to the \_\_\_\_\_ conference\\
+         & mainreturn\index{mainreturn} & Return to the main menu \\
+         & welcreturn\index{welcreturn} & Return to the welcome screen \\ \hline
+         \end{tabular}
+
+      \subsubsection*{OTHER BUTTONS}
+         \index{buttons}
+         Here is where you redefine the buttons such as:
+
+         \vspace{12pt}
+         \begin{tabular}{lll}
+         & Variable Name & Description \\ \hline
+         & help\index{help} & Help Button \\
+         & cnext\index{cnext} & Next conference \\
+         & cprev\index{cprev} & Previous conference \\
+         & znext\index{znext} & Next topic  \\
+         & zprev\index{zprev} & Previous topic \\
+         & enter\index{enter} & Enter new topic \\
+         & zfreeze\index{zfreeze} & Freeze/Thaw \\
+         & zforget\index{zforget} & Forget/Remember \\
+         & kill\index{kill} & Kill item button \\
+         & zretire\index{zretire} & Retire item button \\ 
+         & retitle\index{retitle} & Change subject \\
+         & zcensor\index{zcensor} & Censor \\
+         & zuncensor\index{zuncensor} & Uncensor \\
+         & zscribble\index{zscribble} & Scribble \\ \hline
+         \end{tabular}
+
+      \subsubsection*{HTML TAGS IN RESPONSES}
+         \index{html tags}
+         Here is where you can restrict which HTML tags you want users to be
+         allowed to use, and on which tags you want sanity checking. Users will
+         not be able to use any HTML tags which you list as illegal, and 
+         sanity checking will be done on the tags which you specify must be 
+         matched.
+      %}
+
+      \subsection{Modifying templates}
+      %{
+      \index{templates}\label{s:template}
+      In addition to the standard WWW marcos, you can also change
+      templates to determine  what is displayed for each form and
+      on each page.  Shown below is short description of when each 
+      of the  templates is used, and default actions upon sucessful or
+      unsuccessful completion of Yapp commands.
+      \vspace{12pt}
+      \par
+      \tablefirsthead{&Template Name & Description of Template\\ \hline}
+      \tablehead{\multicolumn{2}{l}{\small\slshape continued from previous page}\\\hline &Template Name & Description \\ \hline}
+      \tabletail{\hline\multicolumn{2}{r}{\small\slshape continued on next page}\\}
+      \tablelasttail{\hline}
+      \begin{supertabular}{lll}
+      %{
+         & browse\index{browse}
+           & Display list of topics in a conference, change name in conference,
+            etc \\ 
+         & browse\_ok\index{browse\_ok}
+           & Results of browse (go to browse screen)\\
+         & cfadd\index{browse}
+           & Results of cfadd (go to createlist screen) \\
+         & cfconfig\index{cfconfig}
+           & Sysop configuration parameters \\
+         & cfcreate\index{cfcreate}
+           & Form to collect information to create a conference\\
+         & cfcreate\_ok\index{cfcreate\_ok}
+           & Results of cfcreate \\
+         & cfonce\index{cfonce}
+           & Change information in users cfonce file (go to userinfo) \\
+         & change\_get\index{change\_get}
+           & The initial file change form \\
+         & change\_invalid\index{change\_invalid}     
+           & When response contains invalid text, let user edit \\
+         & change\_ok\index{change\_ok}
+           & Results of change command (go to browse screen) \\
+         & changelist\_get\index{changelist\_get}     
+           & The initial .cflist change form \\
+         & changelist\_ok\index{changelist\_ok}
+           & Results of changelist command (go to browse screen) \\
+         & chfn\_get\index{chfn\_get}
+           & Fill out form for changing fullname/email address \\
+         & chfn\_ok\index{chfn\_ok}
+           & Results of changing fullname/email address \\
+         & conf\_timeout\index{conf\_timeout}
+           & A timeout screen with "Return to ... conference" link \\
+         & createlist\index{createlist}
+           & Create a conference list \\
+         & edit\_get\index{edit\_get}
+           & Edit a responce form \\
+         & edit\_invalid\index{edit\_invalid}
+           & When invalid text is entered from edit, let them edit again \\
+         & enter\_get\index{enter\_get}
+           & The initial item entry form \\
+         & enter\_invalid\index{enter\_invalid}
+           & When item contains invalid text, let user edit \\
+         & enter\_ok\index{enter\_ok}
+           & Results of enter command (go to browse screen) \\
+         & error\index{error}
+           & Generic screen displayed when an error occurs \\
+         & find\index{find}
+           & Form to enter a keyword search \\
+         & find\_ok\index{find\_ok}
+           & Results of a keyword search \\
+         & forget\index{forget}
+           & Results of forget command (go to browse screen) \\
+         & freeze\index{freeze}
+           & Results of freeze command (go to browse screen) \\
+         & index\index{index}
+           & List of conferences and create conference command \\
+         & kill\index{kill}
+           & Results of kill command (go to browse screen) \\
+         & list\index{list}
+           & List of all conferences \\
+         & main\index{main}
+           & The main menu \\
+         & main\_timeout\index{main\_timeout}
+           & A timeout screen with "Return to main menu" link \\
+         & newuser\_get\index{newuser\_get}
+           & Step 1 of newuser registration (select a login) \\
+         & newuser\_get2\index{newuser\_get2}
+           & Step 2 of newuser registration (enter user info) \\
+         & newuser\_ok\index{newuser\_ok}
+           & When a user successfully registers a new login \\
+         & newuser\_unix\index{newuser\_unix}
+           & Display when a user chooses an existing Unix login \\
+         & participants\index{participants}
+           & Display all participants in a conference \\
+         & passwd\_get\index{passwd\_get} 
+           & Fill-out form for changing password \\
+         & passwd\_ok\index{passwd\_ok}
+           & When password is successfully changed \\
+         & preserve\index{preserve} 
+           & Result of preserve (go to browse screen) \\
+         & public\_browse\index{public\_browse}
+           & Display list of topics in public readonly mode \\
+         & public\_find\index{public\_find} 
+           & Form to enter a key word search when not authenticated \\
+         & public\_main\index{public\_main}
+           & The main menu when not authenticated \\
+         & public\_read\_footer\index{public\_read\_footer}
+           & Item footer in public readonly mode \\
+         & public\_read\_header\index{public\_read\_header} 
+           & Item header in public readonly mode \\
+         & read\_footer\index{read\_footer}        
+           & Item footer in a normal conference \\
+         & read\_header\index{read\_header}        
+           & Item header in a normal conference \\
+         & remember\index{remember}
+           & Results of remember command (go to browse screen) \\
+         & respond\_get\index{respond\_get}
+           & The initial response form \\
+         & respond\_invalid\index{respond\_invalid}
+           & When response contains invalid text, let user edit \\
+         & respond\_ok\index{respond\_ok}
+           & Results of respond command (go to browse screen) \\
+         & retire\index{retire}
+           & Results of retire command (go to browse screen) \\
+         & retitle\_get\index{retitle\_get}
+           & Form to change the title of an item \\
+         & sysconfig\index{sysconfig}
+           & WWW configuration page for Sysop \\
+         & sysconfig\_ok\index{sysconfig\_ok}
+           & Result of sysconfig changes (go to main menu) \\
+         & sysop\index{sysop}
+           &  Sysop Menu \\
+         & thaw\index{thaw}
+           & Results of thaw command (go to browse screen) \\
+         & unretire\index{unretire}           
+           & Results of unretire command (go to browse screen) \\
+         & userinfo\index{userinfo}
+           & Display User Info screen \\
+      %}
+      \end{supertabular}
+
+      \vspace{12pt}
+
+      Modifying the templates will cause system wide changes, not 
+      conference specific changes.  Feel free to experiment with the
+      templates to create the enviornment you feel will best meet the
+      needs of your system.  
+
+      Standard separators and macros are imbedded in the templates by default.
+      The standard WWW macros can be redefined from the  System Configuration 
+      page. Often the macros are the only thing that will need to be 
+      updated to make your page appear the way that you wish.  See 
+      section~\ref{s:sysconfig} for more information on changing these 
+      macros.  
+
+      Although the templates are system specfic, the macros can be defined
+      within each conference, to give each conference a unique feel.  
+      Any changes for a specific conference need to be made to the conference
+      rc file.  By default this file is empty, so it will require some work
+      to redefine any macros.
+      %}
+   %}
+
+   \section{Customizing output from Unix and global options} \label{s:rc}
+   %{
+      The most basic of the rc files\index{rc files!Yapp} is the Yapp
+      rc file {\em bbsdir}/rc. This file will be executed whenever Yapp is 
+      run.  The definitions in this file can be overridden by any other rc 
+      files which are executed. 
+
+      The Yapp rc file should contain commands that will be executed by 
+      everyone when Yapp is started.  In general, these are to define global 
+      aliases and customize output.  See the section on ``define'' in the Yapp 
+      Manual for more information on the {\tt define} comand.
+
+      \qquad Example: \\
+      \qquad def editor 258 vi \\
+      \qquad def pager more \\
+      \qquad def helpcmd 'help commands' \\
+      \qquad def who       9   'unix who \\
+      \qquad def write     9   'unix ``/usr/local/bin/write'' \\
+      \qquad def talk      9   'unix ``/usr/bin/talk'' \\
+      \qquad def dir\_ectory 9 'unix ``/bin/ls'' \\
+      \qquad def type  9 'unix ``/bin/cat'' \\
+      \qquad def pwd   9 'unix ``/bin/pwd'' \\
+      \qquad def chat  9 'unix ``/usr/local/bin/write'' \\
+      \qquad def shell 9 'unix ``/bin/csh'' \\
+      \qquad def noconfp ``Type HELP CONFERENCES for a list of conferences
+$\backslash$n$\backslash$\\
+Type JOIN $<$NAME$>$ to access a conference.$\backslash$n$\backslash$n$>$ \%c'' \\
+
+      Each user with a Unix account can create their own aliases and customized 
+      output. For more information on the rc files that a user can create, 
+      see the section in the Yapp manual for {\em cfonce}\index{cfonce} and 
+      {\em cfrc}\index{cfrc}.
+
+      You can also redefine separators in the rc file.  See section~\ref{s:sep}
+      on seperators for a description of the Item Seperators you can define 
+      in the rc file.
+
+      The following is an example definition of isep.
+
+\qquad define isep ``$\backslash$nConference:\%{confname}$\backslash$nResponse: \%\{curitem\}.\%\{curresp\}$\backslash$nItem$\backslash$ \\
+\qquad \%\{curitem\} was entered \%d by \%a  (\%\{fromlogin\}) $\backslash$nSubject: \%\{cursubj\}$\backslash$n''
+
+      \subsection{Changing the Yapp default settings} \label{s:var}
+      %{
+      \index{default settings}
+      The following are the Yapp default settings.  To change a
+      default setting globally, you should redefine the associated variable
+      in the Yapp rc file ({\em bbsdir}/rc).  To check the values from within 
+      Yapp, type {\tt display} {\em variable}.  Undefined variables expand to 
+      the empty string, rather than generating an error.  See 
+      section~\ref{s:rc} on rc files for more information on globally 
+      redefining variables.
+
+      \tablefirsthead{Variable & Default & Description \\ \hline}
+      \tablehead{\multicolumn{3}{l}{\small\slshape continued from previous page}\\\hline Variable & Default & Description \\ \hline}
+      \tabletail{\hline\multicolumn{3}{r}{\small\slshape continued on next page}\\}
+      \tablelasttail{\hline}
+      \begin{supertabular}{lll}
+      %{
+      bufdel\index{bufdel}           & ``;''   
+             & buffer delimiter (only first character is significant)\\
+      cmddel\index{cmddel}           & ``;''   
+             & command delimiter (only first character is significant)\\
+      conference\index{conference}   & ``conference'' 
+             & what to call a conference/forum/etc\\
+      editor\index{editor}           & ``/bin/ed''    
+             & Unix command to invoke editor \\
+      escape\index{escape}           & ``:''          
+             & escape character in text entry mode (first char significant)\\
+      fairwitness\index{fairwitness} & ``fairwitness'' 
+             & what to call a fairwitness/host/etc\\
+      gecos\index{gecos}             & ``,''           
+             & GECOS separator in password file (first character significant)\\
+      helpcmd\index{helpcmd}         & ``''            
+             & default command to execute at Ok prompt when user hits return\\
+      item\index{item}               & ``item''        
+             & what to call an item/topic/etc\\
+      mailbox\index{mailbox}         & ``''            
+             & filename to use as your mailbox\\
+      pager\index{pager}             & ``/usr/bin/more''
+             & Unix command to invoke pager\\
+      shell\index{shell}             & ``/bin/sh''      
+             & Unix command to invoke as the shell\\
+      subject\index{subject}         & ``subject''      
+             & what to call the subject/title/etc of an item\\
+      visual\index{visual}           & ``''             
+             & Unix command to invoke visual editor\\
+      censored\index{censored}       & ``\ \ \ $<$censored$>$''
+             & response is censored notice\\
+      scribbled\index{scribbled}     & ``\ \ \ $<$censored \& scribbled$>$'' 
+             & response is scribbled notice\\
+      %}
+      \end{supertabular}
+
+      For more information on variables, see the entry on variables in the 
+      Yapp Manual.
+      %}
+   %}
+
+%}
+
+\chapter{Special Cases} \label{c:specialcases}
+%{
+   \section{Running multiple virtual systems on the same machine}
+   %{
+       \index{virtual systems}
+       
+       Yapp allows for multple virtual systems to be run on the
+       same machine.  The virtual systems use the same conflist, desclist,
+       participation files, and other Yapp files.  Virtual systems can be
+       used to make your system appear differently depending upon how
+       it was accessed.  Each virtual systems can have a different set of 
+       default information and templates.
+
+       A virtual system can be very useful if you wish to experiment with
+       the global macros and templates, but you don't want to impact your
+       current users.
+
+       To create a virtual system, you need to add another set of information
+       to your httpd files.
+
+       For example if you were to add
+
+       \begin{verbatim}
+       ScriptAlias /test-bin/ {\em bbsdir}/www/cgi-bin/
+       \end{verbatim}
+
+       to your NCSA or Apache HTTP srm.conf you would have a virtual test
+       system which you could access a Sysop page to reconfigure without
+       upsetting your regular system.
+   %}
+%}
+
+\chapter{Yapp Files}
+%{
+   \section{Overview of Important Files}
+   %{
+      Following is a list of all important files used by YAPP.  You can get more
+      info on the format of a file with "help file $<filename>$", where 
+      $<filename>$ is the string in the right column below.
+
+      \subsection{Yapp General Files}
+      %{
+
+         \tablefirsthead{Parameter & Description & Default \\ \hline}
+         \tablehead{\multicolumn{3}{l}{\small\slshape continued from previous page}\\\hline File & Description &  See Yapp Manual: \\ \hline}
+         \tabletail{\hline\multicolumn{3}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{lp{7cm}l}
+         %{
+            /etc/yapp.conf\index{files!yapp.conf}  
+                            & local YAPP configuration information               
+                            & yappconf \\
+            {\em bbsdir}/censored\index{files!censored}    
+                            & log of all censoring and scribbling                
+                            & censored \\
+            {\em bbsdir}/conflist\index{files!conflist}    
+                            & mapping from conference names to directories       
+                            & conflist \\
+            {\em bbsdir}/desclist\index{files!desclist}    
+                            & mapping from conference names to descriptions     
+                            & desclist \\
+            {\em bbsdir}/errorlog\index{files!errorlog}    
+                            & log of all YAPP errors encountered                 
+                            & errorlog \\
+            {\em bbsdir}/maillist\index{files!maillist}    
+                            & mapping from email addresses to conference names   
+                            & maillist \\
+            {\em bbsdir}/rc\index{files!rc}          
+                            & commands to execute when starting bbs              
+                            & bbsrc \\
+            {\em licensedir}/registered\index{files!registered}  
+                            & license information                                
+                            & registered \\
+                  
+         %}
+         \end{supertabular}
+      %}
+
+      \subsection{Conference files}
+      %{
+
+         \tablefirsthead{Parameter & Description & Default \\ \hline}
+         \tablehead{\multicolumn{3}{l}{\small\slshape continued from previous page}\\\hline File & Description &  See Yapp Manual: \\ \hline}
+         \tabletail{\hline\multicolumn{3}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{lp{7cm}l}
+         %{
+   
+            {\em confdir}/\_\#\index{files!\_\#}         
+                             & an item file
+                             & item \\
+            {\em confdir}/acl\index{files!acl}        
+                             & access control list
+                             &acl \\
+            {\em confdir}/article\index{files!article}    
+                             & highest article number in a nresgroup conference 
+                             &article \\
+            {\em confdir}/bulletin\index{files!bulletin}   
+                             & shown when entering conference, if file is new
+                             &bulletin \\
+            {\em confdir}/config\index{files!config}     
+                             & conference configuration file          
+                             &config \\
+            {\em confdir}/htmlheader\index{files!htmlheader} 
+                             & conference header displayed from WWW
+                             & htmlheader \\
+            {\em confdir}/index\index{files!index}      
+                             & displayed with "display index" command
+                             & index \\
+            {\em confdir}/log\index{files!log}        
+                             & kill/link/freeze/thaw/retire/unretire log
+                             & log \\
+            {\em confdir}/login\index{files!login}      
+                             & displayed when entering conference
+                             & login \\
+            {\em confdir}/logout\index{files!logout}     
+                             & displayed when leaving conference
+                             & logout \\
+            {\em confdir}/observers\index{files!observers}  
+                             & optional user list to be referenced by acl file
+                             & observers  \\
+            {\em confdir}/originlist\index{files!originlist} 
+                             & optional list of hosts/addresses allowed to join 
+                             & originlist \\
+            {\em confdir}/rc\index{files!rc}         
+                             & commands to execute when entering
+                             & rc \\
+            {\em confdir}/secret\index{files!secret}     
+                             & conference password (if any)
+                             & secret \\
+            {\em confdir}/sum\index{files!sum}        
+                             & conference information summary file
+                             & summary \\
+            {\em confdir}/ulist\index{files!ulist}      
+                             & list of participants in the conference
+                             & ulist \\
+            {\em confdir}/welcome\index{files!ulist}
+                             & shown when joining conference for the first time 
+                             & welcome \\
+          %}
+          \end{supertabular}
+     %}
+
+     \subsection{User files}
+     %{
+         \tablefirsthead{File & Description & See Yapp Manual \\ \hline}
+         \tablehead{\multicolumn{3}{l}{\small\slshape continued from previous page}\\\hline File & Description &  See Yapp Manual: \\ \hline}
+         \tabletail{\hline\multicolumn{3}{r}{\small\slshape continued on next page}\\}
+         \tablelasttail{\hline}
+         \begin{supertabular}{lp{7cm}l}
+         %{
+   
+            {\em homedir}/.cfdir/    
+                        & if exists, this is {\em workdir}.  Otherwise 
+                         {\em workdir} = {\em homedir}
+                        & cfdir \\
+            {\em homedir}/.cfjoin    
+                        & commands to execute when joining a new conference  
+                        & cfjoin \\
+            {\em homedir}/.cflist    
+                        & list of conferences for check \& next commands      
+                        & cflist \\
+            {\em homedir}/.cfonce    
+                        & commands to execute when starting bbs              
+                        & cfonce \\
+            {\em homedir}/.cfrc      
+                        & commands to execute when entering a conference     
+                        & cfrc \\
+            {\em homedir}/.CONF.cf   
+                        & conference participation file                      
+                        & partfile \\
+         %}
+         \end{supertabular}
+      %}
+   %}
+
+   \section{Log Files} \label{c:logfiles}
+   %{
+      \subsection{The error log}
+      %{
+         The error log\index{errorlog} is located in the {\em bbsdir} directory, 
+         and contains a list of the Yapp errors.  This file may need to 
+         be removed periodically since it can grow without bound.  If you are
+         experiencing any problems with Yapp this file may contain the information
+         you need to diagnose the problem.
+      %}
+   
+      \subsection{The usage log}
+      %{
+         \index{usagelog}
+         The usage log is located in the {\em bbsdir} directory, and  contains 
+         a history of the number of times Yapp was accessed from the WWW 
+         on a given day.  The entry is can be read as:
+         \par
+         {\tt Date: Number of Accesses}
+         \par
+        
+         For example:
+         {\tt
+         \begin{verbatim}
+   Mon Sep 11: 34
+   Tue Sep 12: 97
+   Wed Sep 13: 90
+   Thu Sep 14: 79
+   Fri Sep 15: 37
+         \end{verbatim}
+         }
+   
+         Monitor this log if you are worried about exceeding the
+         maximum number of WWW hits per day alloted with your license.  You
+         can get the current number of hits from the debug pages.  See 
+         section~\ref{s:debug} for more information on the 
+         debug~\index{debug} pages.  The useage log\index{usagelog} file 
+         can grow without bound, and should probably be deleted periodically 
+         by a system administrator.
+   
+      %}
+   
+      \subsection{The censor log}
+      %{
+         \index{censored}
+         All censored, scribbled, and edited text is appended to 
+         {\em bbsdir}/censored along with a record of by whom and when.  This 
+         file can grow without bound, and should probably be deleted periodically 
+         by a system administrator.
+   
+         For more information, see the Yapp Manual entries  on 
+         {\tt censor}, {\tt scribble}, and {\tt edit}.
+      %}
+   
+      \subsection{Logging other events}
+      %{
+         \index{log}
+         In addition to error logging, the following other events can
+         be logged:
+   
+   
+         {
+         \begin{tabular}{lll}
+            & Event Name                     &  Description \\ \hline
+            & censor  \index{censor!log}     &  A response was censored\\
+            & cfcreate\index{cfcreate!log}   &  A new conference was created \\
+            & cfdelete\index{cfdelete!log}   &  A conference was deleted \\
+            & edit    \index{edit!log}       &  A response was edited \\
+            & enter   \index{enter!log}      &  A new item was entered \\
+            & freeze  \index{freeze!log}     &  An item was frozen \\
+            & join    \index{join!log}       &  A user entered a conference \\
+            & kill    \index{kill!log}       &  An item was killed \\
+            & leave   \index{leave!log}      &  A user left a conference \\
+            & newjoin \index{newjoin!log}    &  A user joined a conference for the first time \\
+            & resign  \index{resign!log}     &  A user resigned membership in a conference \\
+      	    & respond \index{respond!log}    &  A response was entered \\
+            & retire  \index{retire!log}     &  An item was retired \\
+            & retitle \index{retitle!log}    &  The subject of an item was changed \\
+            & scribble\index{scribble!log}   &  A response was scribbled \\
+            & thaw    \index{thaw!log}       &  An item was thawed \\
+            & unretire\index{unretire!log}   &  An item was unretired \\
+         \end{tabular}
+         }
+      \vspace{12pt}
+
+
+      The message form and content, as well as a log file name for each 
+         event are specified in the Yapp rc\index{rc files!Yapp} file. 
+         The syntax for constructing a log line in the Yapp rc file is :
+   
+     {\hspace{20pt} {\tt log} {\em event} {\tt filename} {\tt sepstring} }
+        
+         The default entries in  Yapp rc file are as follows:
+   
+   {
+     \tt
+     \begin{verbatim}
+     log thaw     '%{confdir}/log' '%D %{login} thawed %{item} %{curitem}'
+     log retire   '%{confdir}/log' '%D %{login} retired %{item} %{curitem}'
+     log unretire '%{confdir}/log' '%D %{login} unretired %{item} %{curitem}'
+     log kill     '%{confdir}/log' '%D %{login} killed %{item} %{curitem}'
+     log retitle  '%{confdir}/log' '%D %{login} retitled %{item} %{curitem}'
+     log enter    '%{confdir}/log' '%D %{login} entered %{item} %{curitem}'
+     log edit     ''               ''
+     log respond  ''               ''
+     log censor   ''               ''
+     log scribble ''               ''
+     log join     ''               '%D %{login} joined %{confname}'
+     log leave    ''               '%D %{login} left %{confname}'
+     log resign   ''               '%D %{login} resigned from %{confname}'
+     log newjoin  ''               '%D %{login} newly joined %{confname}'
+     log cfcreate ''               '%D %{login} created %{confname}'
+     log cfdelete ''               '%D %{login} deleted %{confname}'
+   \end{verbatim}
+   }
+   
+         \vspace{12pt}
+         If either the {\tt sepstring} or the {\tt filename} are empty the 
+         {\em event} will not be logged. Only the events freeze, thaw, retire, 
+         unretire, kill, retitle, and enter are logged by default. 
+         All of these events are recorded in a log file which 
+         is located in the appropriate conference directory.
+   
+         Each event can only have one entry in the Yapp rc file.  If you 
+         try to create multiple definitions for an event you will get
+         the following error:
+   
+         {\centering Can't redefine constant '{\em event}log'   }\\
+         {\centering Can't redefine constant '{\em event}logsep'}\\
+   
+     
+   
+         An alternate format for specifying the log {\tt filename} or 
+         {\tt sepstring} for a particular {\em event} is:
+   
+         {\centering constant {\em event}log    {\tt filename}}\\
+         {\centering constant {\em event}logsep {\tt sepstring}}
+   
+         The {\em constant} declaration means that once the value has
+         been asigned it can not be changed.  For more information on 
+         logging events, see the Yapp Manual entries  on 
+         {\tt file bbsrc\index{bbsrc}}, {\tt constant\index{constant}}, 
+         and {\tt log\index{log}}.
+      %}
+   %}
+%}
+   
+\chapter{Troubleshooting} \label {c:trouble}
+%{
+   \section{Resolving license-related error messages}
+   %{
+      There are a number of error messages associated with the Yapp 
+      license\index{license}:
+      \begin{description}
+      %{
+         \item[License registration information not found]
+            \mbox{}\newline
+            You need to install the license you received from Armidale Software
+            in the Yapp license directory ({\em bbsdir}/license/).  The license 
+            file should be {\em bbsdir}/license/registered\index{registered}.  
+            It needs to be 
+            owned by the Yapp administrator ({\em cfadm}) and mode 644.
+
+         \item[Got error 13 (permission denied) in opening /usr/bbs/license/registered]
+            \mbox{}\newline\vspace{-12pt}
+            \begin{enumerate}
+            \item Make sure that the bbs binary is owned by the conference 
+               administrator ({\em cfadm}) and that it is mode 4711.
+
+            \item Make sure that {\em bbsdir}/license/registered is mode 644 
+               and owned by the Yapp administrator ({\em cfadm}).
+            \end{enumerate}
+
+         \item[Invalid Checksum]
+            \mbox{}\newline
+            Make sure your license file has the four lines which were mailed 
+            to you with no information or blank lines preceeding the 
+            ``Registered to:'' line.
+
+         \item[There are already {\em xxx} copies being used. Try again later.]
+            \mbox{}\newline
+            You have exceeded the number of simultaneous unix users which are 
+            upgrading to a larger license.
+
+         \item[The Yapp license limit on hits/day has been exceeded. Try again
+               in {\em hh} hours {\em mm} minutes.]
+            \mbox{}\newline
+            You have exceeded the number of hits from the WWW allowed by your 
+            license. You should consider upgrading to a larger license.
+      %}
+      \end{description}
+   %}
+
+   \section{Troubleshooting web page access problems}
+   %{
+      {\em To be filled in.}
+
+% XXX make sure we talk about setuid scripts here
+
+      \subsection{Using the debug pages} \label {s:debug}
+      %{
+         There are two debug\index{debug} pages for Yapp, one is in the public 
+         directory, and the other is in the restricted directory.  There are 
+         links to these pages from the System Configuration page.  You may be 
+         able to access the debug pages even if you cannot get to other Yapp 
+         pages.  If you need to get to the debug pages, and you cannot get to 
+         the System Configuration page, the URLs are:
+         \begin{verbatim}
+         http://localhost/yapp-bin/public/debug
+         http://localhost/yapp-bin/restricted/debug
+         \end{verbatim}
+         \vspace{-12pt}
+   
+         These files contain the  version of Yapp you are running, and the 
+         version of the scripts you are using.  They also contain process 
+         information, host information, user information, browser information, 
+         conference information, the extra environment variables, the last 10 
+         lines of the Yapp error log, and the number of web hits per day for 
+         the last 10 days.
+
+
+         
+      %}
+
+      \subsection{The server encountered an internal error or misconfiguration...}
+      %{
+         There are many possible causes for the ``internal error or 
+         misconfiguration'' error message from the WWW.  The most frequent
+         cause of the error is when the bbs executable file is not owned
+         by {\em cfadm} or is not running setuid.
+
+         You might get more information by viewing the source of the page 
+         you tried to access from the appropriate debug page.  
+         You can view the source of pages which do not require authentication 
+         from 
+
+{\tt http://localhost/yapp-bin/public/debug } 
+         and the source of pages requiring authentication from  
+
+         {\tt http://localhost/yapp-bin/restricted/debug }
+
+         \subsubsection{Yapp is not running setuid}
+         %{
+            To determine if your bbs executable file is correct, first 
+            locate the directory (probabaly /usr/local/bin) where the
+            executable is found.
+       
+         \begin{verbatim}
+         $ which bbs
+         /usr/local/bin/bbs
+
+         $ ls -l /usr/local/bin/bbs
+         -rws--x--x  1 cfadm  bin  532541 Jan 17 17:29 /usr/local/bin/bbs*
+         \end{verbatim}
+
+            If your file does not have the premissions as shown in the above
+            example you should do:
+
+         \begin{verbatim}
+         $ chown cfadm /usr/local/bin/bbs
+         $ chmod 4711 /usr/local/bin/bbs
+         \end{verbatim}
+
+         %}
+         \subsubsection{Missing License or other license errors}
+         %{
+           \index{license}
+            Make sure that you have a license file, and that
+            it is installed in the correct directory.  You should have
+            a file called {\tt registered} in the directory you choose
+            to hold your license.  By default this directory is 
+            {\em{bbsdir}/license}.
+
+
+         \begin{verbatim}
+         $ cd /usr/bbs/license 
+         $ ls -l registered 
+         -rw-r--r--  1 cfadm  wheel  82 Jan 18 04:11 registered
+         \end{verbatim}
+
+             If you do not have a license file, or if you are
+             having problems with your license contact:
+         \begin{verbatim}
+         yapp@armidale.ann-arbor.mi.us
+         \end{verbatim}
+
+         %}
+         \subsubsection{Yapp scripts not setuid for Solaris}
+         %{
+
+           If you are running Solaris, make sure that you have
+           changed all of the yapp scripts to be owned by 
+           {\em cfadm} and mode 4755.  You may need to be
+           logged in as root to do this.
+
+         \begin{verbatim}
+         $ cd /usr/bbs/www/cgi-bin/restricted
+         $ chown cfadm *
+         $ chmod 4755 *
+         $ cd /usr/bbs/www/cgi-binn/public
+         $ chown cfadm *
+         $ chmod 4755 *
+         \end{verbatim}
+
+         %}
+
+         %{
+         %   Should the alias for bbs (yappdebug) be
+         %   mentioned in the section?  Change the 
+         %   first line of the script that is giving
+         %   errors to yappdebug instead of bbs.
+         %
+         %}
+
+      %}
+   %}
+
+   \section{Troubleshooting mailing list conferences}\label{s:tmaillist}
+   %{
+      If you are having problems with your maillist conferences recieving mail,
+      first make sure that Yapp is configured correctly.  Save a piece of mail 
+      you have received as a file with all of the header information.  Edit 
+      the piece of mail such that the ``To:'' line contains the mailling list 
+      address to which the conference is linked.  Make sure that there is a 
+      ``From:'' line as well as a ``Date:'' line in the header of the 
+      message.  While logged in as {\em cfadm}, send the message to 
+      {\tt bbs -i}.
+
+      For example:
+      \begin{verbatim}
+      $ /usr/local/bin/bbs -i < newmail
+      \end{verbatim}
+      \vspace{-12pt}
+
+      Check to see if the message appears in the conference linked to the 
+      mailing list.
+
+      If the message does {\bf NOT} appear in the conference:
+      \begin{enumerate}
+         \item Check the maillist file to make sure that you have told Yapp 
+            where to send mail which is addressed  to the mailling list.  
+            See section~\ref{s:maillist} for more information on the format 
+            of the maillist file.
+
+         \item Make sure you were logged in as {\em cfadm} when you sent the 
+            message.
+	
+         \item Make sure that bbs is owned by {\em cfadm} and mode 4711.
+      \end{enumerate}
+
+      If the message {\bf DID} appear in the conference, but you are not 
+      receiving any mail from the maillist:
+      \begin{enumerate}
+         \item Make sure there is a line in /etc/aliases which looks 
+               like\index{cflink}:\\
+            cflink:``\vline \ /usr/local/bin/bbs -i'' \\
+	
+         \item Make sure you are registered on the mailling list to receive 
+            mail.
+      \end{enumerate}
+
+      If the mailer-daemon bounces email for a mailing list conference with:\\
+      ``unknown mailer error 2''\\
+      This typically means that {\tt bbs -i} was not invoked by root, daemon,
+      or the Yapp owner ({\em cfadm}).  Make sure that bbs is mode 4711.  
+
+      {\em NOTE: Yapp3.0.10 and earlier versions only accept the 
+      -i option if they are executed as root or the Yapp owner({\em cfadm}). 
+      Mail aliases will only work with Yapp3.0.11 and higher, since 
+      sendmail executes programs (by default) as daemon.}
+
+      If you conference doesn't seem to be sending mail, make sure that the
+      conference security type includes the `maillist' flag, and that there 
+      is an email address specified on line 6 of the conference configuration
+      file. See section \ref{s:create} for more information on creating 
+      conferences.
+   %}
+%}
+
+\chapter{Frequently Asked Question} \label {c:FAQ}
+%{
+  \begin{enumerate}
+   \item {\tt Why does an unlimited license~\index{license} get more support 
+       hours than other licenses?}
+
+      The larger (higher-usage) sites usually have a lot more questions 
+      and customization they want to do.
+
+   \item {\tt Does "Simultaneous" users refer to "http sessions"?}
+
+      Since Yapp doesn't run in between hits on a web page, http sessions
+      usually count as 0. Simultaneous refers to the number of Yapp processes 
+      running.
+
+   \item {\tt Why do I feel like a beta tester? Should I be asking for an accomodation
+        in price, support, or some other form? } 
+
+      There are new features included in the version you have,
+      and essentially those caused problems.  New features (such as simpler
+      administration) tend to make your life easier in the long run, but
+      sometimes have bugs, so essentially yes you have a beta version of
+      code.
+
+      If you'd rather stay away from beta releases, that's okay too.
+      There's no difference in price either way.
+
+
+   \item{\tt If I purchase a license~\index{license} and find out later 
+        it's too little, can I add users/hits later? Is there a price penalty?}
+
+      Yes you can always upgrade~\index{upgrade}, for only the cost of the 
+      difference in licenses.
+
+   \item{\tt Can I buy additional support time if needed? }
+
+      Yes, such support is usually handled by ILC in San Francisco, who do Yapp
+      customer support and reselling for us.  Their people are really good, too.
+
+      You can do this either if you've used up any "with support" hours, or
+      if you have a "no support" license~\index{license}.
+
+   \item {\tt How do I set it up so that a conference emails all the members 
+        of conference with the new content in the conference as it's 
+        posted?  And so that they can reply to specific topics by email? }
+
+      At the moment, you have to link the conference to a mailing list.
+      Section \ref{s:maillist} shows how to do this.
+
+    \item {\tt Is it possible to select a particular user in a public
+         conference, and prevent them from posting responses, but allowin 
+         them to read the discussion while others may read and post?  
+         In other words, can you put an individual on "read-only" in a given 
+         conference? }
+
+      Yes.  In each conference you have the option of creating an 
+      observers file, and setting the conference access control list (acl)
+      options such that they do not have permission to respond.
+
+   \item {\tt  Which systems are the Yapp conferences linked to?}
+
+      The Yapp conference is intended to be for discussion about Yapp itself,
+      and is linked between a number of systems around the country.  It's
+      open to anyone running Yapp who wants it.
+      Do "finger yapp@umich.edu" and you'll get the list.
+
+   \item {\tt How much customization by conference is possible?}
+
+       Conference customization is not quite as easy as global configuration.
+       You can put commands in the conference rc file by going to the 
+       bottom of the conference host page and selecting "rc: conference 
+       configuration commands", or from inside Yapp in Unix with "change rc".
+
+      Each of the macros defined in the templates can be modified for
+      each conference.  Examples include, but are not limited to the
+      buttons at the top of the page.  If there is something which
+      is not currently a macro but you want to be modifiable by
+      conference, create a macro definition for it so that it
+      can be modifiable by conference.
+
+      The tricky part is that you have to know what you want to define.
+      For example, to specify an alternate gifs directory, you would add:
+      {\tt define gifs /new/full/path/name} to the conference rc file.
+
+   \item {\tt What is the problem when topics refuse to age?  They keep on coming up 
+        on the new list, despite the fact that there have been no new posts to 
+        that topic; on viewing only the topic header is shown. }
+
+      This is probably related to clock troubles and the consequent 
+      post-dated posts; they are disappearing as we catch up with them.
+    \end{enumerate}
+
+%}
+
+\appendix
+
+\chapter{Man pages} \label{a:manpages}
+%{
+   \index{webuser}
+   \input{webuser.man}
+   \newpage
+   \input{yapp.man}
+%}
+
+\input admin.ind
+\end {document}

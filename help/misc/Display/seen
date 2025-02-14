@@ -1,0 +1,10 @@
+
+Syntax: d_isplay s_een
+
+Description: Shows you information about all items you have
+   seen in this conference.  The information shown includes:
+   each item number seen, the number of responses, the number
+   of responses seen, when you last read the item, when the
+   item started, and when the last change was made to the item.
+
+See also: set saveseen, set autosave, file partfile

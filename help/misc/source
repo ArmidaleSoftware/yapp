@@ -1,0 +1,7 @@
+
+Syntax: source <filename>
+
+Description: Immediately execute the Yapp commands in the specified 
+   batch file name.
+
+See also: set verbose, set source, language

@@ -1,0 +1,10 @@
+
+Syntax: b_rowse [<range>]
+        s_can [<range>]
+
+Description: These commands will display the headers of all items which
+   fit the range restrictions specified.  If no range is specified,
+   "all" is assumed.  Note that this command is equivalent to doing.
+   "read all short noresp pass [<range>]".
+
+See also: browse, range, itemsep

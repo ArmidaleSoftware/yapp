@@ -1,0 +1,8 @@
+
+Syntax: resign
+
+Description: This will revoke your membership in a conference.  You
+   will not immediately leave the conference, but will be left there
+   as an observer instead.
+
+See also: join

@@ -1,0 +1,3 @@
+
+Description: Whenever YAPP hits an error, an error message and timestamp
+   are appended to this file.

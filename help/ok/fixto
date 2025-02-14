@@ -1,0 +1,8 @@
+
+Syntax: fixto <datespec> <range>
+
+Description: This will mark all responses in items in the specified
+   range as seen, up to the specified date.  The date can be specified
+   in any of the formats shown under "help dates".
+
+See also: fixseen, dates

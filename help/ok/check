@@ -1,0 +1,9 @@
+
+Syntax: che_ck [<conf> ...]
+
+Description: This will show the new response status of all conferences 
+   in your .cflist, or in the list of conferences specified on the
+   command line.  By default, it shows the number of old items with
+   new responses, the number of brand new items, and the conference name.
+
+See also: list, next, display list, change list, cflist, file cflist

@@ -1,0 +1,11 @@
+
+Description: This file can be edited by a fairwitness (with "change
+   observers"), and may be used to contain a list of users, specified
+   by either login or UID, and separated by whitespace.  In addition,
+   a field may be the full pathname of another file to include
+   (which has the same format).
+
+   The observers file can then be referenced in the acl file to allow (for 
+   example) preventing the indicated users from responding in the conference.
+
+See also: change observers, file acl

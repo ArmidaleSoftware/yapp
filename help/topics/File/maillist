@@ -1,0 +1,27 @@
+
+Description: This file contains an index of all mailing list addresses
+   and associated conference names.
+   The first line should be the string "!<hl01>".
+   The second line should contain the directory of the default conference
+   which, if it matches a conference name, will collect mail which doesn't
+   match anything else.  If it isn't a conference name, excess mail will
+   be lost.
+   The remaining lines should consist of an email address, a colon, and 
+   a conference name.
+   A conference may have multiple entries with the same directory in 
+   order to send multiple addresses to the same conference.
+
+Example:
+!<hl01>
+lost
+acmo@engin.umich.edu:acmo
+acm-addict@engin.umich.edu:addict
+acm-legal@engin.umich.edu:legal
+cseg@zip.eecs.umich.edu:cseg
+cseg@dip.eecs.umich.edu:cseg
+cseg@quip.eecs.umich.edu:cseg
+amber@hagar.ph.utexas.edu:amber
+oberon@amber.uchicago.edu:amber
+mlist-amber@nntp-server.caltech.edu:amber
+mbone@ISI.EDU:mbone
+old-ways@tomservo.edaal.ingr.com:loreena

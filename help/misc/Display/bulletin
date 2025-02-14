@@ -1,0 +1,9 @@
+
+Syntax: d_isplay b_ulletin
+
+Description: Shows you the bulletin file for the current conference.
+   The format of this is controlled by the separator variable bullmsg.
+   When the bulletin is updated, all participants will see it the 
+   next time they enter the conference.
+
+See also: change bulletin, file bulletin

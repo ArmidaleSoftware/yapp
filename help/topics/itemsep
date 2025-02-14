@@ -1,0 +1,31 @@
+
+Topic: Item Separators
+
+Description: Item separators apply in only for item separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  A code is specified with: %Z#X 
+      where Z is an optional 'Z' or 'z' meaning print 'No' or 'no' in place of 0
+            # is an optional number
+            X is some character below.
+   
+   Char  Meaning                                    
+
+   a     full name of author of current response
+   C     short name of current conference
+   d     timestamp of current response (default format is 1)
+   e     email address of author of current response
+   h     subject (header) of current item
+   i     current item number
+   l     login of author of current response
+   k     size in Kbytes of text of current response (rounded up)
+   L     text of current line of current response
+   n     highest response number in current item
+   N     current line number in current response
+   p     number of parent response
+   q     size in bytes of text of current response
+   r     current response number
+   s     number of lines of text in current response
+   t     timestamp of current response (default format is 0)
+   u     uid of author of current response
+
+See also: separators, itemcond, datesep

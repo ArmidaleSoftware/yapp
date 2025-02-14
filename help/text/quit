@@ -1,0 +1,7 @@
+
+Syntax: q_uit
+
+Description: This will abort text entry, throwing away the contents 
+   of the buffer.
+
+See also: done

@@ -1,0 +1,8 @@
+
+Syntax: d_isplay cfjoin
+
+Description: Shows you your .cfjoin.  If a .cfjoin file exists, the 
+   commands therein will be executed the first time a new conference
+   is joined.
+
+See also: change cfjoin, file cfjoin, file cfrc

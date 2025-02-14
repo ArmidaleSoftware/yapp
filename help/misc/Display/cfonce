@@ -1,0 +1,8 @@
+
+Syntax: d_isplay cfonce
+
+Description: Shows you your .cfonce file.  If a .cfonce file exists, 
+   the commands therein will be executed when the user first invokes 
+   Yapp.
+
+See also: change cfonce, file cfonce, file cfrc

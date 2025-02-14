@@ -1,0 +1,60 @@
+
+Topic: Item ranges
+
+Description: An item range is a way of selecting some subset of items
+   on which to operate.  An item range consists of a series of arguments
+   each of which may be of type <items> or <code> or <compat> below.
+   The legal formats for <datespec> are given in "help dates".
+
+<items>  : a_ll | *             - process all items
+           <number>-<number>    - process all items between numbers inclusive
+           <number>-            - process all items from number on
+           -<number>            - process all items up to number
+           <number>             - process item, even if forgotten or retired
+
+<code>   : F=<flag>             - add flag (see below)
+           S=<datespec>         - limit items to those since date
+           B=<datespec>         - limit items to those before date
+           A=<login>            - limit items to those authored by login
+
+<compat> : before <datespec>    - same as B=<datespec>
+           by <login>           - same as A=<login>
+           <flag>               - same as F=<flag>
+           si_nce <datespec>    - same as S=<datespec>
+
+<flag>   : bra_ndnew            - process only brand new items
+           d_ate                - show date on items also
+           for_gotten           - process only forgotten items
+           force_response | force_respond - (currently unsupported)
+           form_feed | ff       - (currently unsupported)
+           frozen               - process only frozen items
+           linked               - process only linked items
+           lo_ng                - use isep instead of ishort
+           n_ew                 - process brandnew or newresponse items
+           newr_esponse         - process only old items with new responses
+           nod_ate              - don't force date display in headers
+           nof_orget            - include forgotten items as well
+           nop_ass              - stop between items, don't pass automatically
+           nonu_mbered | unnu_mbered - don't display line numbers in responses
+           nor_esponse          - don't allow responses, as if items were frozen
+           nou_id               - don't force uid display in headers
+           nu_mbered            - display line numbers in responses
+           o_ld                 - (currently unsupported)
+           p_ass                - don't stop between items, pass automatically
+           respond              - (currently unsupported)
+           r_everse             - process items in reverse order
+           ret_ired             - include retired items as well
+           s_hort               - use ishort instead of isep
+           u_id                 - show author's uid on items also
+           un_seen              - process only unseen items
+           "<string>"           - limit items to those with string in subject
+           <range>,<range>      - combine ranges
+           <range> <range>      - combine ranges
+
+<number> : fi_rst | ^           - first item in conference
+           la_st | $            - last item in conference
+           th_is | cu_rrent | . - last item looked at
+           nex_t                - item following current item
+           pr_evious            - item before current item
+
+See also: test, date, dates

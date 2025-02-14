@@ -1,0 +1,33 @@
+Flags can be turned on with "set <flag>" and turned off with 
+"set no<flag>".  The current status of a flag can be seen with
+"display <flag>".
+
+Flag    Default  Description
+
+autojoin    Off  Skip join confirmation prompt and just join conferences
+autosave    Off  Save session info after reading each item 
+buffer       On  Allow use of a pager 
+ch_at        On  Allow others to chat with you
+d_ate       Off  Force dates to be displayed in item and response headers 
+debug       Off  Display debugging info 
+default      On  Join default conference 
+dot          On  Allow "." to terminate text entry 
+ed_always   Off  Go directly into editor for text entry 
+label        On  Automatically display labels (censored/linked/etc) on
+                 items and responses
+f_orget      On  Skip forgotten items 
+ig_noreeof  Off  Ignore control-D 
+ma_iltext   Off  Let mail program collect text 
+me_too       On  See your own response when reading new 
+nu_mbered   Off  Number lines of responses 
+observe     Off  Force observer status in all confs 
+readonly    Off  Force readonly status in all confs 
+scr_ibbler  Off  Display scribbler's name with scribbled responses 
+sen_sitive  Off  Mark items as new when a response is censored or scribbled
+so_urce      On  Process system and conference rc files
+st_rip      Off  Strip control codes from input 
+sta_y       Off  Stay on same item after responding
+u_id        Off  Force uids to be displayed in item and response headers 
+unseen       On  When first joining a new conference, make all items except
+                 the first and last items be "unseen" (as opposed to new)
+verbose     Off  Display commands in rc files as they are executed 

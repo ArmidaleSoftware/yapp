@@ -1,0 +1,9 @@
+
+Syntax: argset <delimiter> <string>
+
+Description: This will split a string up, as delimited by any characters
+   in the delimiter string.  The results will be saved in the variables
+   arg1, arg2, ..., etc.  The variable argc will contain the number of
+   fields.
+
+See also: wwwparsepost

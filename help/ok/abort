@@ -1,0 +1,7 @@
+
+Syntax: abort
+
+Description: This will abort the current session, leaving Yapp as
+   if you had not entered the current conference at all.
+
+See also: quit

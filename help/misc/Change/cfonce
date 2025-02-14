@@ -1,0 +1,9 @@
+
+Syntax: ch_ange cfonce
+        se_t    cfonce
+
+Description: Allows a user to edit their own .cfonce file.  If a .cfonce 
+   file exists, the commands therein will be executed when the user
+   first invokes Yapp.  
+
+See also: file cfonce, display cfonce, file cfrc

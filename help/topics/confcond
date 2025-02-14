@@ -1,0 +1,41 @@
+
+Topic: Conference Conditionals
+
+Description: Conference conditionals apply only to conference separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  Codes inside conditionals are used only if
+   the condition is true.  A code is specified with: %(!#X 
+      where ! is an optional '!' or '~' meaning to negate the condition
+            # is an optional number
+            X is some character below.
+   
+   Char  Meaning                                    
+
+   b     if there are brandnew items
+   B     if processing the conference you are in
+   C     if you are currently in some conference
+   f     if summary file exists
+   F     if # file exists
+   i     if any items exist
+   j     if you just joined this conference for the first time
+   k     if processing the conference that is current in your conflist
+   l     if you are only an observer
+   m     if you have mail
+   n     if there are new (brandnew or newresponse) items
+   N     if # file is new
+   O     if you were previously in another conference this session
+   r     if there are newresponse items
+   s     if you are a fair-witness
+   x     if # flag is on (1=report header, 2=line in body, 4=report summary)
+   y     if there are unseen items
+
+   File numbers for separators which access file numbers for a conference are:
+   
+   0     login
+   1     logout
+   2     index
+   3     bulletin
+   4     welcome
+   5     htmlheader
+
+See also: separators, miscsep

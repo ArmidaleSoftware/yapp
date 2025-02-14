@@ -1,0 +1,6 @@
+
+Description: The bulletin file is shown to users when entering a 
+   conference if they have not previously seen the bulletin.  This
+   is determined by comparing the timestamp of the bulletin file
+   with that of the user's participation file.
+

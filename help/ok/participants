@@ -1,0 +1,12 @@
+
+Syntax: p_articipants [<login> ...]
+        d_isplay p_articipants
+
+Description: This will display status information about all members
+   of the current conference, or just those persons specified as
+   arguments.
+
+   By default, it shows the person's login, the last time they 
+   accessed the conference, and their full name in the conference.
+
+See also: check, list

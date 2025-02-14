@@ -1,0 +1,7 @@
+
+Syntax: q_uit
+
+Description: This will abort joining the new conference, and leave
+   you where you were before issuing the join command.
+
+See also: 

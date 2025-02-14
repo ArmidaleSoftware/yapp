@@ -1,0 +1,8 @@
+
+Syntax: j_oin 
+
+Description: This will confirm that you want to become a member of the
+   conference, and be listed among its participants.   A participation
+   file will be created in your conference directory.
+
+See also: observe, file cfjoin

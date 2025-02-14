@@ -1,0 +1,44 @@
+
+Syntax: d_isplay <arg> ...
+        que_ry <arg> ...
+        sh_ow <arg> ...
+
+Description: These commands will display the values of various 
+   parameters.   More help can be obtained on any specific topic 
+   by doing "help display <arg>".  If the argument is the name of
+   a defined variable or alias, the associated value will be shown.
+
+   Doing "display <flag>" will show the status of a flag.
+   Doing "display <variable>" will show the value of a variable.
+   
+   Other valid arguments are:
+      b_ulletin      - bulletin file for this conference
+      c_onference    - info on current conference
+      conferences    - same as "list" command
+      def_initions   - same as "define" command
+      f_orgotten     - list of all forgotten items
+      fair_witnesses - names of fair-witnesses of current conference
+      fair_witnesses - names of fair-witnesses of current conference
+      fds            - info on current file usage for this process
+      fro_zen        - list of all frozen items
+      html_header    - htmlheader file for this conference
+      i_ndex         - index file for this conference
+      li_st          - status of your place in your conflist
+      log_messages   - both login and logout messages for this conference
+      logi_n         - login file for this conference
+      logo_ut        - logout file for this conference
+      n_ame          - your full name in this conference
+      new            - status of new items in this conference
+      p_articipants  - status of all members of this conference
+      ret_ired       - list of all retired items
+      s_een          - status of all items seen
+      s_ize          - info on current memory usage for this process
+      strings        - dump all malloced strings
+      sup_eruser     - superuser status
+      t_ime          - current time
+      ul_ist         - list of participants in this conference
+      v_ersion       - Yapp version information
+      w_elcome       - welcome file for this conference
+      w_hoison       - same as "who" command
+
+See also: change, define, display flags, variables

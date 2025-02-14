@@ -1,0 +1,6 @@
+
+Syntax: p_rint
+
+Description: This will reprint the current contents of the text buffer.
+
+See also: edit

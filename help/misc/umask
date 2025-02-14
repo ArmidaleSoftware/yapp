@@ -1,0 +1,7 @@
+
+Syntax: uma_sk <value>
+
+Description: This will set your umask value.  Do "!man umask" for 
+   more information.
+
+See also: 

@@ -1,0 +1,12 @@
+
+Syntax: retitle <range>
+
+Description: This will allow you to change the subject of items in the
+   specified range.
+   You may not do this unless either:
+      a) You are a fair-witness of the conference
+      b) You are the original author of the item
+   If the new subject is longer than the original subject, it will be 
+   truncated after 78 characters.
+
+See also: file item

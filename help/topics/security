@@ -1,0 +1,47 @@
+
+Topic: Conference Security Types
+
+Description: Each conference has an integer security type.  This is
+   kept in the config file for a conference, and can only be changed
+   by a Yapp administrator (not fairwitnesses).
+
+   Type       Code   Description
+   PUBLIC       0    Anyone may participate
+   PRESELECT    4    Access restricted to user list (in 'ulist' file)
+   PASSWORD     5    Access requires password (in 'secret' file)
+   PARANOID     6    Use both a user list and a password together
+   PROTECTED    8    Anyone may participate, but items are mode 600
+   READONLY    20    Anyone not in ulist may observe
+   READPASS    21    Anyone who fails the password check may observe
+   READPARA    22    Anyone who fails either check may observe
+   MAILLIST    #+64  Mailing list conference (usually code 64)
+   REGISTERED  #+128 Registered mailing list conference (usually code 200)
+   NOENTER     #+256 Only fairwitnesses may enter new items
+
+   The security type can be set either numerically or as a combination
+   of keywords.  Keywords are:
+
+   public       0
+   ulist        4
+   password     5
+   protected    8
+   readonly    16
+   maillist    64
+   registered 128
+   noenter    256
+
+   A "registered" maillist conference is one in which only mail from
+   registered users gets posted to the conference.  If the sender's
+   email address does not match the email address of some user known
+   to Yapp, the email is silently dropped.
+
+   Access to a conference can also be restricted to a list of
+   host names, domain names, IP addresses, or address prefixes 
+   specified in the 'originlist' file.
+
+   NOTE: only the MAILLIST and REGISTERED flags are significant when 
+   a conference acl file exists.  The others are obsoleted by the acl 
+   system ("help file acl").
+
+See also: file originlist, change secret, list, maillist, file ulist, 
+   file acl, change acl

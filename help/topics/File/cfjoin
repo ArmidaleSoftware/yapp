@@ -1,0 +1,9 @@
+
+Description: If a .cfjoin file exists, the commands therein will
+   be executed when the user joins a new conference for the first
+   time.  
+
+Example:
+fixto -21 all
+
+See also: file cfrc, file cfonce

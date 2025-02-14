@@ -1,0 +1,7 @@
+
+Syntax: r_ead <filename>
+
+Description: This will read in the contents of the specified file, and
+   append it to the text buffer.
+
+See also: print, edit, write

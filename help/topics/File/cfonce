@@ -1,0 +1,14 @@
+
+Description: If a .cfonce file exists, the commands therein will
+   be executed by the user when YAPP is invoked.  Any variables or
+   aliases defined may not be overridden by the YAPP global rc
+   or conference rc files.  This is commonly used to force certain
+   settings which you do not want changed and to define your own
+   global aliases.
+
+Example:
+define pager /usr/bin/more
+define z 1 "unix 'touch /m/thaler/.cfdir/.cflist' ; next"
+set scribbler verbose stay
+
+See also: file cfrc, file cfjoin

@@ -1,0 +1,6 @@
+Commands available at the JOQ prompt:
+
+   j_oin                - confirm joining of the new conference
+   o_bserver            - enter conference as an observer only
+   h_elp [<topic> ... ] - get help on possible commands
+   q_uit                - abort the join

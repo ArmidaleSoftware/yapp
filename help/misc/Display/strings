@@ -1,0 +1,7 @@
+
+Syntax: d_isplay strings
+
+Description: Dumps all allocated arrays and strings.  This is only
+   useful in debugging.
+
+See also: display size

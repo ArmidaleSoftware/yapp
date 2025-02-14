@@ -1,0 +1,13 @@
+
+Syntax: d_one
+        st_op
+        ex_it
+        c_ommand
+        ok
+
+Description: This will end text entry and process the contents of the text
+   buffer.  This is the same as entering "." on a line by itself.
+   The ok and command commands (only) will prompt for verification before
+   entering the response.
+
+See also: quit

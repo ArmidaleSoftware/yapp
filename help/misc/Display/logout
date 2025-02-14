@@ -1,0 +1,8 @@
+
+Syntax: d_isplay logo_ut
+
+Description: Shows you the logout file for the current conference.
+   The logout file is shown whenever a user leaves the conference.
+   The format of the display is controlled by the loutmsg variable.
+
+See also: display login, change logout

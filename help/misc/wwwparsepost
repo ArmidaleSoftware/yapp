@@ -1,0 +1,10 @@
+
+Syntax: www_parsepost [-c]
+
+Description: This will read input from a WWW POST, and set the variables 
+   indicated in the body accordingly.  If any variable already exists, 
+   the new value is appended.  This allows posting lists from checkbox,
+   select, etc.  When the -c option is specified, newlines inside values
+   will be converted to 2 characters ("\n").
+
+See also: argset

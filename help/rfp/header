@@ -1,0 +1,7 @@
+Syntax: h_eader
+
+Description:
+   This will redisplay the header of the current item.  The format
+   of this is controlled by the "isep" variable.
+
+See also: separators

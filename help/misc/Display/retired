@@ -1,0 +1,7 @@
+
+Syntax: d_isplay ret_ired
+
+Description: This will display a list of all retired item numbers in
+   the current conference.
+
+See also: retire, unretire

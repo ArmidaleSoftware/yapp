@@ -1,0 +1,10 @@
+
+Syntax: d_isplay c_onference
+
+Description: This will display information about the current conference,
+   in a format controlled by the confmsg separator variable.  By default,
+   it will show: the conference directory path and name, the filename of
+   your participation file, the conference security type, the number of
+   items in the conference, and the first and last item numbers.
+
+See also: display new, files

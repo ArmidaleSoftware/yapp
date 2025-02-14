@@ -1,0 +1,9 @@
+
+Syntax: ch_ange rc
+        se_t    rc
+
+Description: Allows a fair-witness to edit the rc file for the
+   current conference.  When a conference is entered, any commands 
+   in the rc file are executed unless the source flag is off.
+
+See also: display rc, set nosource, file rc

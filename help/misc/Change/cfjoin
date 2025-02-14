@@ -1,0 +1,9 @@
+
+Syntax: ch_ange cfjoin
+        se_t    cfjoin
+
+Description: Allows a user to edit their own .cfjoin file.  If a .cfjoin 
+   file exists, the commands therein will be executed the first time the
+   user joins a new conference.
+
+See also: file cfjoin, display cfjoin, file cfrc

@@ -1,0 +1,46 @@
+
+Syntax: c_hange <arg> ...
+        se_t <arg> ...
+
+Description: These commands will allow you to alter various
+   parameters.   More help can be obtained on any specific topic 
+   by doing "help change <arg>".
+
+   A flag can be turned on with "set <flag>" and turned off with
+   "change no<flag>".
+   
+   Other valid arguments are:
+
+      acl          - edit acl file for this conference
+      b_ull        - edit bulletin file for this conference
+      cfonce       - change your .cfonce file
+      cfrc         - change your .cfrc file
+      cgirc        - (administrator only) edit www rc file
+      config       - (administrator only) edit config file for this conference
+      html_header  - edit conference HTML header
+      illegal      - (administrator only) edit file of illegal HTML tags
+      in_dex       - edit index file for this conference
+      li_st        - edit your conflist
+      logi_n       - edit login file for this conference
+      logo_ut      - edit logout file for this conference
+      matched      - (administrator only) edit file of HTML tags which 
+                     require a closing tag
+      n_ame        - change your fullname in this conference
+      nosum_mary   - delete sum file in this conference
+      obs_ervers   - edit observers file for this conference
+      origin_list  - edit conference origin restriction file
+      p_assword    - change your own password
+      rc           - edit the rc file for this conference
+      rel_oad      - start this session over in the current conference
+      resign       - resign from this conference
+      sa_ne        - undefine any variables or aliases defined by this 
+                     conference
+      save_seen    - immediately save session information
+      sec_ret      - edit password for this conference
+      sum_mary     - create sum file in this conference
+      supers_ane   - undefine any variables or aliases defined by Yapp
+      ul_ist       - edit list of participants in this conference
+      we_lcome     - edit welcome message for this conference
+      wwwrc        - edit the WWW rc file for this conference
+
+See also: display, flags, file

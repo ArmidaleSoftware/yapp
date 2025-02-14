@@ -1,0 +1,10 @@
+
+Syntax: ch_ange html_header
+        se_t    html_header
+
+Description: Allows a fairwitness to edit the htmlheader file
+   for the current conference.  The htmlheader file is shown whenever 
+   a WWW user enters the conference.  If no htmlheader file exists,
+   the login file is shown instead.
+
+See also: display htmlheader, file htmlheader, display login

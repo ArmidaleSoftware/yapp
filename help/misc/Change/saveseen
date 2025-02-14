@@ -1,0 +1,9 @@
+
+Syntax: se_t    save_seen
+        ch_ange save_seen
+
+Description: These will immediately write out the current session
+   information of what has been seen to your conference participation
+   file.
+
+See also: set autosave, set reload, file partfile

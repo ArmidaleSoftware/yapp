@@ -1,0 +1,25 @@
+
+Description: The Yapp rc file should contain commands that will be
+   executed by everyone when Yapp is started.  In general, these are
+   to define global aliases, customize output, and configure logging.
+
+   The rc file should contain one "log" command for each loggable
+   event (see "help log").
+
+Example:
+def editor 258 vi
+def pager more
+def who       9   'unix who'
+def write     9   'unix "/usr/local/bin/write"'
+def talk      9   'unix "/usr/bin/talk"'
+def dir_ectory 9 'unix "/bin/ls"'
+def type  9 'unix "/bin/cat"'
+def pwd   9 'unix "/bin/pwd"'
+def chat  9 'unix "/usr/local/bin/write"'
+def shell 9 'unix "/bin/csh"'
+def noconfp "\nWelcome to M-Net.\nType HELP CONFERENCES for a list of conferences.\nType JOIN <NAME> to access a conference.\n\n> %c"
+log join  '' ''
+log leave '' ''
+(etc.)
+
+See also: log

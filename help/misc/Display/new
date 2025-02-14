@@ -1,0 +1,11 @@
+
+Syntax: d_isplay n_ew
+
+Description: This will display information about the new messages
+   in the current conference.  The format of this is controlled by
+   the linmsg variable.  By default, it shows the number of brand new
+   items and number of old items with new responses, the numbers of
+   the first and last items, and whether you are a fairwitness, observer,
+   or have mail.
+
+See also: display conference, display login

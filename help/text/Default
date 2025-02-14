@@ -1,0 +1,10 @@
+Commands available in TEXT mode:
+
+   cl_ear               - clear buffer, deleting any text entered
+   e_dit                - invoke editor
+   h_elp [<topic> ... ] - get more info on something
+   ok                   - end text entry and prompt for verification
+   p_rint               - reprint text
+   q_uit                - abort text entry
+   r_ead <filename>     - append file contents to the buffer
+   w_rite <filename>    - write buffer out to a disk file

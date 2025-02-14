@@ -1,0 +1,6 @@
+
+Description: If a .cfdir exists in a user's home directory, YAPP will
+   store participation files there instead of directly in the home
+   directory.
+
+See also: cfdir

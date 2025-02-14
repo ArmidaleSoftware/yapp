@@ -1,0 +1,17 @@
+!<hl01>
+text/Default
+q_uit:text/quit
+c_ommand:text/done
+ok:text/done
+p_rint:text/print
+e_dit:text/edit
+v_isual:text/edit
+h_elp:misc/help
+?:misc/help
+cl_ear:text/clear
+em_pty:text/clear
+r_ead:text/read
+w_rite:text/write
+d_one:text/done
+st_op:text/done
+ex_it:text/done

@@ -1,0 +1,10 @@
+
+Syntax: ch_ange acl
+        se_t    acl
+
+Description: Allows a fairwitness to edit the access control list
+   file for the current conference.  This file controls who is allowed
+   to join the conference and read items, who is allowed to respond,
+   and who is allowed to enter new items.
+
+See also: file acl

@@ -1,0 +1,9 @@
+
+Syntax: rem_ember 
+        unfor_get
+
+Description: These commands will clear the forgotten status of the
+   current item.  It will have no effect if the item was not previously 
+   forgotten.  
+
+See also: display forgotten, forget, set noforget

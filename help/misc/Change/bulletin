@@ -1,0 +1,10 @@
+
+Syntax: ch_ange b_ulletin
+        se_t    b_ulletin
+
+Description: Allows a fairwitness to edit the bulletin file for the
+   current conference.  When the bulletin is updated, all participants 
+   will see it the  next time they enter the conference.  The format 
+   of this is controlled by the separator variable bullmsg.
+
+See also: display bulletin, file bulletin

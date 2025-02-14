@@ -1,0 +1,28 @@
+
+Topic: Date Output Formats
+
+Description: There are a number of date output formats supported.
+
+   #   Description           Example
+
+   0   Unix date format      Wed Aug  4 13:17:31 1993
+   1   Nice format           Wed, Aug 4, 1993 (13:17)
+   2   Weekday               Wed
+   3   Month (abbreviated)   Aug
+   4   Day                   4
+   5   Year (abbreviated)    93
+   6   Year                  1993
+   7   Hour (0-23)           13
+   8   Minute                17
+   9   Second                31
+  10   Hour (1-12)           1
+  11   Morning or afternoon  am
+  12   Morning or afternoon  pm
+  13   Timestamp             (13:17:31) August 4, 1993
+  14   Time identifier       19930804131731
+  15   Another nice format   Wed,  4 Aug 1993 13:17:31
+  16   Hex timestamp         2C5FEF2B
+  17   Month (1-12)          8
+  18   Seconds since 1970    744484651
+
+See also: separators, date

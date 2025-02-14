@@ -1,0 +1,6 @@
+
+Description:  If it exists, this file is shown to a WWW user at the
+   top of the "browse" page.  If no htmlheader exists, the login file
+   is shown instead.
+
+See also: file login, change htmlheader

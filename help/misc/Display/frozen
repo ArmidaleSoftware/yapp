@@ -1,0 +1,7 @@
+
+Syntax: d_isplay fro_zen
+
+Description: This will display a list of all frozen item numbers in
+   the current conference.
+
+See also: freeze, thaw

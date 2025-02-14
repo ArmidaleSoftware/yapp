@@ -1,0 +1,12 @@
+
+Description: The conference rc file should contain commands that will be
+   executed by everyone when the conference is entered.  (This can be
+   suppressed by a user with "set nosource".)   In general, these are
+   to define conference aliases and customized output.
+
+Example:
+define prompt "\nWelcome to August: "
+define ag_enda 9 "display index"
+define info 9 "unix 'more /m/thaler/info'"
+
+See also: change rc, display rc, set source

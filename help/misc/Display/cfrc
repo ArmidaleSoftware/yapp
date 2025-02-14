@@ -1,0 +1,8 @@
+
+Syntax: d_isplay cfrc
+
+Description: Shows you your .cfrc file.  If a .cfrc file exists, the 
+   commands therein will be executed every time a new conference is 
+   entered.
+
+See also: change cfrc, file cfrc, file cfonce

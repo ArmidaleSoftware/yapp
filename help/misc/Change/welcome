@@ -1,0 +1,9 @@
+
+Syntax: ch_ange w_elcome
+        se_t    w_elcome
+
+Description: Allows a fairwitness to edit the welcome file for the
+   current conference.  The welcome file is displayed when a user 
+   joins the conference for the first time.
+
+See also: display welcome, file welcome

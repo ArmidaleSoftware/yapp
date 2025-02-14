@@ -1,0 +1,8 @@
+
+Syntax: ch_ange sum_mary
+        se_t    sum_mary
+
+Description: These will regenerate the conference summary file in case
+   it is missing or corrupted.  This can only by done by a fairwitness.
+
+See also: set nosummary, file summary

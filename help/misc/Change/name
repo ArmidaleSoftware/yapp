@@ -1,0 +1,7 @@
+
+Syntax: ch_ange n_ame
+        ch_ange u_ser
+
+Description: These will allow you to change full name in this conference.
+
+See also: display name

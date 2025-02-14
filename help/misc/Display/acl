@@ -1,0 +1,9 @@
+
+Syntax: d_isplay acl
+
+Description: Shows you the contents of the conference's access-control
+   list file.  This file controls who is able to join the conference
+   and read items, who may respond to items, and who may enter new
+   items.
+
+See also: change acl, file acl

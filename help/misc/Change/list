@@ -1,0 +1,8 @@
+
+Syntax: ch_ange li_st
+
+Description: These will allow you to change your .cflist file.  This
+   is an ordered list of conferences to be used with commands like
+   check and next.
+
+See also: display list, check, next, cflist, file cflist

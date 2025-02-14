@@ -1,0 +1,9 @@
+
+Syntax: ch_ange cfrc
+        se_t    cfrc
+
+Description: Allows a user to edit their own .cfrc file.  If a .cfrc file 
+   exists, the commands therein will be executed every time a new conference 
+   is entered.
+
+See also: file cfrc, join, display cfrc, file cfonce

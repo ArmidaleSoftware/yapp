@@ -1,0 +1,9 @@
+
+Syntax: d_isplay html_header
+
+Description: Shows you the htmlheader file for the current conference.
+   The htmlheader file is shown to web users whenever a user enters the 
+   conference.  If no htmlheader file exists, the login file is shown 
+   instead.
+
+See also: file htmlheader, display login

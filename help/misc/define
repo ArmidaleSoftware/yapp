@@ -1,0 +1,32 @@
+
+Syntax: def_ine                              - show all macros defined
+        d_isplay def_initions                - show all macros defined
+        d_isplay mac_ros                     - show all macros defined
+        def_ine <variable>                   - undefines macro
+        def_ine <variable> <string>          - assigns a value to a variable
+        def_ine <variable> <type> <string>   - assigns a type and value
+        const_ant <variable> <string>        - fixes a value for a variable
+        const_ant <variable> <type> <string> - fixes a type and value 
+
+Description: The commands def_ine, al_ias, undef_ine, and unal_ias are 
+   all synonyms.  With no arguments, they display all currently
+   defined macros.  With one argument, the specified macro is deleted.
+   With two or three arguments, a new macro is created or an existing
+   one changed, where <type> is an integer sum of the following:
+
+      1 Command accessible from the Ok: prompt
+      2 Variable
+      4 Range macro
+      8 Command accessible from the Respond or pass? prompt
+     16 (unused)
+     32 (unused)
+     64 A macro defined by the global Yapp rc file
+    128 A macro defined by the conference rc file
+    256 Exported to shell environment
+
+   For the two argument syntax, the default type is 2.
+
+   The const_ant command does the same as define, except that the variable
+   cannot later be redefined or undefined.
+
+See also: change sane, change supersane, variables

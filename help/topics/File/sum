@@ -1,0 +1,8 @@
+
+Description: The summary file contains, in a binary format, information
+   about each item in the conference.  This is used to speed processing.
+   This file is maintained by YAPP and should not be modified.  If the
+   file is corrupted, it may be deleted and regenerated with
+   "change nosum; change sum".
+
+See also: change nosum, change sum

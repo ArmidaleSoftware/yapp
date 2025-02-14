@@ -1,0 +1,11 @@
+
+Syntax: r_ead [<range>]
+        i_tem [<range>]
+        pr_int [<range>]
+
+Description: These commands will display a sequence of items, subject
+   to the range restrictions specified.  The print command will clear 
+   the screen or advance to the next page between items.  If no range 
+   is specified, "all new" is assumed.  
+
+See also: browse, range, itemsep

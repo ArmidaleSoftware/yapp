@@ -1,0 +1,8 @@
+
+Syntax: chfn ['<fullname>' ['<email>']]
+
+Description: Only usable by users with local Yapp accounts, this command 
+   allows the user to change their fullname and email address.  If
+   text is not specified on the command line, it will be prompted for.
+
+See also: passwd

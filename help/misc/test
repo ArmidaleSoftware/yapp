@@ -1,0 +1,7 @@
+
+Syntax: t_est <range>
+
+Description: This will display the parameters recognized from the
+   range specification, and is used mainly for debugging.
+
+See also: range

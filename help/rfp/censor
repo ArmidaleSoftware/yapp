@@ -1,0 +1,7 @@
+Syntax: cen_sor <#>
+
+Description:
+   This will mark a response as censored, and it will not be shown
+   unless read with the 'noforget' flag active.
+
+See also: change noforget, scribble, uncensor

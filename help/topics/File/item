@@ -1,0 +1,44 @@
+
+Description: File such as _1 contain the actual items.  These are 
+   maintained by YAPP, and modifying them is not recommended.
+   However, for informational purposes, the format is explained 
+   below.
+
+   The first line contains the magic string "!<ps02>".
+   The second line contains the item subject prefixed with ",H".
+   Following that are a series of responses (including response 0)
+   having the following format:
+
+   ,R####
+   ,U****,login
+   ,Afullname
+   ,DXXXXXXXX
+   ,T
+   lines of
+   text
+   ,E
+
+   #### = 0000 means normal, 0001 means censored, 0003 means scribbled
+   **** is the author's uid, and login is the author's login
+   fullname is the author's full name (or pseudonym) in this conference
+   XXXXXXXX is the time entered, in hex format
+   If a line of text needs to begin with a ",", then the comma is doubled.
+
+Example:
+!<ps02>
+,HCousin of the brother of the mother of the aunt of the Echo item
+,R0000
+,U8006,furs
+,AJeanne Marie Burke
+,D241F0261
+,T
+Since the other one is nuked
+here's a new one.
+,E
+,R0000
+,U8006,furs
+,AJeanne Marie Burke
+,D241F0275
+,T
+,,ECHO!
+,E

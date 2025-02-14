@@ -1,0 +1,11 @@
+
+Syntax: for_each <varname> in <listname> do "command"
+
+Description: For each element in the named list, set varname to the value
+   of the element, and execute the given command.
+
+Example:
+
+   foreach i in fwlist do 'eval "%{i} is a fairwitness."'
+
+See also: language, variables, eval

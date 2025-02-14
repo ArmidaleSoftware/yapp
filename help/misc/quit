@@ -1,0 +1,10 @@
+
+Syntax: q_uit
+        st_op
+        ex_it
+
+Description: These will exit from the current mode, and return you to
+   the previous level of prompts.  If the ignoreeof flag is off, hitting
+   control-D is equivalent to these commands as well.
+
+See also: abort, set ignoreeof

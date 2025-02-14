@@ -1,0 +1,36 @@
+
+Topic: Mailing List Conferences
+
+Description: 
+   If the conference type has the maillist flag set (see "help security"), 
+   then the conference is linked to a mailing list.  Usually, this is
+   is a two-way link so that mail to the list appears in the conference
+   and responses in the conference are posted to the list.
+
+   The mailing list address used to post responses is specified on
+   line 6 of the conference config file.  
+
+   A special maillist file in the main bbs data directory specifies
+   which incoming mail addresses go to which conference.  (This is
+   because multiple incoming addresses may actually be the same list.)
+
+   In order for your mailer to pass responses to the bbs, it needs
+   to be able to invoke "bbs -i" with the email text as input.  The
+   simplest way to do this is to add an email alias to /etc/aliases
+   of the form:
+
+      cflink: "|/usr/local/bin/bbs -i"
+
+   The address cflink@your.host.name can then be added to the mailing
+   lists you wish to link to Yapp conferences.
+
+   Another method is to put:
+
+      "| /usr/local/bin/bbs -i"
+
+   (including the quotes, and the correct pathname) into the .forward
+   file of a SINGLE recipient of the email.  This recipient will then
+   never see email, so a special login should be used.  The UID of 
+   this login must be 0, 1, or the same as the UID which owns Yapp.
+
+See also: security, file config, file maillist, newsgroup

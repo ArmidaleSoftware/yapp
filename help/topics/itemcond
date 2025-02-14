@@ -1,0 +1,33 @@
+
+Topic: Item Conditionals
+
+Description: Item conditionals apply only to item separator
+   variables.  For any codes which use a number, the number defaults to 0
+   unless otherwise stated.  Codes inside conditionals are used only if
+   the condition is true.  A code is specified with: %(!#X 
+      where ! is an optional '!' or '~' meaning to negate the condition
+            # is an optional number
+            X is some character below.
+   
+   Char  Meaning                                    
+
+   B     if starting to process another report     
+   D     if date flag is on                       
+   F     if numbered flag is on
+   I     if starting to process another item         
+   L     if there is text at current response line
+   N     if current response number > 0
+   O     if starting to process another item        
+   p     if response is a response to another one
+   P     if last number output was not 1
+   R     if starting to process another response
+   T     if formfeed flag is on
+   U     if uid flag is on                         
+   V     if current response is censored          
+   W     if current response is scribbled
+   x     if # flag is on (1=report header, 2=line in body, 4=report summary)
+   X     if current response is retired          
+   Y     if current response is forgotten       
+   Z     if current response is frozen         
+
+See also: separators, miscsep

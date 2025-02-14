@@ -1,0 +1,9 @@
+Syntax: n_ew
+        wait
+
+Description:
+   This will return you to the OK prompt, skipping any remaining
+   items left to read.  Any responses you have read as seen will
+   be left as new.
+
+See also: pass, postpone, stop

@@ -1,0 +1,28 @@
+
+Syntax: eval_uate [[<range>] "sepstring"]
+        evali_n <range>
+
+Description: If a range is specified, the separator string specified
+   will be expanded as an itemsep for each item in the range.  
+   Otherwise, the sepstring will be expanded once as a confsep.
+
+   Note that normal separators (starting with a %) are expanded recursively
+   until a % no longer appears.  You can use the format ${variable} in
+   place of %{variable} to force single expansion.
+
+   If no sepstring or range is given, text will be read from the input.
+   The second form, evalin, is used to evaluate inputted text from with a
+   range.  Input may be redirected using < or <<.
+
+   A useful construct is combining the eval command with a << EOM
+   redirection.  This will allow sending multiple lines of text through
+   eval.
+
+   Example:
+   
+   eval << DONE
+   Here's some text
+   pid=${pid}
+   DONE
+
+See also: separators, itemsep, confsep, language, redirection, foreach

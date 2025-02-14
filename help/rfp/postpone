@@ -1,0 +1,8 @@
+Syntax: po_stpone
+        pr_eserve
+
+Description:
+   These will leave the current item and go on to the next item,
+   if any.   Any responses you have read will be left as new.
+
+See also: mail, respond, separators

@@ -1,0 +1,14 @@
+
+Syntax: list [<range>]
+        d_isplay conferences
+
+Description: This will display status information about all existing
+   conferences which you may access, or all conferences specified as
+   arguments.
+
+   By default, it shows the number of items in the conference, the
+   conference type (followed by an optional 'F' if you are a fair-
+   witness, or an 'O' if you are only allowed to observe), the last
+   time there was activity in the conference, and the conference name.
+
+See also: check, security, cflist

@@ -1,0 +1,41 @@
+Commands available only at this prompt (_'s denote minimal abbreviations):
+   <response range>      - display all responses in the specified range
+   cen_sor <#>           - censor a response
+   e_nter                - enter a new item
+   f_ind "text"          - show all responses including a string of text
+   forget                - pretend item doen't exist
+   freeze                - stop any further responses to this item
+   h_eader               - redisplay item header
+   k_ill                 - delete this item from current conference
+   n_ew                  - stop reading, and leave responses here as new
+   p_ass                 - go on to next item
+   po_stpone             - go on to next item, leaving responses here as new
+   ps_eudonym            - respond to item using a pseudonym
+   r_espond              - add a response to this item
+   rem_ember             - remove the forgotten status of this item
+   reply <#>             - send mail to the author of a response
+   retire                - make this item inaccessible to people
+   scr_ibble <#>         - censor and scribble over a response
+   st_op                 - stop reading
+   thaw                  - let people respond to this item again
+   tree                  - show diagram of response tree
+   unretire              - make this item accessible to people again
+
+Other miscellaneous commands available:
+   c_hange <arg> ...     - change various parameters
+   cd <directory>        - changes the current directory
+   cfdir                 - change default directory for personal Yapp files
+   d_isplay <arg> ...    - displays various parameters
+   da_te <date>          - show the result of a date specification
+   def_ine <variable> <type> <value> - defines a variable or command alias
+   ec_ho <string>        - prints the specified string of text
+   eval_uate [<range>] "sepstring" - evaluates a separator string
+   h_elp <topic> ...     - show help on various topics
+   m_ail <user>          - send mail to a specific user
+   source <filename>     - execute commands in a batch file
+   t_est <range>         - show the result of a range specification
+   uma_sk <value>        - sets current umask to value
+   und_efine <variable>  - deletes previously defined variable and its value
+
+See also:
+   range

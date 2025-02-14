@@ -1,0 +1,5 @@
+
+Description: If a .cfrc file exists, the commands therein will
+   be executed every time a new conference is entered.
+
+See also: file cfonce, file cfjoin, rc, bbsrc

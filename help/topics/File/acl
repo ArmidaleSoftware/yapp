@@ -1,0 +1,50 @@
+
+Description: The acl ("access control list") file can be changed by a 
+   conference administrator, or by anyone given permision to change 
+   the file as listed in the acl file.  Type the command "change acl" 
+   to change the file.  If the acl file exists, it overrides the 
+   security options in the conference type in the config file.
+
+   The acl file should consist of "r", "w", "c", and "a" lines, which 
+   may occur in any order.  The "r" line specifies who may read items
+   in the conference (and thus, who may join the conference).  The
+   "w" line specifies who may write responses to existing items.
+   The "c" line specifies who may create new items.  The "a" line
+   specified who may change the acl file.
+
+   Each line consists of the type (r/w/c/a), followed by one or more
+   fields (in any order) from the following list, each optionally 
+   prefixed with a + or a -:
+      all          Anyone
+      registered   Users with accounts
+      fwlist       Fairwitnesses
+      sysop        Conference administrators
+      originlist   Anyone passing an origin check ("help file originlist")
+      password     Anyone who knows the conference password
+      f:ulist      Anyone listed in the ulist file
+      f:observers  Anyone listed in the observers file
+      f:<filename> Anyone listed in the <filename> file (do not
+                   include the <>)
+
+   If a +, or nothing, precedes the field, a user must satisfy the
+   indicated condition for permission to be granted.  If a - precedes 
+   the field, a user must NOT satisfy the indicated condition.
+   In order for permission to be granted, a user must satistify ALL
+   conditions in the appropriate line.  
+
+Example:
+r +all +registered
+w +all +registered -f:observers
+c +all +registered +fwlist
+a +sysop
+
+   In the example file above, any registered user may join the conference
+   and read items.  All registered users except those listed in the 
+   "observers" file are able to respond.  Only fairwitnesses are able
+   to enter new items, and only conference administrators can change
+   the access control list.
+
+   If the "a" line is not present, it defaults to "+sysop".
+
+See also: change acl, security, fairwitnesses, maillist, newsgroup,
+   file observers, file originlist

@@ -1,0 +1,10 @@
+Syntax: p_ass
+        hide
+        <return>
+
+Description:
+   These will leave the current item (marking any responses you
+   have read as seen), and go on to the next item, if any.  This
+   is the default if you just hit return at the prompt.
+
+See also: postpone, stop, new

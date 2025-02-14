@@ -1,0 +1,18 @@
+
+Description: This file contains an index of all conference names and
+   directories.  The first line should be the string "!<hl01>".
+   The second line should contain the directory of the default conference.
+   The remaining lines should consist of a name, a colon, and a directory.
+   The name may have an _ embedded to denote the minimal abbreviation.
+   A conference may have multiple entries with the same directory in 
+   order to give multiple names to the same conference.
+   If the last line is of the form "=filename" then the list is continued
+   in another filename, which follows the same format except there should
+   be no default directory line.
+
+Example:
+!<hl01>
+/usr/bbs/confs/august
+jul_y:/usr/bbs/confs/jul
+aug_ust:/usr/bbs/confs/august
+newgen_eral:/usr/bbs/confs/august

@@ -1,0 +1,8 @@
+
+Syntax: e_nter
+
+Description: The enter command will allow you to enter a new item into
+   the current conference.  Only a fair-witness can enter the first item 
+   in a conference.
+
+See also: fairwitness

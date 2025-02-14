@@ -1,0 +1,8 @@
+
+Syntax: d_isplay li_st
+
+Description: Shows you the conferences in your .cflist, and 
+   your current position in the list in terms of the 'next' 
+   command, and what conference you are in.  
+
+See also: file conflist, next, check, cflist, file cflist

@@ -1,0 +1,9 @@
+
+Syntax: ch_ange nosum_mary
+        se_t    nosum_mary
+
+Description: These will delete the conference summary file.  Yapp will
+   still function without the summary file, albeit much slower.  This 
+   can only by done by a fairwitness.
+
+See also: set nosummary, file summary

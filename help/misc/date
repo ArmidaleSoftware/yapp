@@ -1,0 +1,11 @@
+
+Syntax: da_te <date>
+        cdate <date>
+
+Description: These will show the result of a date specification.  The
+   date command will give output in a text string like 
+      Date is: (00:00:00) July 27, 1993
+   whereas cdate gives the date in an internal hex format like
+      2C54A840
+
+See also: datesep

@@ -1,0 +1,11 @@
+
+Syntax: newuser [<login>]
+        newuser <login> <password> [<password2> ['<fullname>' ['<email>' 
+                        ['<varlist>']]]
+
+Description: Only usable by the "nobody" account, this command allows
+   creation of a local Yapp account.  Any optional fields will be
+   prompted for if missing.  The first form of the command simply tests
+   whether a given login is already in use.  The second form actually
+   creates a new account.  If specified, 'varlist' is a list of Yapp 
+   variables to save to the user's Yapp information database.

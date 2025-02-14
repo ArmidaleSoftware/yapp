@@ -1,0 +1,12 @@
+
+Syntax: k_ill 
+
+Description: This will delete the current item from the
+   current conference.  You may not do this unless either:
+      a) You are a fair-witness of the conference
+      b) You are the original author of the item and there are no
+         responses
+   The kill command can not be undone.  Kill commands are logged to
+   the conference log file.
+
+See also: retire, file log

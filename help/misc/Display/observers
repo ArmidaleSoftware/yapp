@@ -1,0 +1,8 @@
+
+Syntax: d_isplay obs_ervers
+
+Description: Shows you the list of users specified in the conference's 
+   observers file.  How this is used, depends on how (or if) the file
+   is referenced in the conference's access-control list.
+
+See also: change observers, file observers, file acl, display acl
