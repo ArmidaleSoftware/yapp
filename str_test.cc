@@ -141,11 +141,11 @@ TEST(StrTests, Match)
 
 TEST(StrTests, Contains)
 {
-    EXPECT_FALSE(str::contains({}, ""));
-    EXPECT_TRUE(str::contains({""}, ""));
-    EXPECT_FALSE(str::contains({"a"}, ""));
-    EXPECT_FALSE(str::contains({""}, "a"));
-    EXPECT_TRUE(str::contains({"a", "b", "c"}, "b"));
+    EXPECT_FALSE(str::contains(std::vector<std::string_view>{}, ""));
+    EXPECT_TRUE(str::contains(std::vector<std::string>{""}, ""));
+    EXPECT_FALSE(str::contains(std::vector<std::string_view>{"a"}, ""));
+    EXPECT_FALSE(str::contains(std::vector<std::string_view>{""}, "a"));
+    EXPECT_TRUE(str::contains(std::vector<std::string_view>{"a", "b", "c"}, "b"));
 }
 
 TEST(StrTests, Split)
