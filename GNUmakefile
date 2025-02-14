@@ -30,7 +30,7 @@ SRCS:=		arch.cc change.cc conf.cc dates.cc driver.cc edbuf.cc \
 
 OBJS:=		$(SRCS:%.cc=%.o)
 
-all:		$(PROG) $(EXTRA_PROGS)
+all:		$(PROG) $(EXTRA_PROGS) $(TESTS)
 
 $(PROG):	$(OBJS) GNUmakefile
 		$(CXX) $(CXXFLAGS) -o $(PROG) $(OBJS) $(LIBS) -lgdbm

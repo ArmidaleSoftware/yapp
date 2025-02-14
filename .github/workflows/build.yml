@@ -50,3 +50,8 @@ jobs:
         if: steps.skip_check.outputs.should_skip != 'true'
         run: |
           true #./Install
+
+      - name: Run tests
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: |
+          ./str_test
