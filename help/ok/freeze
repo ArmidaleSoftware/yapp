@@ -2,7 +2,7 @@
 Syntax: freeze <range>
 
 Description: This will cause all items in the specified range to be
-   frozen.  No one can then respond to the item.  The forget can be 
+   frozen.  No one can then respond to the item.  The freeze can be
    undone with the thaw command.  Freeze commands are logged to the
    conference log file.
 

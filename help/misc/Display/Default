@@ -18,7 +18,6 @@ Description: These commands will display the values of various
       def_initions   - same as "define" command
       f_orgotten     - list of all forgotten items
       fair_witnesses - names of fair-witnesses of current conference
-      fair_witnesses - names of fair-witnesses of current conference
       fds            - info on current file usage for this process
       fro_zen        - list of all frozen items
       html_header    - htmlheader file for this conference

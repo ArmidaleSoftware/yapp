@@ -1,5 +1,5 @@
 
-Syntax: cfcreate [<conf>]
+Syntax: cfdelete [<conf>]
 
 Description: This command can only be run by the conference administrator,
    and is used to delete an empty conference.  If no conference name is

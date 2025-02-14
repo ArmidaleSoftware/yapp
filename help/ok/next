@@ -3,7 +3,7 @@ Syntax: n_ext
 
 Description: Join the next conference in your .cflist which has
    new responses in it.  If you have cycled through all the conferences
-   in your cflist and you wish to start searching at the begining
+   in your cflist and you wish to start searching at the beginning
    of your .cflist, use "cflist restart".
 
 See also: check, change list, join, cflist, file cflist
