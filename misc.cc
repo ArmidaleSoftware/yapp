@@ -542,9 +542,7 @@ eval(           /* ARGUMENTS:             */
     char act[MAX_ITEMS], *str;
     short i_s, i_i, i_lastseen, shown = 0, rfirst = 0;
     FILE *fp;
-    status_t tmp;
-    /* Save state */
-    memcpy(&tmp, &st_glob, sizeof(status_t));
+    status_t tmp = st_glob;
 
     refresh_sum(0, confidx, sum, part, &st_glob);
     for (i = 0; i < MAX_ITEMS; i++) act[i] = 0;
@@ -685,7 +683,7 @@ eval(           /* ARGUMENTS:             */
     /* Restore state */
     {
         FILE *inp = st_glob.inp;
-        memcpy(&st_glob, &tmp, sizeof(status_t));
+        st_glob = tmp;
         st_glob.inp = inp;
     }
     /*
