@@ -5,6 +5,7 @@
 
 #include <ctime>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "struct.h"
@@ -38,6 +39,7 @@ char cover(int i, int idx, int spec, int act, sumentry_t *sum, partentry_t *part
     status_t *st);
 void range(int argc, char **argv, short *flags, char *act, sumentry_t *sum,
     status_t *st, int bef);
+short get_number(const std::string_view &token, status_t *st);
 void rangetoken(const char *token, short *flags, char *act, sumentry_t *sum, status_t *st);
 std::time_t since(const std::vector<std::string> &args, size_t *ip = nullptr);
 void rangeinit(status_t *st, char *act);
