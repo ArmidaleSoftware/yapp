@@ -288,7 +288,7 @@ join(const std::string &conf, int force, int secure)
     /* was ifdef STUPID_REOPEN */
     {
         FILE *inp = st_glob.inp;
-        memcpy(&st_glob, &st_new, sizeof(st_new));
+        st_glob = st_new;
         st_glob.inp = inp;
     }
 

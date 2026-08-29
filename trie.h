@@ -19,16 +19,20 @@ public:
 	using iterator = T *;
  	using const_iterator = const T *;
 
-	constexpr explicit trie() : nkeys{}, nkids{}, terminates{} {}
+	constexpr explicit trie() : nkeys{}, nkids{}, terminates{}, datait{} {}
 	constexpr trie(trie<T> &&) noexcept = default;
 
 	constexpr bool insert(std::string_view key, T &&data) {
+		if (key.empty() || std::ranges::count(key, '_') > 1)
+			return false;
 		std::optional<T> d = std::move(data);
-		return this->insert_data(key, std::move(d), this->end());
+		return this->insert_data(key, std::move(d), this->end(), this->end());
 	}
 
 	const_iterator find(std::string_view key) const {
-		return this->find_key(key, this->end());
+		if (key.empty())
+			return this->end();
+		return this->find_key(key);
 	}
 
 	constexpr const_iterator end(void) const { return nullptr; }
@@ -46,13 +50,15 @@ private:
 	}
 
 	constexpr bool insert_data(std::string_view key,
-	    std::optional<T> &&data, const_iterator terminates) {
+	    std::optional<T> &&data, const_iterator datait, const_iterator terminates) {
 		if (key.empty()) {
 			if (this->data.has_value() || this->terminates != this->end())
 				return false;
 			this->terminates = terminates;
+			this->datait = datait;
 			if (data.has_value()) {
 				this->data = std::move(data);
+				this->datait = &*this->data;
 				this->terminates = &*this->data;
 			}
 			return true;
@@ -63,7 +69,12 @@ private:
 			if (this->data.has_value() || this->terminates != this->end())
 				return false;
 			this->data = std::move(data);
-			return this->insert_data(key, {}, &*this->data);
+			if (key.empty())
+				return true;
+			auto rv = this->insert_data(key, {}, &*this->data, &*this->data);
+			if (!rv)
+				this->data.reset();
+			return rv;
 		}
 		const auto i = this->keypos(c);
 		if (i == this->nkids || this->keys[i] != c) {
@@ -83,30 +94,29 @@ private:
 			std::move(bkids, bkids + i, newkids);
 			std::move(bkids + i , ekids, newkids + i + 1);
 			newkids[i] = std::make_unique<trie<T>>();
+			newkids[i]->datait = datait;
 
 			this->keys.reset(newkeys);
 			this->kids.reset(newkids);
 			++this->nkids;
 		}
-		return this->kids[i]->insert_data(key, std::move(data), terminates);
+		return this->kids[i]->insert_data(key, std::move(data), datait, terminates);
 	}
 
-	const_iterator find_key(std::string_view key, const_iterator last) const {
+	const_iterator find_key(std::string_view key) const {
 		if (key.empty()) {
 			if (this->data.has_value())
-				last = &*this->data;
-			return last;
+				return &*this->data;
+			if (this->terminates != this->end())
+				return this->terminates;
+			return this->datait;
 		}
 		const auto c = key.front();
 		const auto i = this->keypos(c);
-		if (i == this->nkids)
+		if (i == this->nkids || this->keys[i] != c)
 			return this->end();
 		key.remove_prefix(1);
-		if (this->terminates == last)
-			last = this->end();
-		if (this->data.has_value() && this->terminates == this->end())
-			last = &*this->data;
-		return this->kids[i]->find_key(key, last);
+		return this->kids[i]->find_key(key);
 	}
 
 	std::size_t nkeys;
@@ -115,4 +125,5 @@ private:
 	std::unique_ptr<std::unique_ptr<trie>[]> kids;
 	std::optional<T> data;
 	const_iterator terminates;
+	const_iterator datait;
 };
